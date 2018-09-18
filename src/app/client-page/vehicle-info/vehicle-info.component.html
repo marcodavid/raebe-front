@@ -1,0 +1,81 @@
+<div class="container mt-2" [@animacionAparecer]>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Información del Vehículo</h2>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-2" [@animacionAparecer]>
+  <div class="row">
+    <div class="col-sm-6">
+        <img src="/assets/img/example_2.jpg" width="80%" alt="">
+    </div>
+    <div class="col-sm-6">
+      <h2>{{vehicleName}}</h2>
+      <h3>{{vehicleType}}</h3>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-sm-12 divisor">
+      &nbsp;
+  </div>
+</div>
+
+<div class="container mt-2" [@animacionAparecer]>
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Características</h2>
+    </div>
+  </div>
+  <li *ngFor='let feature of features'>
+    {{feature}}
+  </li>
+</div>
+
+<div class="container mt-5" [@animacionAparecer]>
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>Reglas del Carro</h2>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi ducimus voluptatibus maxime provident perferendis, eligendi officiis odio, facere eveniet neque maiores quasi sequi error cum numquam! Rerum in adipisci commodi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem voluptatem itaque blanditiis alias omnis. Alias minus quas quia magni iure, provident a at ut blanditiis voluptates harum velit quo vitae?</p>
+    </div>
+    <div class="col-sm-4">
+      <img src="/assets/img/group.png" width="80%">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-sm-12 divisor">
+      &nbsp;
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Evaluaciones</h2>
+      <div class="container">
+        <div class="row mt-3" *ngFor='let evaluation of evaluations'>
+          <div class="col-sm-12">
+            <h4><b>{{evaluation.username}}</b> {{evaluation.value}}</h4>
+            <p>{{evaluation.date}}</p>
+          </div>
+          <div class="col-sm-12 comment">
+            {{evaluation.comment}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3 mb-5">
+  <div class="row">
+    <div class="col-sm-12">
+      <a routerLink="/client/agreement" class="btn btn-primary">Mostrar contrato del vehículo</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="container mt-5" [@animacionAparecer]>
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-4  text-center">
+      <img src="/assets/img/example_2.jpg" width="100%" alt="">
+    </div>  
+    <div class="col-sm-12 col-md-8">
+      <h3>Dodge Attitude</h3>
+      <h4>Automovil</h4>
+      <p>21 de Junio 2018 - 23 de Julio 2018</p>
+    </div>  
+  </div>
+</div>
+
+<div class="container mt-5 mb-5" [@animacionAparecer]>
+    <div class="row">
+      <div class="col-sm-12 col-md-7">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <h3><fa name="credit-card"></fa>&nbsp;Detalles de Pago</h3>
+            </div>
+            <div class="col-sm-12">
+              <div class="container">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h4>Mi Información</h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="txtPayementType">Tipo de pago</label>
+                        <select class="form-control" id="txtPayementType">
+                            <option value="1">Tarjeta de Crédito</option>
+                            <option value="2">Tarjeta de Dédito</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <div class="form-group">
+                        <label for="txtName">Nombre Titular de la Tarjeta</label>
+                        <input class="form-control" type="text" name="txtName" id="txtName">
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <div class="form-group">
+                        <label for="txtCardNumber">Número de Tarjeta</label>
+                        <input class="form-control" maxlength="16" type="text" name="txtCardNumber" id="txtCardNumber">
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                      <div class="form-group">
+                        <label for="txtCVC">CVC</label>
+                        <input class="form-control" type="text" name="txtCVC" id="txtCVC">
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                      <div class="form-group">
+                        <label for="txtExpirationMonth">Mes de Expiracion</label>
+                        <input class="form-control" type="number" min="1" max="12" step="1" value="1" name="txtExpirationMonth" id="txtExpirationMonth">
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                      <div class="form-group">
+                        <label for="txtExpirationYear">Año de Expiracion</label>
+                        <input class="form-control" type="number" min="2018" max="2050" value="2019" step="1" name="txtExpirationYear" id="txtExpirationYear">
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-12">
+              <h3><fa name="list"></fa>&nbsp;Desglose de Costos</h3>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <table class="table">
+              <thead>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tarifa base x 3 días</td>
+                  <td>$ 352 MXN</td>
+                </tr>
+                <tr>
+                  <td>IVA</td>
+                  <td>$ 27 MXN</td>
+                </tr>
+                <tr>
+                  <td>Otros cargos</td>
+                  <td>$ 52 MXN</td>
+                </tr>
+                <tr>
+                  <td class="justify-content-center text-center total" colspan="2">
+                    Total $ 431 MXN
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row justify-content-center text-center">
+            <a href="!#" class="btn btn-primary col-sm-10">Reservar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

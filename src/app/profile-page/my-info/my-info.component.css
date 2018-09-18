@@ -1,0 +1,36 @@
+a {
+    text-decoration : none;
+}
+
+.card {
+    border : 0;
+    border-bottom: 1px;
+}
+
+.card-header {
+    margin-top : 0 px;
+    margin-bottom: 0 px;
+    border : 0;
+}
+
+.card-title{
+    color: #141f3b;
+    font-size: 15pt;
+    margin: 0px;
+    text-decoration : none;
+}
+
+.card-title:hover{
+    color: #354f91;
+}
+
+.profile-link{
+    color: #141f3b;
+    font-size: 15pt;
+    margin: 0px;
+    text-decoration : none;
+}
+
+.profile-link:hover{
+    color: #354f91;
+}

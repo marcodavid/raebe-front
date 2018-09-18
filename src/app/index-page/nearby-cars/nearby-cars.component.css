@@ -1,0 +1,29 @@
+fa {
+    color : #283149;
+}
+
+.shadow{
+	box-shadow: 1px 1px 1px rgba(134, 133, 133, 0.137);
+}
+
+.container-divisor{
+    color:#345a58;
+    background-color: #f4f9f4;
+    margin: 0 auto;
+    width: 100%;
+}
+
+a.btn {
+    border-color: #1d2786;
+    background-color: #6832a5;
+    color : #FFF;
+}
+
+a.btn:hover{
+    background-color: #6832a5;
+}
+
+a.btn:active{
+    color : #FFF !important;
+    background-color: #4e277a !important;
+}

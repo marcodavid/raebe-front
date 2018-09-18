@@ -1,0 +1,53 @@
+<div class="container mt-2 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-12"><h3>Hola Silvana</h3></div>
+    </div> 
+</div>
+
+<div class="container mb-5" [@animacionAparecer]>
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6">
+      <h3>Tus Precios</h3>
+      <div class="form-group">
+        <label for="precios">¿Cómo prefieres que sean tus precios?</label>
+        <div class="radio">
+          <label><input type="radio" name="precios" id="precios">Fijos</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="precios" id="precios" checked>Mis opciones específicas</label>
+        </div>
+        <div class="radio disabled">
+          <label><input type="radio" name="precios" id="precios">Fluctuante entre temporada baja o alta</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="marca">Precio entre semana</label>
+        <input type="text" id="marca" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="marca">Precio fin de semana</label>
+        <input type="text" id="marca" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="marca">Precio vacaciones o puentes</label>
+        <input type="text" id="marca" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="marca">Precio para fechas que tú consideras mas caras</label>
+        <input type="text" id="marca" class="form-control">
+        <a href="!#">Agregar fecha <fa name="plus-circle"></fa></a>
+      </div>
+      <div class="form-group">
+        <label for="marca">Desde</label>
+        <input type="date" id="marca" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="marca">Hasta</label>
+        <input type="date" id="marca" class="form-control">
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <img src="/assets/img/coin.png" width="80%">
+      </div>
+  </div>
+</div>

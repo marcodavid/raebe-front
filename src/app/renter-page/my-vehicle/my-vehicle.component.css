@@ -1,0 +1,10 @@
+a {
+    font-size: 15pt;
+    color : rgb(100,150,80);
+    text-decoration : none;
+}
+
+a:hover{
+    color : rgb(80,130,170);
+    text-decoration : none;
+}
