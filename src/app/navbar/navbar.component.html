@@ -21,8 +21,9 @@
       <a href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#loginModal">Ingresa</a>
     </div>
     <div #loggedButtons>
+     
       <a class="navbar-link mr-2 ml-2" data-toggle="modal" href="!#">Renta tu carro</a>
-      <a class="navbar-link mr-2 ml-2" data-toggle="modal" >Perfil</a>
+      <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['profile']"><fa name="user"></fa> {{user.firstname}}</a>
     </div>
 
   </div>

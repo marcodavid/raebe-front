@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ClientsService } from '../../services/clients-service/clients.service';
 
 @Component({
   selector: 'app-my-info',
@@ -22,9 +23,14 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class MyInfoComponent implements OnInit {
 
-  constructor() { }
-
+ 
+  constructor(private clientService: ClientsService) { }
+  private user : any
   ngOnInit() {
   }
 
+  public logOut() {   
+    localStorage.clear();
+    location.reload();
+  }
 }

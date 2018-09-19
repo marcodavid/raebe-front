@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {HttpClientModule} from '@angular/common/http';	
 import { AppComponent } from './app.component';
 import { NearbyCarsComponent } from './index-page/nearby-cars/nearby-cars.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchComponent } from './search/search.component';
 import { CarCardComponent } from './car-card/car-card.component';
 import { LoginModalComponent } from './index-page/login-modal/login-modal.component';
-
+import { FormsModule } from '@angular/forms';    	
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FooterComponent } from './footer/footer.component';
 import { SignupModalComponent } from './index-page/signup-modal/signup-modal.component';
@@ -21,6 +21,9 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AgreementComponent } from './client-page/agreement/agreement.component';
 import { PayementComponent } from './client-page/payement/payement.component';
 import { NearbyCarsMapComponent } from './client-page/nearby-cars-map/nearby-cars-map.component';
+import { ClientsService } from './services/clients-service/clients.service';
+import { ConfigService } from './services/config-service/config.service';
+import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
 
 // Rutas
 import { app_routing } from './app.routes';
@@ -86,9 +89,15 @@ import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock
     BrowserModule,
     AngularFontAwesomeModule,
     app_routing,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    ClientsService,
+    ConfigService,
+    AuthGuardService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
