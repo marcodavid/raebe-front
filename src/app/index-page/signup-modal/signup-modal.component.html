@@ -12,41 +12,41 @@
         <div class="row justify-content-center">
           <div class="col-md-8">
             <label for="txtEmailSignup">Email: </label>
-            <input class="form-control" type="text" name="txtEmailSignup" id="txtEmailSignup">
+            <input required [(ngModel)]="json.email" class="form-control" type="email" name="txtEmailSignup" id="txtEmailSignup ">
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8">
             <label for="txtNameSignup">Nombres: </label>
-            <input class="form-control" type="text" name="txtNameSignup" id="txtNameSignup">
+            <input required [(ngModel)]="json.firstname" class="form-control" type="text" name="txtNameSignup" id="txtNameSignup">
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8">
             <label for="txtLastNameSignup">Apellidos: </label>
-            <input class="form-control" type="text" name="txtLastNameSignup" id="txtLastNameSignup">
+            <input required [(ngModel)]="json.lastname" class="form-control" type="text" name="txtLastNameSignup" id="txtLastNameSignup">
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8">
             <label for="txtPasswordSignup">Contraseña: </label>
-            <input class="form-control" type="password" name="txtPasswordSignup" id="txtPasswordSignup">
+            <input required [(ngModel)]="json.password" class="form-control" type="password" name="txtPasswordSignup" id="txtPasswordSignup">
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8">
             <label for="txtPasswordSignup">Fecha de Nacimiento: </label>
-            <input class="form-control" type="date" name="txtPasswordSignup" id="txtPasswordSignup">
+            <input  required [(ngModel)]="json.age" class="form-control" type="date" name="txtPasswordSignup" id="txtPasswordSignup">
           </div>
-        </div>
+        </div>            
         <div class="row justify-content-center">
           <div class="col-md-8 checkbox mt-1">
-            <label><input type="checkbox" value="" id="chckConditions">&nbsp;Acepto térnimos y condiciones</label>
+            <label><input required type="checkbox" value="" id="chckConditions">&nbsp;Acepto térnimos y condiciones</label>
           </div>
         </div>
         <div class="row mt-3 justify-content-center text-center">
           <div class="col-md-8">
-              <a href="#!" class="col-md-12 btn btn-outline-success">Registrate</a>
+              <a href="#!" class="col-md-12 btn btn-outline-success"  (click)="onSign()">Registrate</a>
           </div>
         </div>
       </div>

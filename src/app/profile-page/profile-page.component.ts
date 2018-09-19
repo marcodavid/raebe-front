@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientsService } from '../services/clients-service/clients.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private clientService:ClientsService) { }
+  private user : any
   ngOnInit() {
+    this.user = JSON.parse(this.clientService.getUserInfo());
   }
+
 
 }
