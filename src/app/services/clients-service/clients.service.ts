@@ -27,14 +27,30 @@ export class ClientsService extends ConfigService{
   public postClientToSign(json) {
       return this.http.post("http://"+this.server+"/api/PostClientToSign/", JSON.stringify(json), this.httpOptions);  
   }
-    public postClientToLogin(json) {
-       return this.http.post("http://"+this.server+"/api/PostClientToLogin/", JSON.stringify(json), this.httpOptions);
-    
-    }
+  public postClientToLogin(json) {
+      return this.http.post("http://"+this.server+"/api/PostClientToLogin/", JSON.stringify(json), this.httpOptions);
+  
+  }
 
-    public getAuthToken() {
-      return this.authToken;        
-    }
+  public putClientForUpdate(userInfoUpdated) {
+    
+    this.httpOptions.headers.append('Authorization', 'bearer'+this.getToken())
+    this.http.put("http://"+this.server+"/api/PutClientForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
+    .subscribe(
+      data => {
+        if(data) {
+          alert(" ya se guardo cambia este aviso despues por uno mas bonito")
+          location.reload();
+        }
+          
+      }
+    );
+    this.setUserInfo(userInfoUpdated);
+  }
+
+  public getAuthToken() {
+    return this.authToken;        
+  }
 
     public setToken(token) {
       super.setToken(token); 

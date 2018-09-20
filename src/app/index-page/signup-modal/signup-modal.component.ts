@@ -24,6 +24,7 @@ export class SignupModalComponent implements OnInit {
   
   
   ngOnInit() {
+    
   }
 
   onSign() {

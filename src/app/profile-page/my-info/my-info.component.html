@@ -1,3 +1,4 @@
+<script src="jquery.toaster.js"></script>
 <div class="container mt-2 mb-5" [@animacionAparecer]>
   <div id="accordion">
     <div class="card">
@@ -18,15 +19,15 @@
           <div class="row">
             <div class="form-group col-sm-12 col-md-4 mt-1">
               <label for="txtEmail">Email</label>
-              <input id="txtEmail" type="text" name="txtEmail" class="form-control">
+              <input [(ngModel)]="json.email" id="txtEmail" type="text" name="txtEmail" class="form-control" placeholder="{{user.email}}">
             </div>
             <div class="form-group col-sm-12 col-md-4 mt-1">
               <label for="txtName">Nombre</label>
-              <input id="txtName" type="text" name="txtName" class="form-control">
+              <input [(ngModel)]="json.firstname" id="txtName" type="text" name="txtName" class="form-control" placeholder="{{user.firstname}}">
             </div>
             <div class="form-group col-sm-12 col-md-4 mt-1">
               <label for="txtLastName">Apellidos</label>
-              <input id="txtLastName" type="text" name="txtLastName" class="form-control">
+              <input [(ngModel)]="json.lastname" id="txtLastName" type="text" name="txtLastName" class="form-control"  placeholder="{{user.lastname}}">
             </div>
             <div class="form-group col-sm-12 col-md-4 mt-1">
               <label for="txtNationality">Nacionalidad</label>
@@ -34,11 +35,11 @@
             </div>
             <div class="form-group col-sm-12 col-md-4 mt-1">
               <label for="txtBornDate">Fecha de Nacimiento</label>
-              <input id="txtBornDate" type="date" name="txtBornDate" class="form-control">
+              <input [(ngModel)]="json.age" id="txtBornDate" type="date" name="txtBornDate" class="form-control" placeholder="{{user.age}}">
             </div>
             <div class="form-group col-sm-12 col-md-4 mt-1">
               <label for="txtCurp">CURP</label>
-              <input id="txtCurp" type="text" name="txtCurp" class="form-control">
+              <input [(ngModel)]="json.curp" id="txtCurp" type="text" name="txtCurp" class="form-control" placeholder="{{user.curp}}">
             </div>
           </div>
           <div class="row">
@@ -88,8 +89,12 @@
             </div>
             <div class="form-group col-sm-12 col-md-4 mt-1">
               <label for="txtPhone">Teléfono</label>
-              <input id="txtPhone" type="text" name="txtPhone" class="form-control">
-              <p class="row justify-content-end mr-1">Agregar Otro</p>
+              <input id="txtPhone" type="text" name="txtPhone" class="form-control">             
+            </div>
+            <div class="form-group col-sm-12 ">
+              <button class="btn btn-outline-secondary float-right" (click)="saveInfo()" >
+              <fa name="save"></fa>&nbsp;Guardar
+              </button>            
             </div>
           </div>
         </div>
