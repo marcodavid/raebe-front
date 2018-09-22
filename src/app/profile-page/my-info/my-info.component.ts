@@ -27,17 +27,37 @@ export class MyInfoComponent implements OnInit {
   constructor(private clientService: ClientsService) { }
   private user : any
   private token : any
-  json  = {
+  client  = {
     firstname: "" ,
     lastname: "" ,
     email:"" ,
     isrenter:0 ,
     age:'' ,//toDo change this column in db
     curp:"" ,
+    telnumber:0,
+    lada:0,
+    telcountry:"",
     id_address:0 ,
     imgprofilephoto:"" ,
     fulldata: 0  }
-   
+    
+    address = {
+      id_address:0,
+      zipcode:"",
+      country:"",
+      state:"",
+      province:"",
+      numint:""
+    }
+
+    driverlicense = {
+      id_driverlicense:0,
+      id_clients:0,
+      licensenumber:0,
+      startday:0,
+      endday:0
+
+    }
   ngOnInit() {
     this.user = JSON.parse(this.clientService.getUserInfo());
     this.token = this.clientService.getToken();
@@ -52,28 +72,28 @@ export class MyInfoComponent implements OnInit {
   
   public validateChanges() {
 
-    if(this.json.firstname != "") {
-      this.user.firstname = this.json.firstname;
+    if(this.client.firstname != "") {
+      this.user.firstname = this.client.firstname;
 
     }
     
-    if(this.json.lastname != "") {
-      this.user.lastname = this.json.lastname;
+    if(this.client.lastname != "") {
+      this.user.lastname = this.client.lastname;
 
     }
     
-    if(this.json.email != "") {
-      this.user.email = this.json.email;
+    if(this.client.email != "") {
+      this.user.email = this.client.email;
 
     }
   
-    if(this.json.curp != "") {
-      this.user.curp = this.json.curp;
+    if(this.client.curp != "") {
+      this.user.curp = this.client.curp;
 
     }
     
-    if(this.json.age != "") {
-      this.user.age = this.json.age;
+    if(this.client.age != "") {
+      this.user.age = this.client.age;
 
     }
   }

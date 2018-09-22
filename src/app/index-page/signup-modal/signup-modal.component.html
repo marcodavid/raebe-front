@@ -10,33 +10,34 @@
       </div>
       <div class="modal-body mb-3">
         <div class="row justify-content-center">
+          
           <div class="col-md-8">
-            <label for="txtEmailSignup">Email: </label>
-            <input required [(ngModel)]="json.email" class="form-control" type="email" name="txtEmailSignup" id="txtEmailSignup ">
+            <label for="txtEmailSignup">Email:</label>
+            <input required [(ngModel)]="client.email" class="form-control" type="email" name="txtEmailSignup" id="txtEmailSignup ">
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8">
             <label for="txtNameSignup">Nombres: </label>
-            <input required [(ngModel)]="json.firstname" class="form-control" type="text" name="txtNameSignup" id="txtNameSignup">
+            <input required [(ngModel)]="client.firstname" class="form-control" type="text" name="txtNameSignup" id="txtNameSignup">
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8">
             <label for="txtLastNameSignup">Apellidos: </label>
-            <input required [(ngModel)]="json.lastname" class="form-control" type="text" name="txtLastNameSignup" id="txtLastNameSignup">
+            <input required [(ngModel)]="client.lastname" class="form-control" type="text" name="txtLastNameSignup" id="txtLastNameSignup">
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8">
             <label for="txtPasswordSignup">Contraseña: </label>
-            <input required [(ngModel)]="json.password" class="form-control" type="password" name="txtPasswordSignup" id="txtPasswordSignup">
+            <input required [(ngModel)]="client.password" class="form-control" type="password" name="txtPasswordSignup" id="txtPasswordSignup">
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8">
             <label for="txtPasswordSignup">Fecha de Nacimiento: </label>
-            <input  required [(ngModel)]="json.age" class="form-control" type="date" name="txtPasswordSignup" id="txtPasswordSignup">
+            <input  required [(ngModel)]="client.age" class="form-control" type="date" name="txtPasswordSignup" id="txtPasswordSignup">
           </div>
         </div>            
         <div class="row justify-content-center">
@@ -58,3 +59,4 @@
     </div>
   </div>
 </div>
+

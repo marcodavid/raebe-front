@@ -31,9 +31,16 @@ export class ClientsService extends ConfigService{
       return this.http.post("http://"+this.server+"/api/PostClientToLogin/", JSON.stringify(json), this.httpOptions);
   
   }
-
-  public putClientForUpdate(userInfoUpdated) {
-    
+  public postAddress(json) {
+    this.httpOptions.headers.append('Authorization', 'bearer'+this.getToken())
+    return this.http.post("http://"+this.server+"/api/PostAddress/", JSON.stringify(json), this.httpOptions);  
+  }
+  public postDriverLicense(json) {
+    this.httpOptions.headers.append('Authorization', 'bearer'+this.getToken())
+    return this.http.post("http://"+this.server+"/api/PostDriverLicense/", JSON.stringify(json), this.httpOptions);  
+  }
+  
+  public putClientForUpdate(userInfoUpdated) {   
     this.httpOptions.headers.append('Authorization', 'bearer'+this.getToken())
     this.http.put("http://"+this.server+"/api/PutClientForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
     .subscribe(
@@ -47,7 +54,19 @@ export class ClientsService extends ConfigService{
     );
     this.setUserInfo(userInfoUpdated);
   }
-
+  public putAddressForUpdate(userInfoUpdated) {
+    
+    //this.httpOptions.headers.append('Authorization', 'bearer'+this.getToken())
+    this.http.put("http://"+this.server+"/api/PutAddressForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
+    .subscribe(
+      data => {
+        if(data) {
+          location.reload();
+        }
+          
+      }
+    );
+  }
   public getAuthToken() {
     return this.authToken;        
   }
