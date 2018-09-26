@@ -1,89 +1,116 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConfigService } from '../config-service/config.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 import * as $ from 'jquery';
 @Injectable()
-export class ClientsService extends ConfigService{
+export class ClientsService extends ConfigService {
   private httpOptions: any;
   private server: string;
   private authToken: any;
-  
+
   constructor(private http: HttpClient,
-    private router:Router) {
+    private router: Router) {
     super();
     this.httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     this.server = super.getServer();
 
   }
   public getClients() {
-    $.get("http://"+this.server+"/api/GetClients/");
-    
+    $.get("http://" + this.server + "/api/GetClients/");
+
   }
 
-  public postClientToSign(json) {
-      return this.http.post("http://"+this.server+"/api/PostClientToSign/", JSON.stringify(json), this.httpOptions);  
+  public getAddressByClient(id) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.get("http://" + this.server + "/api/GetAddressByClient/?id_clients=" + id, this.httpOptions)
+
   }
+
+  public getDriverLicenseByClient(id) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.get("http://" + this.server + "/api/GetDriverLicenseByClient/?id_clients=" + id, this.httpOptions)
+  }
+  public postClientToSign(json) {
+    return this.http.post("http://" + this.server + "/api/PostClientToSign/", JSON.stringify(json), this.httpOptions);
+  }
+
   public postClientToLogin(json) {
-      return this.http.post("http://"+this.server+"/api/PostClientToLogin/", JSON.stringify(json), this.httpOptions);
-  
+    return this.http.post("http://" + this.server + "/api/PostClientToLogin/", JSON.stringify(json), this.httpOptions);
+
   }
   public postAddress(json) {
-    this.httpOptions.headers.append('Authorization', 'bearer'+this.getToken())
-    return this.http.post("http://"+this.server+"/api/PostAddress/", JSON.stringify(json), this.httpOptions);  
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.post("http://" + this.server + "/api/PostAddress/", JSON.stringify(json), this.httpOptions);
   }
   public postDriverLicense(json) {
-    this.httpOptions.headers.append('Authorization', 'bearer'+this.getToken())
-    return this.http.post("http://"+this.server+"/api/PostDriverLicense/", JSON.stringify(json), this.httpOptions);  
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.post("http://" + this.server + "/api/PostDriverLicense/", JSON.stringify(json), this.httpOptions);
   }
-  
-  public putClientForUpdate(userInfoUpdated) {   
-    this.httpOptions.headers.append('Authorization', 'bearer'+this.getToken())
-    this.http.put("http://"+this.server+"/api/PutClientForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
-    .subscribe(
-      data => {
-        if(data) {
-          alert(" ya se guardo cambia este aviso despues por uno mas bonito")
-          location.reload();
+
+  public putClientForUpdate(userInfoUpdated) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    this.http.put("http://" + this.server + "/api/PutClientForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
+      .subscribe(
+        data => {
+          if (data) {
+            alert(" ya se guardo el cliente  cambia este aviso despues por uno mas bonito")
+
+          }
+
         }
-          
-      }
-    );
+      );
     this.setUserInfo(userInfoUpdated);
   }
   public putAddressForUpdate(userInfoUpdated) {
-    
-    //this.httpOptions.headers.append('Authorization', 'bearer'+this.getToken())
-    this.http.put("http://"+this.server+"/api/PutAddressForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
-    .subscribe(
-      data => {
-        if(data) {
-          location.reload();
+
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    this.http.put("http://" + this.server + "/api/PutAddressForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
+      .subscribe(
+        data => {
+          if (data) {
+            alert(" ya se guardo la direccion este aviso despues por uno mas bonito")
+
+          }
+
         }
-          
-      }
-    );
+      );
+  }
+
+  public putDriverLicenseForUpdate(userInfoUpdated) {
+
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    this.http.put("http://" + this.server + "/api/PutDriverLicenseForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
+      .subscribe(
+        data => {
+          if (data) {
+            alert(" ya se guardo la licencia este aviso despues por uno mas bonito")
+
+          }
+
+        }
+      );
   }
   public getAuthToken() {
-    return this.authToken;        
+    return this.authToken;
   }
 
-    public setToken(token) {
-      super.setToken(token); 
-     
-    }
-    public getToken() {
-     return super.getToken(); 
-     
-    }
-    public setUserInfo(userInfo) {
-        super.setUserInfo(userInfo);
-    }
+  public setToken(token) {
+    super.setToken(token);
 
-    public getUserInfo() {
-      return super.getUserInfo(); 
-    }
   }
+  public getToken() {
+    return super.getToken();
+
+  }
+  public setUserInfo(userInfo) {
+    super.setUserInfo(userInfo);
+  }
+
+  public getUserInfo() {
+    return super.getUserInfo();
+  }
+}
