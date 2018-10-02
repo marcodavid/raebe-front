@@ -82,7 +82,7 @@ export class MyInfoComponent implements OnInit {
             this.userDriverLicense = data;
         }
       );
-   
+
 
   }
 
@@ -90,18 +90,44 @@ export class MyInfoComponent implements OnInit {
     this.validateChangesOnUserInfo()
     this.validateChangesOnUserAddress()
     this.validateChangesOnUserDriverLicense();
+    this.user.fulldata = this.checkFullData();
     this.clientService.putClientForUpdate(this.user);
     this.clientService.putAddressForUpdate(this.userAddress);
     this.clientService.putDriverLicenseForUpdate(this.userDriverLicense)
 
+    
+
   }
 
+  public checkFullData() {
+    let isFullData = 1;
+
+    for (var item in this.user) {
+      if (this.user[item] || item == "isrenter" || item == "fulldata" || item == "imgprofilephoto" || item == "id_address")
+        continue;
+      else isFullData = 0;
+    }
+
+    for (var item in this.userAddress) {
+      if (this.userAddress[item]|| item == "state" || item == "street")
+        continue;
+      else isFullData = 0;
+    }
+
+    for (var item in this.userDriverLicense) {
+      if (this.userDriverLicense[item])
+        continue;
+      else isFullData = 0;
+    }
+    return isFullData;
+
+  }
   public validateChangesOnUserInfo() {
 
-    if (this.client.firstname != "") {
+    if (this.client.firstname != "")
       this.user.firstname = this.client.firstname;
 
-    }
+
 
     if (this.client.lastname != "") {
       this.user.lastname = this.client.lastname;
