@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { LoaderService } from '../loader-service/loader.service';
 
 @Injectable()
-export class ConfigService {
+export class ConfigService extends LoaderService{
   private Server = "localhost:8000";
  
-  constructor() { }
+  constructor() { super() }
   
   
   getUserInfo() : any{

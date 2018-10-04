@@ -25,6 +25,7 @@ import { ClientsService } from '../../services/clients-service/clients.service';
 export class MyVehicleComponent implements OnInit {
 
   constructor(protected clientService : ClientsService, protected carsService : CarsService) { }
+  protected userHasCar: boolean;
   protected user: any
   protected token: any
   protected userCar: any
@@ -35,27 +36,36 @@ export class MyVehicleComponent implements OnInit {
     this.user = JSON.parse(this.clientService.getUserInfo());
      this.carsService.getCarByID(this.user.id_clients).subscribe(
       data => {
-        for(var item in data) {
-          if( item == "id_car" || item== "brand" || item== "model"  || item== "description" || item== "automatic") 
-              continue;
+        
+        this.userCar = data 
+        this.userHasCar = true;
+        if( this.userCar["automatic"] == 1)
+           this.userCar["automatic"] = "Automática";
+        else 
+           this.userCar["automatic"] = "Manual";
+       
+        for(var item in  this.userCar) {
+          if( item == "id_car" || item== "brand" || item== "model"  || item== "description" || item== "automatic"||item == "year"|| item == "passagers"||item == "doors") 
+            continue;
           else {
-            if(data[item] == 1)
-              data[item] = "Si" ;
+            if( this.userCar[item] == 1)
+               this.userCar[item] = "Si" ;
             else
-              data[item]= "No";
+               this.userCar[item]= "No";
           }     
         }
     
-         this.userCar = data 
+         
       },
       error => {
+        this.userHasCar = false;
         this.userCar = {
           id_car: '',
-          id_clients: '',
+          id_clients: this.user.id_clients,
           brand: '',
           model:'',
           year: '',
-          description: '',
+          description: 'update after',
           specialservices: '',
           automatic: '',
           type: '',

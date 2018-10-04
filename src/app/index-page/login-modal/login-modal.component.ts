@@ -21,7 +21,9 @@ export class LoginModalComponent implements OnInit {
   }
 
   onLogin() {
+    this.clientsService.showLoader();
     this.clientsService.postClientToLogin(this.json).subscribe(
+      
       data => {
         if (data) {
           this.clientsService.setToken(data['token']);
@@ -30,10 +32,12 @@ export class LoginModalComponent implements OnInit {
           $('body').removeClass('modal-open');
           $('.modal-backdrop').remove();
           location.reload();
+          this.clientsService.hideLoader();
         }
       },
       error => {
           this.showAlert = true;
+          this.clientsService.hideLoader();
       }
 
     );

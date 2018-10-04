@@ -3,7 +3,6 @@
       <fa name="save"></fa>&nbsp;Guardar
     </button>
 </div>
-
 <div class="container mb-5" [@animacionAparecer]>
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-5">
@@ -24,10 +23,14 @@
         <input  [(ngModel)]="userCar.year" type="number" id="year" class="form-control">
       </div>
       <div class="form-group">
+        <label for="year">Numero de placa</label>
+        <input  [(ngModel)]="userCar.id_car" type="text" id="year" class="form-control">
+      </div>
+      <div class="form-group">
         <label for="transmission">Transmisión</label>
         <select [(ngModel)]="userCar.automatic"  id="transmission" class="form-control">
           <option value="Manual">Manual</option>
-          <option value="Automatica">Automática</option>
+          <option value="Automática">Automática</option>
         </select>
       </div>
     </div>

@@ -34,30 +34,46 @@ export class MyVehicleFeaturesComponent extends MyVehicleComponent implements On
 
   ngOnInit() {
     super.ngOnInit()
-    
   }
 
   public onSaveCar() {
-    this.car = this.userCar;
+
+    this.car =this.userCar;
 
     for(var item in this.car) {
-      if( item == "id_car" || item== "brand" || item== "model"  || item== "description" || item== "automatic") 
-          continue;
+      if( item == "id_car" || item== "brand" || item== "model"  || item== "description" ||item == "year"|| item == "passagers"||item == "doors") 
+         continue;
       else {
-        if(this.car[item] == "Si")
+        if(this.car[item] == "Si" ||this.car[item] == "Automática")
             this.car[item] = 1;
         else
           this.car[item] = 0;
       }     
-    }
+    }  
     this.car.id_clients = this.user.id_clients;
-    this.car.id_car="cambiar";
-    this.car.description="cambiar";
-    this.car.automatic=1;
-    this.carsService.postCar(this.car).subscribe(
-      data => {alert("exito")},
-      error=>{alert("nel")}
-    );
+    if(this.userHasCar) {
+      
+      this.carsService.putCarForUpdate(this.car).subscribe(
+        data => {
+          if (data) {
+            alert("Carro actualizado, cambiar este mensaje por uno mejor")
+            super.ngOnInit();
+          }
+
+        }
+      );
+     
+    } else {
+
+      this.carsService.postCar(this.car).subscribe(
+        data => { 
+          alert("Carro creado, cambiar este mensaje por uno mejor")
+          super.ngOnInit();
+        },
+        error=>{alert("nel")}
+      );
+    }
+  
   }
   
 }
