@@ -26,9 +26,12 @@ export class MyVehicleComponent implements OnInit {
 
   constructor(protected clientService : ClientsService, protected carsService : CarsService) { }
   protected userHasCar: boolean;
+  protected userCarHasPolicy: boolean;
   protected user: any
   protected token: any
   protected userCar: any
+  protected userPolicy: any
+
   protected car = {}
   ngOnInit() {
 
@@ -54,7 +57,7 @@ export class MyVehicleComponent implements OnInit {
                this.userCar[item]= "No";
           }     
         }
-    
+        this.loadPolicy();
          
       },
       error => {
@@ -97,6 +100,29 @@ export class MyVehicleComponent implements OnInit {
       }
     );
 
+  }
+
+  public loadPolicy() {
+    this.carsService.getPolicyByID(this.userCar.id_car).subscribe(
+      data =>{
+        this.userCarHasPolicy = true;
+        this.userPolicy = data;
+      },
+      error =>{
+        this.userCarHasPolicy = false;
+        this.userPolicy = {
+          id_car:'',
+          clientpolicynumber:'',
+          policy:'',
+          company:'',
+          cis:'',
+          clientpolicyname:'',
+          validationdatestart:'',
+          validationdateend:''
+        }
+      }
+
+    );
   }
 
  

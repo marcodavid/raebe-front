@@ -50,7 +50,7 @@ import { CarsService } from './services/cars-service/cars.service';
 import { LoaderComponent } from './loader/loader/loader.component';
 import { LoaderService } from './services/loader-service/loader.service';
 import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
-
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -88,7 +88,8 @@ import { AuthGuardService } from './services/auth-guard-service/auth-guard.servi
     MessagesComponent,
     MyInfoComponent,
     CalendarLockComponent,
-    LoaderComponent
+    LoaderComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

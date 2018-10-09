@@ -23,6 +23,10 @@ export class CarsService extends ConfigService{
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
     return this.http.post("http://" + this.server + "/api/PostCar/", JSON.stringify(json), this.httpOptions);
   }
+  public postCarImages(json) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.post("http://" + this.server + "/api/PostCarImages/", JSON.stringify(json), this.httpOptions);
+  }
 
   public getCarByID(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
@@ -34,6 +38,27 @@ export class CarsService extends ConfigService{
 
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
     return this.http.put("http://" + this.server + "/api/PutCarForUpdate/", JSON.stringify(userCar), this.httpOptions)
+
+  }
+
+  //Policy
+
+  public getPolicyByID(id) {
+    
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.get("http://" + this.server + "/api/GetPolicyByID/?id_car=" + id, this.httpOptions)
+
+  }
+
+  public postPolicy(json) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.post("http://" + this.server + "/api/PostPolicy/", JSON.stringify(json), this.httpOptions);
+  }
+
+  public putPolicyForUpdate(userCar) {
+
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.put("http://" + this.server + "/api/PutPolicyForUpdate/", JSON.stringify(userCar), this.httpOptions)
 
   }
   public getToken() {
