@@ -24,7 +24,13 @@ export class MessagesComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
+  getConversations() { }
+
+  getConversationMessages() { }
+
+  sendMessage(idConversation: number) { }
+
+  recieveMessage(idConversation: number) { }
 }
