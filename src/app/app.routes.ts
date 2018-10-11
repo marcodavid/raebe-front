@@ -25,6 +25,7 @@ import { MessagesComponent } from './profile-page/messages/messages.component';
 import { MyInfoComponent } from './profile-page/my-info/my-info.component';
 import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock.component';
 import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
+import { VehicleMapComponent } from './client-page/vehicle-map/vehicle-map.component';
 
 const app_routes: Routes = [
     { path : '', component : IndexPageComponent },
@@ -48,7 +49,8 @@ const app_routes: Routes = [
             { path : 'featured-vehicles', component : FeaturedVehiclesComponent },
             { path : 'vehicle-info', component : VehicleInfoComponent },
             { path : 'agreement', component : AgreementComponent },
-            { path : 'payement', component : PayementComponent }
+            { path : 'payement', component : PayementComponent },
+            { path : 'map', component : VehicleMapComponent }
         ],
         canActivate: [AuthGuardService]
 

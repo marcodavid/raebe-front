@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';	
+import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NearbyCarsComponent } from './index-page/nearby-cars/nearby-cars.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchComponent } from './search/search.component';
 import { CarCardComponent } from './car-card/car-card.component';
 import { LoginModalComponent } from './index-page/login-modal/login-modal.component';
-import { FormsModule } from '@angular/forms';    	
+import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FooterComponent } from './footer/footer.component';
 import { SignupModalComponent } from './index-page/signup-modal/signup-modal.component';
@@ -46,7 +46,10 @@ import { ReviewsComponent } from './profile-page/reviews/reviews.component';
 import { MessagesComponent } from './profile-page/messages/messages.component';
 import { MyInfoComponent } from './profile-page/my-info/my-info.component';
 import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock.component';
+import { VehicleMapComponent } from './client-page/vehicle-map/vehicle-map.component';
 
+// Angular Google Maps
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -83,7 +86,8 @@ import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock
     ReviewsComponent,
     MessagesComponent,
     MyInfoComponent,
-    CalendarLockComponent
+    CalendarLockComponent,
+    VehicleMapComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +95,10 @@ import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock
     app_routing,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBLdKMt-GsD7dfG6yoh6H4Rorbe0ER3vdg'
+    }),
   ],
   providers: [
     ClientsService,

@@ -3,18 +3,17 @@ import { ConfigService } from '../config-service/config.service';
 import {Router} from '@angular/router';
 @Injectable()
 export class AuthGuardService extends ConfigService {
-  
-  constructor(private router:Router ) {super();};
+  constructor(private router: Router ) {
+    super();
+  }
+
   private authToken = super.getToken();
   canActivate() {
-    if(typeof this.authToken!='undefined' && this.authToken)
+    if (typeof this.authToken != 'undefined' && this.authToken ) {// || true) { // adición para pruebas
       return true;
-    else
-    { 
+    } else {
       this.router.navigate(['']);
       return false;
     }
-      
- 
-  } 
+  }
 }
