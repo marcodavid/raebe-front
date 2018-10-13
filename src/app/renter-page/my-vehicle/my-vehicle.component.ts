@@ -30,8 +30,15 @@ export class MyVehicleComponent implements OnInit {
   protected user: any
   protected token: any
   protected userCar: any
-  protected userPolicy: any
-
+  protected userPolicy: any   
+  protected userCoverages: any; 
+  protected coverage: any = {
+    id_policy:"",
+    description:"",
+    assurancesum:"",
+    deductibles:""
+  }; 
+  
   protected car = {}
   ngOnInit() {
 
@@ -107,6 +114,7 @@ export class MyVehicleComponent implements OnInit {
       data =>{
         this.userCarHasPolicy = true;
         this.userPolicy = data;
+        this.loadCoverages();
       },
       error =>{
         this.userCarHasPolicy = false;
@@ -125,6 +133,17 @@ export class MyVehicleComponent implements OnInit {
     );
   }
 
+  public loadCoverages() {
+    this.carsService.getCoverageByID(this.userPolicy.id_policy).subscribe(
+      data => {
+       
+         this.userCoverages = data
+      },
+      error => {
+
+      }
+    );
+  }
  
 
 }

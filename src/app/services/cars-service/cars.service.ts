@@ -61,6 +61,24 @@ export class CarsService extends ConfigService{
     return this.http.put("http://" + this.server + "/api/PutPolicyForUpdate/", JSON.stringify(userCar), this.httpOptions)
 
   }
+  //coverages
+
+  public getCoverageByID(id) {
+    
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.get("http://" + this.server + "/api/GetCoverageByID/?id_policy=" + id, this.httpOptions)
+
+  }
+
+  public postCoverage(json) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.post("http://" + this.server + "/api/PostCoverage/", JSON.stringify(json), this.httpOptions);
+  }
+
+  public putCoverageForUpdate(json) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.post("http://" + this.server + "/api/PutCoverageForUpdate/", JSON.stringify(json), this.httpOptions);
+  }
   public getToken() {
     return super.getToken();
 

@@ -24,8 +24,7 @@ import { CarsService } from '../../services/cars-service/cars.service';
   ]
 })
 export class MyVehicleInsuranceComponent extends MyVehicleComponent implements OnInit  {
-  
-  protected policy: any
+
   
   constructor( clientsService: ClientsService, carsService: CarsService) {
     
@@ -35,8 +34,40 @@ export class MyVehicleInsuranceComponent extends MyVehicleComponent implements O
 
   ngOnInit() {
     super.ngOnInit();
-   
+    
 
+  }
+  addCoverture() {
+    this.userCoverages.push(this.coverage) 
+    this.coverage = {
+      id_policy:"",
+      description:"",
+      assurancesum:"",
+      deductibles:""
+    };  
+  }
+
+  removeCoverture(index) {
+  
+    this.userCoverages.splice(index, 1); 
+  }
+
+  public onSaveCoverages() {
+
+      for(let item in this.userCoverages) {
+        this.userCoverages[item].id_policy = this.userPolicy.id_policy;
+      }   
+      this.carsService.postCoverage(this.userCoverages).subscribe(
+        data => {
+          alert("guardado, coverage creado")
+        },
+        error => {
+          alert("nel")
+        }
+      );
+
+      
+    
   }
 
   public onSavePolicy()  {
@@ -44,6 +75,7 @@ export class MyVehicleInsuranceComponent extends MyVehicleComponent implements O
         this.carsService.putPolicyForUpdate(this.userPolicy).subscribe(
           data => {
             alert("guardado, poliza actualizada")
+            this.onSaveCoverages();
           },
           error => {
             alert("nel")
@@ -54,6 +86,7 @@ export class MyVehicleInsuranceComponent extends MyVehicleComponent implements O
       this.carsService.postPolicy(this.userPolicy).subscribe(
         data => {
           alert("guardado, poliza creada")
+          this.onSaveCoverages();
         },
         error => {
           alert("nel")

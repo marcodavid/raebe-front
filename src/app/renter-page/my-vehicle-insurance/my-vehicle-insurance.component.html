@@ -33,34 +33,38 @@
     </div>
   </div>
 </div>
-
 <div class="container mb-5">
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-9">
       <h3>Covertura</h3>
     </div>
     <div class="col-sm-12 col-md-9">
-      <a href="!#">Agregar <fa name="plus-circle"></fa></a>
+        <button type="button" class="btn btn-link"  (click)="addCoverture()">Agregar <fa name="plus-circle"></fa></button>
     </div>
   </div>
   <div class="row justify-content-center">
+  <div class="row justify-content-center" *ngFor="let field of userCoverages; let i = index"> 
+      <h6>{{i+1}})</h6>
     <div class="col-sm-12 col-md-3">
-      <div class="form-group">
-        <label for="description">Descripción</label>
-        <input type="text" id="description" class="form-control">
+      <div class="form-group">      
+        <label for="description">Descripción</label>       
+        <input [(ngModel)]="userCoverages[i].description" type="text" id="description" class="form-control">
       </div>
     </div>
     <div class="col-sm-12 col-md-3">
       <div class="form-group">
         <label for="description">Suma Asegurada</label>
-        <input type="text" id="description" class="form-control">
+        <input [(ngModel)]="userCoverages[i].assurancesum" type="text" id="description" class="form-control">
       </div>
     </div>
-    <div class="col-sm-12 col-md-3">
+    <div class="col-sm-12 col-md-2">
       <div class="form-group">
         <label for="description">Deducibles</label>
-        <input type="text" id="description" class="form-control">
+        <input [(ngModel)]="userCoverages[i].deductibles" type="text" id="description" class="form-control">
       </div>
+    </div>
+    <div class="col-sm-12 col-md-3" >      
+      <fa name="remove" (click)="removeCoverture(i)" ></fa>      
     </div>
   </div>
 </div>
