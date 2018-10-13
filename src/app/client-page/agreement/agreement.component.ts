@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ClientsService } from '../../services/clients-service/clients.service';
 
 @Component({
   selector: 'app-agreement',
@@ -21,10 +22,18 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 export class AgreementComponent implements OnInit {
-
-  constructor() { }
+  private user: any
+  constructor(private clientService: ClientsService) { }
 
   ngOnInit() {
+    this.user = JSON.parse(this.clientService.getUserInfo());
+   
+  }
+
+  isFullData() {
+    if(this.user.fulldata)
+      return true;
+    else false;
   }
 
 }

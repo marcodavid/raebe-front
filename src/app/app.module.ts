@@ -46,6 +46,7 @@ import { ReviewsComponent } from './profile-page/reviews/reviews.component';
 import { MessagesComponent } from './profile-page/messages/messages.component';
 import { MyInfoComponent } from './profile-page/my-info/my-info.component';
 import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock.component';
+import { CarsService } from './services/cars-service/cars.service';
 
 
 @NgModule({
@@ -96,7 +97,8 @@ import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock
   providers: [
     ClientsService,
     ConfigService,
-    AuthGuardService
+    AuthGuardService,
+    CarsService 
     ],
   bootstrap: [AppComponent]
 })
