@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MyVehicleComponent } from '../my-vehicle/my-vehicle.component';
+import { ClientsService } from '../../services/clients-service/clients.service';
+import { CarsService } from '../../services/cars-service/cars.service';
 
 @Component({
   selector: 'app-my-vehicle-images',
@@ -20,11 +23,24 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ])
   ]
 })
-export class MyVehicleImagesComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+export class MyVehicleImagesComponent extends MyVehicleComponent implements OnInit  {
+  
+  carImage: any
+  constructor( clientsService: ClientsService, carsService: CarsService) {
+    
+    super(clientsService,carsService);
+    
   }
 
+  ngOnInit() {
+    super.ngOnInit()
+
+
+  }
+  saveCarImages() {
+
+    console.log(this.carImage);
+
+      
+  }
 }

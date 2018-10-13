@@ -38,7 +38,7 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-sm-12 col-md-12">
-            <a href="!#" class="col-sm-12 btn btn-outline-primary">Subir Imagen</a>
+            <input  [(ngModel)]="carImage" type="file" name="photo" ng2FileSelect [uploader]="uploader" />
           </div>
         </div>
       </div> 
@@ -47,7 +47,9 @@
   <div class="row justify-content-center mt-3 mb-5">
     <div class="col-sm-12 col-md-6 text-center">
       <a href="!#" class="ml-1 mr-1 btn btn-danger">Cancelar</a>
-      <a href="!#" class="ml-1 mr-1 col-sm-12 col-md-5 btn btn-primary">Guardar Cambios</a>
+      <button class="btn btn-outline-secondary float-right" (click)="saveCarImages()">
+        <fa name="save"></fa>&nbsp;Guardar Cambios
+      </button>
     </div> 
   </div>
 </div>
