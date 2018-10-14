@@ -47,27 +47,9 @@ export class MyVehicleInsuranceComponent extends MyVehicleComponent implements O
     };  
   }
 
-  removeCoverture(index) {
-  
+  removeCoverture(index) { 
     this.userCoverages.splice(index, 1); 
-  }
-
-  public onSaveCoverages() {
-
-      for(let item in this.userCoverages) {
-        this.userCoverages[item].id_policy = this.userPolicy.id_policy;
-      }   
-      this.carsService.postCoverage(this.userCoverages).subscribe(
-        data => {
-          alert("guardado, coverage creado")
-        },
-        error => {
-          alert("nel")
-        }
-      );
-
-      
-    
+   
   }
 
   public onSavePolicy()  {
@@ -94,5 +76,34 @@ export class MyVehicleInsuranceComponent extends MyVehicleComponent implements O
       );
     }
   }
+
+  public onSaveCoverages() {
+    if(this.userCarHasCoverages) {
+       for(let item in this.userCoverages) {
+        this.userCoverages[item].id_policy = this.userPolicy.id_policy;
+      }  
+      this.carsService.deleteCoverage(this.userCoverages[0].id_policy).subscribe();       
+      this.carsService.postCoverage(this.userCoverages).subscribe(
+        data => {
+          alert("guardado, coverage actualizado")
+        },
+        error => {
+          alert("nel")
+        }
+      );
+    } else {
+      for(let item in this.userCoverages) {
+        this.userCoverages[item].id_policy = this.userPolicy.id_policy;
+      }  
+      this.carsService.postCoverage(this.userCoverages).subscribe(
+        data => {
+          alert("guardado, coverage creado")
+        },
+        error => {
+          alert("nel")
+        }
+      );
+    }
+}
 
 }

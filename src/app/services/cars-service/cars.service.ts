@@ -79,6 +79,12 @@ export class CarsService extends ConfigService{
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
     return this.http.post("http://" + this.server + "/api/PutCoverageForUpdate/", JSON.stringify(json), this.httpOptions);
   }
+
+  public deleteCoverage(id) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.delete("http://" + this.server + "/api/DeleteCoverage/?id_policy=" + id, this.httpOptions)
+  }
+  
   public getToken() {
     return super.getToken();
 

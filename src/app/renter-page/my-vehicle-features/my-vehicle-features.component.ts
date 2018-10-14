@@ -41,7 +41,7 @@ export class MyVehicleFeaturesComponent extends MyVehicleComponent implements On
     this.car =this.userCar;
 
     for(var item in this.car) {
-      if( item == "id_car" || item== "brand" || item== "model"  || item== "description" ||item == "year"|| item == "passagers"||item == "doors") 
+      if( item == "id_car" || item== "brand" || item== "model"  || item== "description" ||item == "year"|| item == "passagers"||item == "doors"||item == "agerestriction") 
          continue;
       else {
         if(this.car[item] == "Si" ||this.car[item] == "Automática")

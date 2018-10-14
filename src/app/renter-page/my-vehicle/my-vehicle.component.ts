@@ -27,18 +27,13 @@ export class MyVehicleComponent implements OnInit {
   constructor(protected clientService : ClientsService, protected carsService : CarsService) { }
   protected userHasCar: boolean;
   protected userCarHasPolicy: boolean;
+  protected userCarHasCoverages: boolean;
   protected user: any
   protected token: any
   protected userCar: any
   protected userPolicy: any   
   protected userCoverages: any; 
-  protected coverage: any = {
-    id_policy:"",
-    description:"",
-    assurancesum:"",
-    deductibles:""
-  }; 
-  
+  protected coverage = {} 
   protected car = {}
   ngOnInit() {
 
@@ -55,7 +50,7 @@ export class MyVehicleComponent implements OnInit {
            this.userCar["automatic"] = "Manual";
        
         for(var item in  this.userCar) {
-          if( item == "id_car" || item== "brand" || item== "model"  || item== "description" || item== "automatic"||item == "year"|| item == "passagers"||item == "doors") 
+          if( item == "id_car" || item== "brand" || item== "model"  || item== "description" || item== "automatic"||item == "year"|| item == "passagers"||item == "doors"||item == "agerestriction") 
             continue;
           else {
             if( this.userCar[item] == 1)
@@ -103,6 +98,7 @@ export class MyVehicleComponent implements OnInit {
           sparetier: '',
           alarm: '',
           sensor: '',
+          travelout:'',
         }
       }
     );
@@ -138,9 +134,16 @@ export class MyVehicleComponent implements OnInit {
       data => {
        
          this.userCoverages = data
+         this.userCarHasCoverages = true;
       },
       error => {
-
+        this.userCarHasCoverages = false;
+         this.userCoverages = {
+          id_policy:'',
+          description:'',
+          assurancesum:'',
+          deductibles:''
+        }; 
       }
     );
   }

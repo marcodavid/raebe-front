@@ -1,9 +1,8 @@
-<div class="container mt-2 mb-2">
-    <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-12"><h3>Hola Silvana</h3></div>
-    </div> 
+<div class="container mt-2 mb-2"> 
+  <button class="btn btn-outline-secondary float-right" (click)="onSavePolicies()">
+    <fa name="save"></fa>&nbsp;Guardar
+  </button>
 </div>
-
 <div class="container mb-5" [@animacionAparecer]>
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-5">
@@ -13,24 +12,26 @@
       <h3>Políticas</h3>
       <div class="form-group">
         <label for="marca">Edad de Restricción</label>
-        <input type="text" id="marca" class="form-control">
+        <input  [(ngModel)]="userCar.agerestriction"  type="number" id="marca" class="form-control">
       </div>
       <div class="form-group">
         <label for="model">Política Tardía</label>
-        <input type="text" id="model" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="year">Restricciones de la Renta</label>
-        <input type="text" id="year" class="form-control">
+        <select  [(ngModel)]="userCar.latepolicy" id="air" class="form-control">
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="transmission">Libre de Humo</label>
-        <input type="text" id="transmission" class="form-control">
+        <select  [(ngModel)]="userCar.smokerestriction" id="air" class="form-control">
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="transmission">Posibilidad de Viajar a Otros Estados con El Vehículo</label>
-        <select id="transmission" class="form-control">
-            <option value="Si">Si</option>
+        <select  [(ngModel)]="userCar.travelout" id="air" class="form-control">
+          <option value="Si">Si</option>
             <option value="No">No</option>
           </select>
       </div>
