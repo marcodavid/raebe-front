@@ -28,6 +28,7 @@ export class MyVehicleComponent implements OnInit {
   protected userHasCar: boolean;
   protected userCarHasPolicy: boolean;
   protected userCarHasCoverages: boolean;
+  protected userCarHasRentPreferences: boolean;
   protected user: any
   protected token: any
   protected userCar: any

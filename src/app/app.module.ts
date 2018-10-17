@@ -8,7 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SearchComponent } from './search/search.component';
 import { CarCardComponent } from './car-card/car-card.component';
 import { LoginModalComponent } from './index-page/login-modal/login-modal.component';
-import { FormsModule } from '@angular/forms';    	
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';    	
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FooterComponent } from './footer/footer.component';
 import { SignupModalComponent } from './index-page/signup-modal/signup-modal.component';
@@ -23,7 +23,7 @@ import { PayementComponent } from './client-page/payement/payement.component';
 import { NearbyCarsMapComponent } from './client-page/nearby-cars-map/nearby-cars-map.component';
 import { ClientsService } from './services/clients-service/clients.service';
 import { ConfigService } from './services/config-service/config.service';
-
+import {NgxMaskModule} from 'ngx-mask'
 
 // Rutas
 import { app_routing } from './app.routes';
@@ -51,6 +51,7 @@ import { LoaderComponent } from './loader/loader/loader.component';
 import { LoaderService } from './services/loader-service/loader.service';
 import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
 import { FileSelectDirective } from 'ng2-file-upload';
+import { RentersService } from './services/renters-service/renters.service';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,9 @@ import { FileSelectDirective } from 'ng2-file-upload';
     app_routing,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     ClientsService,
@@ -105,6 +108,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
     AuthGuardService,
     CarsService,
     LoaderService,
+    RentersService
     ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ClientsService } from '../../services/clients-service/clients.service';
+import { CarsService } from '../../services/cars-service/cars.service';
+import { MyVehicleComponent } from '../my-vehicle/my-vehicle.component';
+import { RentersService } from '../../services/renters-service/renters.service';
 
 @Component({
   selector: 'app-my-vehicle-calendar',
@@ -20,11 +24,60 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ])
   ]
 })
-export class MyVehicleCalendarComponent implements OnInit {
-
-  constructor() { }
-
+export class MyVehicleCalendarComponent  extends MyVehicleComponent implements OnInit  {
+  
+  
+  constructor( clientsService: ClientsService, carsService: CarsService,protected renterService:  RentersService) {
+    
+    super(clientsService,carsService);
+    
+  }
+  protected userRentPreferences : any;
   ngOnInit() {
+    super.ngOnInit();
+    this.renterService.getRentPreferencesByClient(this.user.id_clients).subscribe(
+      data =>{
+        this.userCarHasRentPreferences = true;
+        this.userRentPreferences = data;
+      },
+      error =>{
+        this.userCarHasRentPreferences = false;
+        this.userRentPreferences = {
+          id_clients:'',
+          firsthour:'',
+          lasthour:'',
+          daysbeforerent:'',
+          mintime:'',
+      
+        }
+      }
+    )
   }
 
+  public onSaveCalendar(){
+
+    if(this.userCarHasRentPreferences) {
+      this.userCarHasRentPreferences = true;
+      this.renterService.putRentPreferencesForUpdate(this.userRentPreferences).subscribe(
+        data =>{
+         
+         alert("preferencias actualizadas")
+        },
+        error =>{
+          alert("nel")
+        }
+      )
+    } else {
+      this.userRentPreferences.id_clients = this.user.id_clients;
+      this.renterService.PostRentPreferences(this.userRentPreferences).subscribe(
+        data =>{
+         
+         alert("preferencias creadas")
+        },
+        error =>{
+          alert("nel")
+        }
+      )
+    }
+  }
 }
