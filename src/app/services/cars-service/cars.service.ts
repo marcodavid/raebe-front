@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class CarsService extends ConfigService{
   private httpOptions: any;
+  private formdata: any;
   private server: string;
   private authToken: any;
   constructor(private http: HttpClient,
@@ -14,6 +15,9 @@ export class CarsService extends ConfigService{
     super();
     this.httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    this.formdata = {
+      headers: new HttpHeaders({ 'Content-Type': 'form-data' })
     };
     this.server = super.getServer();
 
@@ -23,10 +27,13 @@ export class CarsService extends ConfigService{
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
     return this.http.post("http://" + this.server + "/api/PostCar/", JSON.stringify(json), this.httpOptions);
   }
-  public postCarImages(json) {
-    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.post("http://" + this.server + "/api/PostCarImages/", JSON.stringify(json), this.httpOptions);
-  }
+  public postCarImages(fileToUpload: File,id)  {
+    const formData: FormData = new FormData();
+    formData.append('file', fileToUpload,"car_image_"+id);
+    formData.append('remark', id);
+    return this.http.post("http://" + this.server + "/api/PostCarImages/", formData);
+     
+    }
 
   public getCarByID(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())

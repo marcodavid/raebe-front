@@ -52,6 +52,7 @@ import { LoaderService } from './services/loader-service/loader.service';
 import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { RentersService } from './services/renters-service/renters.service';
+import { ImageUploadModule } from "angular2-image-upload";
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { RentersService } from './services/renters-service/renters.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ImageUploadModule.forRoot(),
     NgxMaskModule.forRoot()
   ],
   providers: [
