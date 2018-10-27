@@ -35,10 +35,15 @@ export class MyVehicleCalendarComponent  extends MyVehicleComponent implements O
   protected userRentPreferences : any;
   ngOnInit() {
     super.ngOnInit();
+    this.loadCalendar();
+   
+  }
+  public loadCalendar() {
     this.renterService.getRentPreferencesByClient(this.user.id_clients).subscribe(
       data =>{
         this.userCarHasRentPreferences = true;
         this.userRentPreferences = data;
+        this.checkIfUserCouldBeRenter();
       },
       error =>{
         this.userCarHasRentPreferences = false;
@@ -53,7 +58,6 @@ export class MyVehicleCalendarComponent  extends MyVehicleComponent implements O
       }
     )
   }
-
   public onSaveCalendar(){
 
     if(this.userCarHasRentPreferences) {

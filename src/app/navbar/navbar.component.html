@@ -15,16 +15,19 @@
           </form>
       </li>
     </ul>
-
     <div #unloggedButtons>
-      <a href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#signupModal">Registrate!</a>
+      <a  href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#signupModal">Registrate!</a>
       <a href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#loginModal">Ingresa</a>
     </div>
     <div #loggedButtons>
-     
+      <div *ngIf="userIsRenter; else  elseBlock">
+          <a  class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['renter']">Preferencias de renta</a>
+          <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['profile']"><fa name="car"></fa> {{user.firstname}}</a>
+      </div>
+    <ng-template #elseBlock>
       <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['renter']">Renta tu carro</a>
       <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['profile']"><fa name="user"></fa> {{user.firstname}}</a>
+    </ng-template>
     </div>
-
   </div>
 </nav>

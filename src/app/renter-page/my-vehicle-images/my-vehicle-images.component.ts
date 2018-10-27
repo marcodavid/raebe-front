@@ -26,7 +26,7 @@ import { CarsService } from '../../services/cars-service/cars.service';
 export class MyVehicleImagesComponent extends MyVehicleComponent implements OnInit  {
   
   carImage: any
-  server:any
+  url:any
   token:any
   fileToUpload: File = null;
   
@@ -38,19 +38,25 @@ export class MyVehicleImagesComponent extends MyVehicleComponent implements OnIn
 
   ngOnInit() {
     super.ngOnInit()
-    this.server = "http://"+this.clientService.getServer()+"/api/PostCarImages/";
     this.token = "{Authorization', 'bearer'"+this.clientService.getToken()+" 'Content-Type': 'form-data'}";
   }
+ 
   handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
+    for (var i  = 0 ; i < files.length; i ++ ) {
+      this.fileToUpload = files.item(i);
+      const formData: FormData = new FormData();
+      this.carsService.postCarImages(this.fileToUpload,this.user.id_clients).subscribe(
+        data => {
+          alert("Imagen Guardada")
+        // do something, if upload success
+        }, error => {
+          console.log(error);
+        });
+    }
+   
   }
 
   public onSaveCarImages() {
-    this.carsService.postCarImages(this.fileToUpload,this.user.id_clients).subscribe(
-      data => {
-      // do something, if upload success
-      }, error => {
-        console.log(error);
-      });
+    alert("Imagenes guardadas")
   }
 }

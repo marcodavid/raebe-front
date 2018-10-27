@@ -29,8 +29,8 @@ export class CarsService extends ConfigService{
   }
   public postCarImages(fileToUpload: File,id)  {
     const formData: FormData = new FormData();
-    formData.append('file', fileToUpload,"car_image_"+id);
-    formData.append('remark', id);
+    formData.append('file', fileToUpload);
+    formData.append('id_clients', id);
     return this.http.post("http://" + this.server + "/api/PostCarImages/", formData);
      
     }

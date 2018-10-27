@@ -56,10 +56,10 @@ export class ClientsService extends ConfigService {
     this.http.put("http://" + this.server + "/api/PutClientForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
       .subscribe(
         data => {
-          if (data) {
-            alert(" ya se guardo el cliente  cambia este aviso despues por uno mas bonito")
-
-          }
+          if(data && userInfoUpdated.isrenter == 0) 
+            alert(" ya se guardo el cliente  cambia este aviso despues por uno mas bonito");
+          if(data && userInfoUpdated.isrenter == 1)
+            alert(" Felidcidades ya eres un usuario Raebe arrendador!");  
 
         }
       );

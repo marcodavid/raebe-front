@@ -9,7 +9,8 @@ import { ClientsService } from '../services/clients-service/clients.service';
 export class NavbarComponent implements OnInit {
   @Input()
     isLogged = false;
-  private user: string;
+  private user: any;
+  public userIsRenter : boolean;
   constructor(private clientsService : ClientsService) { }
 
   @ViewChild('unloggedButtons') unloggedButtons: ElementRef;
@@ -21,6 +22,9 @@ export class NavbarComponent implements OnInit {
     if (this.isLogged) {
       this.unloggedButtons.nativeElement.remove();
       this.user = JSON.parse(this.clientsService.getUserInfo());
+      if(this.user.isrenter == 1)
+        this.userIsRenter = true;
+
     } else {
       this.loggedButtons.nativeElement.remove();
     }

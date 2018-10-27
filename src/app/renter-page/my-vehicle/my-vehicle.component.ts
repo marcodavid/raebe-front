@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { CarsService } from '../../services/cars-service/cars.service';
 import { ClientsService } from '../../services/clients-service/clients.service';
+import { MyVehicleCalendarComponent } from '../my-vehicle-calendar/my-vehicle-calendar.component';
 
 @Component({
   selector: 'app-my-vehicle',
@@ -29,6 +30,7 @@ export class MyVehicleComponent implements OnInit {
   protected userCarHasPolicy: boolean;
   protected userCarHasCoverages: boolean;
   protected userCarHasRentPreferences: boolean;
+  protected userCarHasPrice: boolean;
   protected user: any
   protected token: any
   protected userCar: any
@@ -36,10 +38,13 @@ export class MyVehicleComponent implements OnInit {
   protected userCoverages: any; 
   protected coverage = {} 
   protected car = {}
+  private myVehicleCalendarComponent : MyVehicleCalendarComponent;
   ngOnInit() {
+    
 
     this.token = this.clientService.getToken();
     this.user = JSON.parse(this.clientService.getUserInfo());
+
      this.carsService.getCarByID(this.user.id_clients).subscribe(
       data => {
         
@@ -51,7 +56,7 @@ export class MyVehicleComponent implements OnInit {
            this.userCar["automatic"] = "Manual";
        
         for(var item in  this.userCar) {
-          if( item == "id_car" || item== "brand" || item== "model"  || item== "description" || item== "automatic"||item == "year"|| item == "passagers"||item == "doors"||item == "agerestriction") 
+          if( item == "id_car" || item== "brand" || item== "model"  || item== "description" || item== "automatic"||item == "year"|| item == "passagers"||item == "doors"||item == "agerestriction"||item=="price") 
             continue;
           else {
             if( this.userCar[item] == 1)
@@ -100,12 +105,13 @@ export class MyVehicleComponent implements OnInit {
           alarm: '',
           sensor: '',
           travelout:'',
+          price:''
         }
       }
     );
 
   }
-
+  
   public loadPolicy() {
     this.carsService.getPolicyByID(this.userCar.id_car).subscribe(
       data =>{
@@ -136,6 +142,7 @@ export class MyVehicleComponent implements OnInit {
        
          this.userCoverages = data
          this.userCarHasCoverages = true;
+        this.checkIfUserCouldBeRenter()
       },
       error => {
         this.userCarHasCoverages = false;
@@ -149,5 +156,13 @@ export class MyVehicleComponent implements OnInit {
     );
   }
  
+public checkIfUserCouldBeRenter() {
+  if(this.user.isrenter==0) {
+    if(this.userCarHasCoverages && this.userCarHasPolicy && this.userCar.price > 0  && this.userHasCar ) {
+      this.user.isrenter = 1;
+      this.clientService.putClientForUpdate(this.user);
+    }
+  }
+}
 
 }
