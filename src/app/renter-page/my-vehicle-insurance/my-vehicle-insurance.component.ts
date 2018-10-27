@@ -54,10 +54,12 @@ export class MyVehicleInsuranceComponent extends MyVehicleComponent implements O
 
   public onSavePolicy()  {
     if(this.userCarHasPolicy) {
+      
         this.carsService.putPolicyForUpdate(this.userPolicy).subscribe(
           data => {
             alert("guardado, poliza actualizada")
             this.onSaveCoverages();
+           
           },
           error => {
             alert("nel")
@@ -69,6 +71,8 @@ export class MyVehicleInsuranceComponent extends MyVehicleComponent implements O
         data => {
           alert("guardado, poliza creada")
           this.onSaveCoverages();
+          super.ngOnInit();
+        
         },
         error => {
           alert("nel")
@@ -98,6 +102,7 @@ export class MyVehicleInsuranceComponent extends MyVehicleComponent implements O
       this.carsService.postCoverage(this.userCoverages).subscribe(
         data => {
           alert("guardado, coverage creado")
+          super.ngOnInit();
         },
         error => {
           alert("nel")

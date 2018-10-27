@@ -1,7 +1,7 @@
-<div class="container mt-2 mb-2"> 
-    <button class="btn btn-outline-secondary float-right" (click)="onSaveCar()">
-      <fa name="save"></fa>&nbsp;Guardar
-    </button>
+<div class="container mt-2 mb-2">
+  <button class="btn btn-outline-secondary float-right" (click)="onSaveCar()">
+    <fa name="save"></fa>&nbsp;Guardar
+  </button>
 </div>
 <div class="container mb-5" [@animacionAparecer]>
   <div class="row justify-content-center">
@@ -12,23 +12,23 @@
       <h3>Características de tu vehículo</h3>
       <div class="form-group">
         <label for="marca">Marca del Automóvil</label>
-        <input  [(ngModel)]="userCar.brand"  type="text" id="marca" class="form-control">
+        <input [(ngModel)]="userCar.brand" type="text" id="marca" class="form-control">
       </div>
       <div class="form-group">
         <label for="model">Modelo del Automóvil</label>
-        <input  [(ngModel)]="userCar.model" type="text" id="model" class="form-control">
+        <input [(ngModel)]="userCar.model" type="text" id="model" class="form-control">
       </div>
       <div class="form-group">
         <label for="year">Año del Automóvil</label>
-        <input  [(ngModel)]="userCar.year" type="number" id="year" class="form-control">
+        <input [(ngModel)]="userCar.year" type="number" id="year" class="form-control">
       </div>
       <div class="form-group">
         <label for="year">Numero de placa</label>
-        <input  [(ngModel)]="userCar.id_car" type="text" id="year" class="form-control">
+        <input [(ngModel)]="userCar.id_car" type="text" id="year" class="form-control">
       </div>
       <div class="form-group">
         <label for="transmission">Transmisión</label>
-        <select [(ngModel)]="userCar.automatic"  id="transmission" class="form-control">
+        <select [(ngModel)]="userCar.automatic" id="transmission" class="form-control">
           <option value="Manual">Manual</option>
           <option value="Automática">Automática</option>
         </select>
@@ -39,7 +39,7 @@
     <div class="col-sm-12 col-md-3">
       <div class="form-group">
         <label for="air">Aire Acondicionado</label>
-        <select  [(ngModel)]="userCar.ac" id="air" class="form-control">
+        <select [(ngModel)]="userCar.ac" id="air" class="form-control">
           <option value="Si">Si</option>
           <option value="No">No</option>
         </select>
@@ -47,14 +47,14 @@
     </div>
     <div class="col-sm-12 col-md-3">
       <div class="form-group">
-        <label   for="air">Asientos Disponibles</label>
+        <label for="air">Asientos Disponibles</label>
         <input [(ngModel)]="userCar.passagers" type="number" min="2" max="10" value="4" step="1" id="air" class="form-control">
       </div>
     </div>
     <div class="col-sm-12 col-md-3">
       <div class="form-group">
         <label for="air">Puertas</label>
-        <input  [(ngModel)]="userCar.doors" type="number" min="2" max="4" step="1" value="4" id="air" class="form-control">
+        <input [(ngModel)]="userCar.doors" type="number" min="2" max="4" step="1" value="4" id="air" class="form-control">
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@
     <div class="col-sm-12 col-md-3">
       <div class="form-group">
         <label for="air">Capota</label>
-        <select [(ngModel)]="userCar.sparetier"  id="air" class="form-control">
+        <select [(ngModel)]="userCar.sparetier" id="air" class="form-control">
           <option value="Si">Si</option>
           <option value="No">No</option>
         </select>
@@ -120,7 +120,7 @@
     <div class="col-sm-12 col-md-3">
       <div class="form-group">
         <label for="air">Llanta de Refacción</label>
-        <select [(ngModel)]="userCar.audioaux"  id="air" class="form-control">
+        <select [(ngModel)]="userCar.audioaux" id="air" class="form-control">
           <option value="Si">Si</option>
           <option value="No">No</option>
         </select>
@@ -129,7 +129,7 @@
     <div class="col-sm-12 col-md-3">
       <div class="form-group">
         <label for="air">Alarma</label>
-        <select [(ngModel)]="userCar.alarm"  id="air" class="form-control">
+        <select [(ngModel)]="userCar.alarm" id="air" class="form-control">
           <option value="Si">Si</option>
           <option value="No">No</option>
         </select>
@@ -138,11 +138,17 @@
     <div class="col-sm-12 col-md-3">
       <div class="form-group">
         <label for="air">Llave con Sensor de Proximidad</label>
-        <select  [(ngModel)]="userCar.sensor"  id="air" class="form-control">
+        <select [(ngModel)]="userCar.sensor" id="air" class="form-control">
           <option value="Si">Si</option>
           <option value="No">No</option>
         </select>
       </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="form-group col-9">
+            <label for="exampleFormControlTextarea1">Describe porque deberian de rentar tu vehículo:</label>
+            <textarea [(ngModel)]="userCar.description" class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea> 
+        </div>           
     </div>
   </div>
 </div>

@@ -77,6 +77,7 @@ export class MyVehicleCalendarComponent  extends MyVehicleComponent implements O
         data =>{
          
          alert("preferencias creadas")
+         this.loadCalendar();
         },
         error =>{
           alert("nel")

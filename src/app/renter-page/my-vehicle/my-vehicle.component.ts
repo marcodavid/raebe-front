@@ -34,10 +34,14 @@ export class MyVehicleComponent implements OnInit {
   protected user: any
   protected token: any
   protected userCar: any
-  protected userPolicy: any   
-  protected userCoverages: any; 
-  protected coverage = {} 
-  protected car = {}
+  protected userPolicy: any    
+  protected userCoverages: any;
+  protected coverage: any = {
+    id_policy:"",
+    description:"",
+    assurancesum:"",
+    deductibles:""
+  };
   private myVehicleCalendarComponent : MyVehicleCalendarComponent;
   ngOnInit() {
     
@@ -76,7 +80,7 @@ export class MyVehicleComponent implements OnInit {
           brand: '',
           model:'',
           year: '',
-          description: 'update after',
+          description: '',
           specialservices: '',
           automatic: '',
           type: '',
@@ -93,7 +97,7 @@ export class MyVehicleComponent implements OnInit {
           babysit: '',
           childsit: '',
           gps: '',
-          agerestriction: '',
+          agerestriction: '0',
           latepolicy: '',
           rentalrestrictions: '',
           smokerestriction: '',
@@ -105,7 +109,7 @@ export class MyVehicleComponent implements OnInit {
           alarm: '',
           sensor: '',
           travelout:'',
-          price:''
+          price:'0'
         }
       }
     );
@@ -131,6 +135,7 @@ export class MyVehicleComponent implements OnInit {
           validationdatestart:'',
           validationdateend:''
         }
+        this.loadCoverages();
       }
 
     );
@@ -146,12 +151,12 @@ export class MyVehicleComponent implements OnInit {
       },
       error => {
         this.userCarHasCoverages = false;
-         this.userCoverages = {
+         this.userCoverages = [{
           id_policy:'',
           description:'',
           assurancesum:'',
           deductibles:''
-        }; 
+        }]; 
       }
     );
   }
