@@ -19,8 +19,10 @@ export class ClientsService extends ConfigService {
     this.server = super.getServer();
 
   }
-  public getClients() {
-    $.get("http://" + this.server + "/api/GetClients/");
+  public getRandomClients() {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.get("http://" + this.server + "/api/GetRandomClients/", this.httpOptions)
+
 
   }
 
