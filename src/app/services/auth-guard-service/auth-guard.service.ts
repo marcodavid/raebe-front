@@ -9,7 +9,7 @@ export class AuthGuardService extends ConfigService {
 
   private authToken = super.getToken();
   canActivate() {
-    if (typeof this.authToken != 'undefined' && this.authToken ) {// || true) { // adición para pruebas
+    if (typeof this.authToken !== 'undefined' && this.authToken ) {// || true) { // adición para pruebas
       return true;
     } else {
       this.router.navigate(['']);

@@ -33,4 +33,6 @@ export class MessagesComponent implements OnInit {
   sendMessage(idConversation: number) { }
 
   recieveMessage(idConversation: number) { }
+
+  recieveAllMessages(){ }
 }
