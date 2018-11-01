@@ -6,11 +6,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./car-card.component.css']
 })
 export class CarCardComponent implements OnInit {
-  /*
-  @ViewChild('verticalCard') verticalCard : ElementRef;
-  @ViewChild('horizontalCard') horizontalCard : ElementRef;
-  */
-
+  // Obtenemos la imagen del vehículo
   @Input() img: string;
   brandmark: string;
   model: string;
@@ -27,10 +23,5 @@ export class CarCardComponent implements OnInit {
     this.cardStyle = {
       'background-image' : 'url(\'/assets/img/' + this.img + '\')'
     };
-    /*if(this.horizontal){
-        this.verticalCard.nativeElement.remove();
-    } else {
-      this.horizontalCard.nativeElement.remove();
-    }*/
   }
 }

@@ -31,12 +31,12 @@
 }
 
 .transparency-container {
-    background-color: rgba(138, 209, 221, 0.63) !important;
+    background-color: rgba(89, 139, 148, 0.9) !important;
     width:100% !important;
     height:100% !important;
 }
 
 .offer-text{
     text-align:center;
-    color:rgb(7, 21, 85);
+    color:#FFF;
 }

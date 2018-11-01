@@ -28,7 +28,7 @@ import { AuthGuardService } from './services/auth-guard-service/auth-guard.servi
 
 const app_routes: Routes = [
     { path : '', component : IndexPageComponent },
-    { path : 'home', component : IndexPageComponent ,canActivate: [AuthGuardService]},
+    { path : 'home', component : IndexPageComponent, canActivate: [AuthGuardService]},
     {
         path : 'profile', component : ProfilePageComponent,
         children : [
@@ -37,9 +37,8 @@ const app_routes: Routes = [
             { path : 'rents', component : RentsComponent },
             { path : 'reviews', component : ReviewsComponent },
             { path : 'messages', component : MessagesComponent }
-        ],
-        canActivate: [AuthGuardService]
-
+        ]/*,
+        canActivate: [AuthGuardService]*/
     },
     {
         path : 'client', component : ClientPageComponent,
@@ -49,9 +48,8 @@ const app_routes: Routes = [
             { path : 'vehicle-info', component : VehicleInfoComponent },
             { path : 'agreement', component : AgreementComponent },
             { path : 'payement', component : PayementComponent }
-        ],
-        canActivate: [AuthGuardService]
-
+        ]/*,
+        canActivate: [AuthGuardService]*/
     },
     {
         path : 'renter', component : RenterPageComponent,
@@ -66,9 +64,8 @@ const app_routes: Routes = [
             { path : 'calendar-lock', component : CalendarLockComponent },
             { path : 'prices', component : MyVehiclePricesComponent },
             { path : 'images', component : MyVehicleImagesComponent }
-        ],
-        canActivate: [AuthGuardService]
-
+        ]/*,
+        canActivate: [AuthGuardService]*/
     },
     { path : '**', component : NotFoundPageComponent }
 ];
