@@ -24,43 +24,40 @@ import { MyVehicleCalendarComponent } from '../my-vehicle-calendar/my-vehicle-ca
   ]
 })
 export class MyVehicleComponent implements OnInit {
-
-  constructor(protected clientService : ClientsService, protected carsService : CarsService) { }
+  constructor(protected clientService: ClientsService, protected carsService: CarsService) { }
   protected userHasCar: boolean;
   protected userCarHasPolicy: boolean;
   protected userCarHasCoverages: boolean;
   protected userCarHasRentPreferences: boolean;
   protected userCarHasPrice: boolean;
-  protected user: any
-  protected token: any
-  protected userCar: any
-  protected userPolicy: any    
+  protected user: any;
+  protected token: any;
+  protected userCar: any;
+  protected userPolicy: any;
   protected userCoverages: any;
   protected coverage: any = {
-    id_policy:"",
-    description:"",
-    assurancesum:"",
-    deductibles:""
+    id_policy: '',
+    description: '',
+    assurancesum: '',
+    deductibles: ''
   };
-  private myVehicleCalendarComponent : MyVehicleCalendarComponent;
+  private myVehicleCalendarComponent: MyVehicleCalendarComponent;
   ngOnInit() {
-    
-
     this.token = this.clientService.getToken();
     this.user = JSON.parse(this.clientService.getUserInfo());
 
      this.carsService.getCarByID(this.user.id_clients).subscribe(
       data => {
-        
-        this.userCar = data 
+        this.userCar = data;
         this.userHasCar = true;
-        if( this.userCar["automatic"] == 1)
-           this.userCar["automatic"] = "Automática";
-        else 
-           this.userCar["automatic"] = "Manual";
+        if (this.userCar['automatic'] == 1) {
+           this.userCar['automatic'] = 'Automática';
+        } else {
+           this.userCar['automatic'] = 'Manual';
+        }
        
-        for(var item in  this.userCar) {
-          if( item == "id_car" || item== "brand" || item== "model"  || item== "description" || item== "automatic"||item == "year"|| item == "passagers"||item == "doors"||item == "agerestriction"||item=="price") 
+        for(let item in  this.userCar) {
+          if(item == "id_car" || item== "brand" || item== "model"  || item== "description" || item== "automatic"||item == "year"|| item == "passagers"||item == "doors"||item == "agerestriction"||item=="price") 
             continue;
           else {
             if( this.userCar[item] == 1)
@@ -115,7 +112,7 @@ export class MyVehicleComponent implements OnInit {
     );
 
   }
-  
+
   public loadPolicy() {
     this.carsService.getPolicyByID(this.userCar.id_car).subscribe(
       data =>{

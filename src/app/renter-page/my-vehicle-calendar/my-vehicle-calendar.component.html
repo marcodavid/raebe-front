@@ -1,5 +1,5 @@
 <form ngNativeValidate (ngSubmit)="onSaveCalendar()">
-  <div class="container mt-2 mb-2">
+  <div class="container mt-5 mb-2">
     <button type="submit" class="btn btn-outline-secondary float-right" >
       <fa name="save"></fa>&nbsp;Guardar
     </button>
@@ -12,35 +12,35 @@
       <div class="col-sm-12 col-md-5">
         <h3>Calendario</h3>
         <div class="input-group mb-3">
-          <label for="year">Hora inicial de disponibilidad:</label>
+          <label for="year">Hora inicial de disponibilidad:&nbsp;&nbsp;</label>
           <input [(ngModel)]="userRentPreferences.firsthour" name="firsthour" type="number" id="year" min="0" max="24" step="1"  class="form-control" required>
           <div class="input-group-append">
             <span class="input-group-text" id="basic-addon2">:00</span>
           </div>
         </div>
         <div class="input-group mb-3">
-          <label for="year">Hora final de disponibilidad:</label>
+          <label for="year">Hora final de disponibilidad:&nbsp;&nbsp;</label>
           <input [(ngModel)]="userRentPreferences.lasthour"  name="lasthour" type="number" id="year" min="0" max="24" step="1"  class="form-control" required>
           <div class="input-group-append">
             <span class="input-group-text" id="basic-addon2">:00</span>
           </div>
         </div>
         <div class="input-group mb-3">
-          <label for="transmission">Tiempo de Anticipación para Reservar:</label>
+          <label for="transmission">Tiempo de Anticipación para Reservar:&nbsp;&nbsp;</label>
           <input [(ngModel)]="userRentPreferences.daysbeforerent" name="daysbeforerent" type="number" id="year" min="0" max="24" step="1"  class="form-control" required>
           <div class="input-group-append">
             <span class="input-group-text" id="basic-addon2">:00</span>
           </div>
         </div>
         <div class="input-group mb-3">
-          <label for="transmission">Tiempo mínimo en renta:</label>
+          <label for="transmission">Tiempo mínimo en renta:&nbsp;&nbsp;</label>
           <input [(ngModel)]="userRentPreferences.mintime" name="mintime " type="number" id="year" min="0" max="24" step="1"  class="form-control" required>
           <div class="input-group-append">
             <span class="input-group-text" id="basic-addon2">:00</span>
           </div>
         </div>
         <div class="input-group mb-3">
-          <label for="transmission">Tiempo máximo en renta:</label>
+          <label for="transmission">Tiempo máximo en renta:&nbsp;&nbsp;</label>
           <input [(ngModel)]="userRentPreferences.maxtime"  name="maxtime " type="number" id="year" min="0" max="24" step="1"  class="form-control" required>
           <div class="input-group-append">
             <span class="input-group-text" id="basic-addon2">:00</span>

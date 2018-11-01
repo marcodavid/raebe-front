@@ -24,91 +24,83 @@ import { CarsService } from '../../services/cars-service/cars.service';
   ]
 })
 export class MyVehicleInsuranceComponent extends MyVehicleComponent implements OnInit  {
-
-  
   constructor( clientsService: ClientsService, carsService: CarsService) {
-    
-    super(clientsService,carsService);
-    
+    super(clientsService, carsService);
   }
 
   ngOnInit() {
     super.ngOnInit();
-    
-
   }
+
   addCoverture() {
-    this.userCoverages.push(this.coverage) 
+    this.userCoverages.push(this.coverage);
     this.coverage = {
-      id_policy:"",
-      description:"",
-      assurancesum:"",
-      deductibles:""
-    };  
+      id_policy: '',
+      description: '',
+      assurancesum: '',
+      deductibles: ''
+    };
   }
 
-  removeCoverture(index) { 
-    this.userCoverages.splice(index, 1); 
-   
+  removeCoverture(index) {
+    this.userCoverages.splice(index, 1);
   }
 
   public onSavePolicy()  {
-    if(this.userCarHasPolicy) {
-      
+    if (this.userCarHasPolicy) {
         this.carsService.putPolicyForUpdate(this.userPolicy).subscribe(
           data => {
-            alert("guardado, poliza actualizada")
+            alert('guardado, poliza actualizada');
             this.onSaveCoverages();
-           
           },
           error => {
-            alert("nel")
+            alert('nel');
           }
         );
     } else {
       this.userPolicy.id_car = this.userCar.id_car;
       this.carsService.postPolicy(this.userPolicy).subscribe(
         data => {
-          alert("guardado, poliza creada")
+          alert('guardado, poliza creada');
           this.onSaveCoverages();
           super.ngOnInit();
-        
         },
         error => {
-          alert("nel")
+          alert('nel');
         }
       );
     }
   }
 
   public onSaveCoverages() {
-    if(this.userCarHasCoverages) {
-       for(let item in this.userCoverages) {
+    if (this.userCarHasCoverages) {
+       // tslint:disable-next-line:forin
+      for (let item in this.userCoverages) {
         this.userCoverages[item].id_policy = this.userPolicy.id_policy;
-      }  
-      this.carsService.deleteCoverage(this.userCoverages[0].id_policy).subscribe();       
+      }
+      this.carsService.deleteCoverage(this.userCoverages[0].id_policy).subscribe();
       this.carsService.postCoverage(this.userCoverages).subscribe(
         data => {
-          alert("guardado, coverage actualizado")
+          alert('guardado, coverage actualizado');
         },
         error => {
-          alert("nel")
+          alert('nel');
         }
       );
     } else {
-      for(let item in this.userCoverages) {
+      // tslint:disable-next-line:forin
+      for (let item in this.userCoverages) {
         this.userCoverages[item].id_policy = this.userPolicy.id_policy;
-      }  
+      }
       this.carsService.postCoverage(this.userCoverages).subscribe(
         data => {
-          alert("guardado, coverage creado")
+          alert('guardado, coverage creado');
           super.ngOnInit();
         },
         error => {
-          alert("nel")
+          alert('nel');
         }
       );
     }
-}
-
+  }
 }

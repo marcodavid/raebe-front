@@ -1,40 +1,45 @@
-<div class="container mt-2 mb-2"> 
-  <button class="btn btn-outline-secondary float-right" (click)="onSavePolicies()">
-    <fa name="save"></fa>&nbsp;Guardar
-  </button>
-</div>
-<div class="container mb-5" [@animacionAparecer]>
-  <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-5">
-        <img src="/assets/img/deal.png" width="80%">
-    </div>
-    <div class="col-sm-12 col-md-4">
-      <h3>Políticas</h3>
-      <div class="form-group">
-        <label for="marca">Edad de Restricción</label>
-        <input  [(ngModel)]="userCar.agerestriction"  type="number" id="marca" class="form-control">
+<form ngNativeValidate (ngSubmit)='onSavePolicies()'>
+  <div class="container mt-5 mb-2"> 
+    <button class="btn btn-outline-secondary float-right">
+      <fa name="save"></fa>&nbsp;Guardar
+    </button>
+  </div>
+  <div class="container mb-5" [@animacionAparecer]>
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-5">
+          <img src="/assets/img/deal.png" width="80%">
       </div>
-      <div class="form-group">
-        <label for="model">Política Tardía</label>
-        <select  [(ngModel)]="userCar.latepolicy" id="air" class="form-control">
-          <option value="Si">Si</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="transmission">Libre de Humo</label>
-        <select  [(ngModel)]="userCar.smokerestriction" id="air" class="form-control">
-          <option value="Si">Si</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="transmission">Posibilidad de Viajar a Otros Estados con El Vehículo</label>
-        <select  [(ngModel)]="userCar.travelout" id="air" class="form-control">
-          <option value="Si">Si</option>
+      <div class="col-sm-12 col-md-4">
+        <h3>Políticas</h3>
+        <div class="form-group">
+          <label for="marca">Edad de Restricción</label>
+          <input  [(ngModel)]="userCar.agerestriction"  type="number" id="marca" class="form-control" min="18" value="18" required>
+        </div>
+        <div class="form-group">
+          <label for="model">Política Tardía</label>
+          <select  [(ngModel)]="userCar.latepolicy" id="air" class="form-control" required>
+            <option value=""></option>
+            <option value="Si">Si</option>
             <option value="No">No</option>
           </select>
+        </div>
+        <div class="form-group">
+          <label for="transmission">Libre de Humo</label>
+          <select  [(ngModel)]="userCar.smokerestriction" id="air" class="form-control" required>
+            <option value=""></option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="transmission">Posibilidad de Viajar a Otros Estados con El Vehículo</label>
+          <select  [(ngModel)]="userCar.travelout" id="air" class="form-control" required>
+            <option value=""></option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+            </select>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>

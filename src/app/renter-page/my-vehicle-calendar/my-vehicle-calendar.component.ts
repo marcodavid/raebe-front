@@ -25,64 +25,58 @@ import { RentersService } from '../../services/renters-service/renters.service';
   ]
 })
 export class MyVehicleCalendarComponent  extends MyVehicleComponent implements OnInit  {
-  
-  
-  constructor( clientsService: ClientsService, carsService: CarsService,protected renterService:  RentersService) {
-    
-    super(clientsService,carsService);
-    
+  protected userRentPreferences: any;
+  constructor( clientsService: ClientsService, carsService: CarsService, protected renterService: RentersService) {
+    super(clientsService, carsService);
   }
-  protected userRentPreferences : any;
+
   ngOnInit() {
     super.ngOnInit();
     this.loadCalendar();
-   
   }
+
   public loadCalendar() {
     this.renterService.getRentPreferencesByClient(this.user.id_clients).subscribe(
-      data =>{
+      data => {
         this.userCarHasRentPreferences = true;
         this.userRentPreferences = data;
         this.checkIfUserCouldBeRenter();
       },
-      error =>{
+      error => {
         this.userCarHasRentPreferences = false;
         this.userRentPreferences = {
-          id_clients:'',
-          firsthour:'',
-          lasthour:'',
-          daysbeforerent:'',
-          mintime:'',
-      
-        }
+          id_clients: '',
+          firsthour: '',
+          lasthour: '',
+          daysbeforerent: '',
+          mintime: '',
+        };
       }
-    )
+    );
   }
-  public onSaveCalendar(){
 
-    if(this.userCarHasRentPreferences) {
+  public onSaveCalendar() {
+    if (this.userCarHasRentPreferences) {
       this.userCarHasRentPreferences = true;
       this.renterService.putRentPreferencesForUpdate(this.userRentPreferences).subscribe(
-        data =>{
-         
-         alert("preferencias actualizadas")
+        data => {
+          alert('preferencias actualizadas');
         },
-        error =>{
-          alert("nel")
+        error => {
+          alert('nel');
         }
-      )
+      );
     } else {
       this.userRentPreferences.id_clients = this.user.id_clients;
       this.renterService.PostRentPreferences(this.userRentPreferences).subscribe(
-        data =>{
-         
-         alert("preferencias creadas")
+        data => {
+         alert('preferencias creadas');
          this.loadCalendar();
         },
-        error =>{
-          alert("nel")
+        error => {
+          alert('nel');
         }
-      )
+      );
     }
   }
 }
