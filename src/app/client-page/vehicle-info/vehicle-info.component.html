@@ -9,7 +9,7 @@
 <div class="container mt-2" [@animacionAparecer]>
   <div class="row">
     <div class="col-sm-6">
-        <img src="/assets/img/example_2.jpg" width="80%" alt="">
+        <img src="{{image}}" width="80%" alt="">
     </div>
     <div class="col-sm-6">
       <h2>{{vehicleName}}</h2>
@@ -34,12 +34,11 @@
     {{feature}}
   </li>
 </div>
-
 <div class="container mt-5" [@animacionAparecer]>
   <div class="row">
     <div class="col-sm-8">
-      <h2>Reglas del Carro</h2>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi ducimus voluptatibus maxime provident perferendis, eligendi officiis odio, facere eveniet neque maiores quasi sequi error cum numquam! Rerum in adipisci commodi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem voluptatem itaque blanditiis alias omnis. Alias minus quas quia magni iure, provident a at ut blanditiis voluptates harum velit quo vitae?</p>
+      <h2>Detalles adiciónales</h2>
+      <p>{{description}}</p>
     </div>
     <div class="col-sm-4">
       <img src="/assets/img/group.png" width="80%">
@@ -52,7 +51,7 @@
       &nbsp;
   </div>
 </div>
-
+<input data-provide="datepicker">
 <div class="container mt-5">
   <div class="row">
     <div class="col-sm-12">

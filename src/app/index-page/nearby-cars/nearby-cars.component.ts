@@ -27,9 +27,9 @@ export class NearbyCarsComponent implements OnInit {
     this.clientService.getRandomClients().subscribe(
       data => {
         this.randomCarsArray = data
+        this.loadNearbyCars(0);
         this.loadNearbyCars(1);
         this.loadNearbyCars(2);
-        this.loadNearbyCars(3);
 
       },
       error => { }
@@ -40,7 +40,11 @@ export class NearbyCarsComponent implements OnInit {
       this.horizontalCard.nativeElement.remove();
     }
   }
-
+   
+  saveCarInfo(selected) {
+ 
+    localStorage.setItem('clientSelected',this.randomCarsArray[selected].id_clients );
+  }
   public loadNearbyCars(car) {
     
     this.carsService.getCarByID(this.randomCarsArray[car].id_clients).subscribe(

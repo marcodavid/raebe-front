@@ -5,6 +5,7 @@ import { CarsService } from '../../services/cars-service/cars.service';
 import { MyVehicleComponent } from '../my-vehicle/my-vehicle.component';
 import { RentersService } from '../../services/renters-service/renters.service';
 
+
 @Component({
   selector: 'app-my-vehicle-calendar',
   templateUrl: './my-vehicle-calendar.component.html',
@@ -26,6 +27,7 @@ import { RentersService } from '../../services/renters-service/renters.service';
 })
 export class MyVehicleCalendarComponent  extends MyVehicleComponent implements OnInit  {
   
+
   
   constructor( clientsService: ClientsService, carsService: CarsService,protected renterService:  RentersService) {
     
@@ -64,7 +66,8 @@ export class MyVehicleCalendarComponent  extends MyVehicleComponent implements O
       this.userCarHasRentPreferences = true;
       this.renterService.putRentPreferencesForUpdate(this.userRentPreferences).subscribe(
         data =>{
-         
+     
+                
          alert("preferencias actualizadas")
         },
         error =>{

@@ -21,7 +21,7 @@
                         <p class="card-text">{{description[i]}}</p>
                     </div>
                     <div class="card-footer justify-content-center text-center">
-                        <a class="btn btn-outline-primary" routerLink="/client/vehicle-info">Detalles del vehículo</a>
+                        <a class="btn btn-outline-primary" (click)="saveCarInfo(i)" routerLink="/client/vehicle-info">Detalles del vehículo</a>
                     </div>
                 </div>
             </div>
