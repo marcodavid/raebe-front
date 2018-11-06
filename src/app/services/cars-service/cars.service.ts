@@ -40,7 +40,12 @@ export class CarsService extends ConfigService{
     return this.http.get("http://" + this.server + "/api/GetCarByID/?id_clients=" + id, this.httpOptions)
 
   }
+  
+  public getCarImagesByID(id) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.get("http://" + this.server + "/api/GetCarImagesByID/?id_clients=" + id, this.httpOptions)
 
+  }
   public putCarForUpdate(userCar) {
 
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())

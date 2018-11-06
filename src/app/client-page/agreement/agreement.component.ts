@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ClientsService } from '../../services/clients-service/clients.service';
+import { VehicleInfoComponent } from '../vehicle-info/vehicle-info.component';
+import { CarsService } from '../../services/cars-service/cars.service';
 
 @Component({
   selector: 'app-agreement',
@@ -21,9 +23,11 @@ import { ClientsService } from '../../services/clients-service/clients.service';
     ])
   ]
 })
-export class AgreementComponent implements OnInit {
+export class AgreementComponent extends VehicleInfoComponent implements OnInit {
   private user: any
-  constructor(private clientService: ClientsService) { }
+  constructor(protected clientService: ClientsService, protected carsService: CarsService) {
+    super(clientService,carsService);
+   }
 
   ngOnInit() {
     this.user = JSON.parse(this.clientService.getUserInfo());
