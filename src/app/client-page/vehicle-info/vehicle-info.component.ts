@@ -28,6 +28,7 @@ export class VehicleInfoComponent implements OnInit {
   vehicleName   : string;
   vehicleType   : string;
   features      : string [];
+  
   description         : string;
   clientSelected: any
   clientSelectedCar: any

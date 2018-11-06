@@ -1,29 +1,35 @@
 <div class="container mt-2" [@animacionAparecer]>
   <div class="row">
     <div class="col-sm-12">
-      <h2>Información del Vehículo</h2>
+      <h2>{{vehicleName}} {{vehicleType}}</h2>
     </div>
   </div>
 </div>
-
 <div class="container mt-2" [@animacionAparecer]>
   <div class="row">
     <div class="col-sm-6">
-        <img src="{{image}}" width="80%" alt="">
+      <img src="{{image}}" width="80%" alt="">    
     </div>
-    <div class="col-sm-6">
-      <h2>{{vehicleName}}</h2>
-      <h3>{{vehicleType}}</h3>
+    <div class="col-sm-6"> 
+        <h5>Fechas:</h5>
+        <ngb-datepicker   #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+        </ngb-datepicker>  
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 "> 
+      <h5 class="justify-content-center" >{{clientSelectedCar.price | currency}}<font size="3 ">Por día</font></h5>
+    </div>
+    <div class="col-sm-6 justify-content-center">
+        <button routerLink="/client/agreement" class="btn btn-primary btn-lg btn-block justify-content-center">Mostrar contrato del vehículo</button>      
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="col-sm-12 divisor">
-      &nbsp;
+    &nbsp;
   </div>
 </div>
-
 <div class="container mt-2" [@animacionAparecer]>
   <div class="row">
     <div class="col-sm-6">
@@ -41,17 +47,15 @@
       <p>{{description}}</p>
     </div>
     <div class="col-sm-4">
-      <img src="/assets/img/group.png" width="80%">
+      <!-- <img src="/assets/img/group.png" width="80%"> -->
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="col-sm-12 divisor">
-      &nbsp;
+    &nbsp;
   </div>
 </div>
-<input data-provide="datepicker">
 <div class="container mt-5">
   <div class="row">
     <div class="col-sm-12">
@@ -72,9 +76,5 @@
 </div>
 
 <div class="container mt-3 mb-5">
-  <div class="row">
-    <div class="col-sm-12">
-      <a routerLink="/client/agreement" class="btn btn-primary">Mostrar contrato del vehículo</a>
-    </div>
-  </div>
+
 </div>
