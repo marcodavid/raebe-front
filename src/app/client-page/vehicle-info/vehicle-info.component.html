@@ -12,8 +12,19 @@
     </div>
     <div class="col-sm-6"> 
         <h5>Fechas:</h5>
-        <ngb-datepicker   #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
-        </ngb-datepicker>  
+        <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+        </ngb-datepicker>
+        
+        <ng-template #t let-date let-focused="focused">
+          <span class="custom-day"
+                [class.focused]="focused"
+                [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)"
+                (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+          </span>
+        </ng-template> 
     </div>
   </div>
   <div class="row">
@@ -74,7 +85,5 @@
     </div>
   </div>
 </div>
-
 <div class="container mt-3 mb-5">
-
 </div>

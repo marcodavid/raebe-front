@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { VehicleInfoComponent } from '../vehicle-info/vehicle-info.component';
+import { AgreementComponent } from '../agreement/agreement.component';
+import { ClientsService } from '../../services/clients-service/clients.service';
+import { CarsService } from '../../services/cars-service/cars.service';
+import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-payement',
@@ -20,11 +25,14 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ])
   ]
 })
-export class PayementComponent implements OnInit {
+export class PayementComponent extends AgreementComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected clientService: ClientsService, protected carsService: CarsService,calendar: NgbCalendar) {
+    super(clientService,carsService,calendar);
+   }
 
   ngOnInit() {
+    super.ngOnInit();
   }
 
 }

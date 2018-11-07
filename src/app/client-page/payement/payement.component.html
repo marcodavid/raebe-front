@@ -1,12 +1,12 @@
 <div class="container mt-5" [@animacionAparecer]>
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-4  text-center">
-      <img src="/assets/img/example_2.jpg" width="100%" alt="">
+      <img src="{{image}}" width="100%" alt="">
     </div>  
     <div class="col-sm-12 col-md-8">
-      <h3>Dodge Attitude</h3>
-      <h4>Automovil</h4>
-      <p>21 de Junio 2018 - 23 de Julio 2018</p>
+      <h3>{{vehicleName}} </h3>
+      <h4>{{vehicleType}}</h4>
+      <p> Del {{fromDate.day}}/{{fromDate.month}}/{{fromDate.year}} al  {{toDate.day}}/{{toDate.month}}/{{toDate.year}}</p>
     </div>  
   </div>
 </div>
@@ -85,20 +85,24 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Tarifa base x 3 días</td>
-                  <td>$ 352 MXN</td>
+                  <td>Tarifa base </td>
+                  <td>{{price| currency}}</td>
+                </tr>
+                <tr>
+                  <td>Días totales</td>
+                  <td>{{totalDays}} día(s)</td>
+                </tr>
+                <tr>
+                  <td>Precio base x días</td>
+                  <td>{{daysXPrice | currency}}</td>
                 </tr>
                 <tr>
                   <td>IVA</td>
-                  <td>$ 27 MXN</td>
-                </tr>
-                <tr>
-                  <td>Otros cargos</td>
-                  <td>$ 52 MXN</td>
+                  <td>{{iva}}</td>
                 </tr>
                 <tr>
                   <td class="justify-content-center text-center total" colspan="2">
-                    Total $ 431 MXN
+                    Total {{totalPrice | currency}}
                   </td>
                 </tr>
               </tbody>
