@@ -13,11 +13,11 @@
         <h3>Políticas</h3>
         <div class="form-group">
           <label for="marca">Edad de Restricción</label>
-          <input  [(ngModel)]="userCar.agerestriction"  type="number" id="marca" class="form-control" min="18" value="18" required>
+          <input  [(ngModel)]="userCar.agerestriction"   name="userCar.agerestriction" type="number" id="marca" class="form-control" min="18" value="18" required>
         </div>
         <div class="form-group">
           <label for="model">Política Tardía</label>
-          <select  [(ngModel)]="userCar.latepolicy" id="air" class="form-control" required>
+          <select  [(ngModel)]="userCar.latepolicy" name="userCar.latepolicy" id="air" class="form-control" required>
             <option value=""></option>
             <option value="Si">Si</option>
             <option value="No">No</option>
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
           <label for="transmission">Libre de Humo</label>
-          <select  [(ngModel)]="userCar.smokerestriction" id="air" class="form-control" required>
+          <select  [(ngModel)]="userCar.smokerestriction" name="userCar.smokerestriction" id="air" class="form-control" required>
             <option value=""></option>
             <option value="Si">Si</option>
             <option value="No">No</option>
@@ -33,7 +33,7 @@
         </div>
         <div class="form-group">
           <label for="transmission">Posibilidad de Viajar a Otros Estados con El Vehículo</label>
-          <select  [(ngModel)]="userCar.travelout" id="air" class="form-control" required>
+          <select  [(ngModel)]="userCar.travelout" name="userCar.travelout" id="air" class="form-control" required>
             <option value=""></option>
             <option value="Si">Si</option>
             <option value="No">No</option>
