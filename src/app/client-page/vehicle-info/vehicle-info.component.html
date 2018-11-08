@@ -16,7 +16,7 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
         </ol>
         <div class="carousel-inner">
-          <div *ngFor="let image of carrouselImages; let i = index" (class)="i==0?'carrousel-item-active':'carrousel-item'">
+          <div *ngFor="let image of carrouselImages; let i = index" (class)="i==0?'carrousel-item active':'carrousel-item'">
             <img class="d-block w-100" (src)="image.file">
           </div>
         </div>
