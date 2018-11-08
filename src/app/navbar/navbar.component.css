@@ -4,7 +4,8 @@
 }
 
 .navbar-logo {
-    color:rgb(0,100,110);
+    color:rgb(255, 255, 255) !important;
+    font-size:18pt;
 }
 .navbar-logo:hover{
 
@@ -25,4 +26,28 @@
     margin: 0 auto;
     width: 100%;
     height: 15px;
+}
+
+select {
+    color:#FFF;
+}
+
+input, select {
+    background-color:rgba(0,0,0,0);
+    border-color: #FFF;
+    color: #FFF;
+}
+
+input:hover, select:hover{
+    background-color: rgba(60, 161, 114, 0.404);
+}
+
+input:focus, select:focus {
+    background-color: rgba(60, 161, 114, 0.404);
+    border-color: #FFF;
+    color : #FFF;
+}
+
+input::placeholder{
+    color: #FFF;
 }

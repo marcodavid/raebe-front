@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+.modal-header{
+    background-color: rgb(206, 232, 247) !important;
+    text-align: center !important;
+    justify-content: center !important;
+    border: 0;
+    border-radius: 0px;
+}

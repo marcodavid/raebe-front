@@ -1,4 +1,4 @@
-@media (orientation: landscape) { 
+@media (orientation: landscape) {
     .container-theme {
         background-image: url('/assets/img/city_landscape.jpg');
         background-size: 100% 100%;
@@ -6,12 +6,10 @@
 
         margin: auto;
         height: 70vh;
-
-        text-shadow: -1px 0 rgb(204, 127, 26), 0 1px rgb(204, 127, 26), 1px 0 rgb(204, 127, 26), 0 -1px rgb(204, 127, 26);
     }
 }
 
-@media (orientation: portrait) { 
+@media (orientation: portrait) {
     .container-theme {
         background-image: url('/assets/img/city_portrait.jpg');
         background-size: 100% 100%;
@@ -19,8 +17,6 @@
 
         margin: auto;
         height: 50vh;
-
-        text-shadow: -1px 0 rgb(204, 127, 26), 0 1px rgb(204, 127, 26), 1px 0 rgb(204, 127, 26), 0 -1px rgb(204, 127, 26);
     }
 }
 
