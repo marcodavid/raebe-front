@@ -24,20 +24,20 @@ import { CarsService } from '../../services/cars-service/cars.service';
   ]
 })
 export class AgreementComponent extends VehicleInfoComponent implements OnInit {
-  private user: any
+  private user: any;
   constructor(protected clientService: ClientsService, protected carsService: CarsService) {
-    super(clientService,carsService);
+    super(clientService, carsService);
    }
 
   ngOnInit() {
     this.user = JSON.parse(this.clientService.getUserInfo());
-   
+
   }
 
   isFullData() {
-    if(this.user.fulldata)
+    if (this.user.fulldata) {
       return true;
-    else false;
+    } else { return false; }
   }
 
 }
