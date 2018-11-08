@@ -25,12 +25,12 @@ import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
   ]
 })
 export class AgreementComponent extends VehicleInfoComponent implements OnInit {
-  private user: any
+  protected user: any
   protected totalPrice: any
   protected totalDays: any
-  price: any;
-  iva: any;
-  daysXPrice: number;
+  protected price: any;
+  protected iva: any;
+  protected daysXPrice: number;
   
    
   constructor(protected clientService: ClientsService, protected carsService: CarsService,calendar: NgbCalendar) {
