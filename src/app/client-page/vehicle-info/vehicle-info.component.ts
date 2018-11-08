@@ -26,44 +26,43 @@ import { Session } from 'protractor';
   ]
 })
 export class VehicleInfoComponent implements OnInit {
-  image: string;
+  carrouselImages: any;
   vehicleName: string;
   vehicleType: string;
   features: string[];
   description: string;
-  clientSelected: any
-  clientSelectedCar: any
+  clientSelected: any;
+  clientSelectedCar: any;
   evaluations: Evaluation[] = [];
   hoveredDate: NgbDate;
   protected fromDate: NgbDate;
   protected toDate: NgbDate;
 
   constructor(protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar) {
-    this.vehicleName = "Dodge Attitude";
-    this.vehicleType = "Automovil";
+    this.vehicleName = 'Dodge Attitude';
+    this.vehicleType = 'Automovil';
     this.features = [];
     this.evaluations.push({
-      username: "Samuel",
+      username: 'Samuel',
       value: 9.6,
-      date: "7 Junio 2018",
-      comment: "Mucho mejor de lo que esperaba"
+      date: '7 Junio 2018',
+      comment: 'Mucho mejor de lo que esperaba'
     });
 
     this.evaluations.push({
-      username: "Samuel",
+      username: 'Samuel',
       value: 9.6,
-      date: "7 Junio 2018",
-      comment: "Mucho mejor de lo que esperaba"
+      date: '7 Junio 2018',
+      comment: 'Mucho mejor de lo que esperaba'
     });
 
   }
 
   ngOnInit() {
-    this.clientSelected = localStorage.getItem("clientSelected");
+    this.clientSelected = localStorage.getItem('clientSelected');
     this.loadDescription(this.clientSelected);
-
-
   }
+
   onDateSelection(date: NgbDate) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
@@ -73,8 +72,8 @@ export class VehicleInfoComponent implements OnInit {
       this.toDate = null;
       this.fromDate = date;
     }
-    localStorage.setItem("fromDate", JSON.stringify(this.fromDate));
-    localStorage.setItem("toDate", JSON.stringify(this.toDate));
+    localStorage.setItem('fromDate', JSON.stringify(this.fromDate));
+    localStorage.setItem('toDate', JSON.stringify(this.toDate));
   }
 
   isHovered(date: NgbDate) {
@@ -92,54 +91,65 @@ export class VehicleInfoComponent implements OnInit {
 
     this.carsService.getCarByID(clientSelected).subscribe(
       data => {
-        this.clientSelectedCar = data
-        localStorage.setItem("price",this.clientSelectedCar.price)
+        this.clientSelectedCar = data;
+        localStorage.setItem('price', this.clientSelectedCar.price);
         this.vehicleName = this.clientSelectedCar.model;
         this.vehicleType = this.clientSelectedCar.brand;
 
-        if (this.clientSelectedCar["automatic"] == 1)
-          this.clientSelectedCar["automatic"] = "automática";
-        else
-          this.clientSelectedCar["automatic"] = "manual";
+        if (this.clientSelectedCar['automatic'] === 1) {
+          this.clientSelectedCar['automatic'] = 'automática';
+        } else {
+          this.clientSelectedCar['automatic'] = 'manual';
+        }
 
-        for (var item in this.clientSelectedCar) {
-          if (item == "id_car" || item == "brand" || item == "model" || item == "description" || item == "automatic" || item == "year" || item == "passagers" || item == "doors" || item == "agerestriction" || item == "price")
+        for (const item in this.clientSelectedCar) {
+          // tslint:disable-next-line:max-line-length
+          if (item === 'id_car' || item === 'brand' || item === 'model' || item === 'description' || item === 'automatic' || item === 'year' || item === 'passagers' || item === 'doors' || item === 'agerestriction' || item === 'price') {
             continue;
-          else {
-            if (this.clientSelectedCar[item] == 1)
-              this.clientSelectedCar[item] = " Sí";
-            else
-              this.clientSelectedCar[item] = "No";
+          } else {
+            if (this.clientSelectedCar[item] === 1) {
+              this.clientSelectedCar[item] = ' Sí';
+            } else {
+              this.clientSelectedCar[item] = 'No';
+            }
           }
         }
         this.carsService.getCarImagesByID(clientSelected).subscribe(
+          // tslint:disable-next-line:no-shadowed-variable
           data => {
-            this.image = '//' + this.clientService.getServer() + data[0].file
+            this.carrouselImages = data;
 
-          });
+            // Se obtienen todas las imágenes
+            // Y se va recorriendo cada una
+            this.carrouselImages.foreach( image => {
+              // Se modifican los valores de la imagen para que pueda
+              // ser resuelta por el navegador.
+              image.file = '//' + this.clientService.getServer() + image.file;
+            });
+          }
+        );
 
         this.features.push(
-          "Edad de restricción para el conductor:   " + this.clientSelectedCar["agerestriction"] + " años",
-          "Tranmisión   " + this.clientSelectedCar["automatic"],
-          "Año:  " + this.clientSelectedCar["year"],
-          "Pasajeros:  " + this.clientSelectedCar["passagers"],
-          "Puertas:  " + this.clientSelectedCar["doors"],
-          "Aire acondicionado:  " + this.clientSelectedCar["ac"],
-          "Audio auxiliar:  " + this.clientSelectedCar["audioaux"],
-          "Audio bluetooth:  " + this.clientSelectedCar["audiobluetooth "],
-          "Turbo:  " + this.clientSelectedCar["turbo"],
-          "Bolsas de aire:  " + this.clientSelectedCar["airbags"],
-          "Asiento de bebé: " + this.clientSelectedCar["babysit"],
-          "Asiento de infante:  " + this.clientSelectedCar["childsit"],
-          "GPS: " + this.clientSelectedCar["gps"],
-          "Restriccion de fumar:  " + this.clientSelectedCar["smokerestriction"],
-          "Espacio para maletas:  " + this.clientSelectedCar["numsuitcase"],
-          "Alarma:  " + this.clientSelectedCar["alarm"],
-          "Sensor de proximidad:  " + this.clientSelectedCar["sensor"],
-          "Capota:  " + this.clientSelectedCar["sparetier"],
-        )
-        this.description = this.clientSelectedCar["description"]
-
+          'Edad de restricción para el conductor:   ' + this.clientSelectedCar['agerestriction'] + ' años',
+          'Tranmisión   ' + this.clientSelectedCar['automatic'],
+          'Año:  ' + this.clientSelectedCar['year'],
+          'Pasajeros:  ' + this.clientSelectedCar['passagers'],
+          'Puertas:  ' + this.clientSelectedCar['doors'],
+          'Aire acondicionado:  ' + this.clientSelectedCar['ac'],
+          'Audio auxiliar:  ' + this.clientSelectedCar['audioaux'],
+          'Audio bluetooth:  ' + this.clientSelectedCar['audiobluetooth '],
+          'Turbo:  ' + this.clientSelectedCar['turbo'],
+          'Bolsas de aire:  ' + this.clientSelectedCar['airbags'],
+          'Asiento de bebé: ' + this.clientSelectedCar['babysit'],
+          'Asiento de infante:  ' + this.clientSelectedCar['childsit'],
+          'GPS: ' + this.clientSelectedCar['gps'],
+          'Restriccion de fumar:  ' + this.clientSelectedCar['smokerestriction'],
+          'Espacio para maletas:  ' + this.clientSelectedCar['numsuitcase'],
+          'Alarma:  ' + this.clientSelectedCar['alarm'],
+          'Sensor de proximidad:  ' + this.clientSelectedCar['sensor'],
+          'Capota:  ' + this.clientSelectedCar['sparetier'],
+        );
+        this.description = this.clientSelectedCar['description'];
       });
   }
 }

@@ -8,13 +8,33 @@
 <div class="container mt-2" [@animacionAparecer]>
   <div class="row">
     <div class="col-sm-6">
-      <img src="{{image}}" width="80%" alt="">    
+      <!--<img src="{{image}}" width="80%" alt=""> -->
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li *ngFor="let image of carrouselImages; let i = index" data-target="#carouselExampleIndicators" (data-slide-to)="i" (class)="i==0?'active':''"></li>
+          <!-- <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+        </ol>
+        <div class="carousel-inner">
+          <div *ngFor="let image of carrouselImages; let i = index" (class)="i==0?'carrousel-item-active':'carrousel-item'">
+            <img class="d-block w-100" (src)="image.file">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
     </div>
-    <div class="col-sm-6"> 
+    <div class="col-sm-6">
         <h5>Fechas:</h5>
         <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
         </ngb-datepicker>
-        
+
         <ng-template #t let-date let-focused="focused">
           <span class="custom-day"
                 [class.focused]="focused"
@@ -24,15 +44,15 @@
                 (mouseleave)="hoveredDate = null">
             {{ date.day }}
           </span>
-        </ng-template> 
+        </ng-template>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6 "> 
+    <div class="col-sm-6 ">
       <h5 class="justify-content-center" >{{clientSelectedCar.price | currency}}<font size="3 ">Por día</font></h5>
     </div>
     <div class="col-sm-6 justify-content-center">
-        <button routerLink="/client/agreement" class="btn btn-primary btn-lg btn-block justify-content-center">Mostrar contrato del vehículo</button>      
+        <button routerLink="/client/agreement" class="btn btn-primary btn-lg btn-block justify-content-center">Mostrar contrato del vehículo</button>
     </div>
   </div>
 </div>
@@ -54,7 +74,7 @@
 <div class="container mt-5" [@animacionAparecer]>
   <div class="row">
     <div class="col-sm-8">
-      <h2>Detalles adiciónales</h2>
+      <h2>Detalles adicionales</h2>
       <p>{{description}}</p>
     </div>
     <div class="col-sm-4">

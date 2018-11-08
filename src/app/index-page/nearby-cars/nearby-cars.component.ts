@@ -21,12 +21,13 @@ export class NearbyCarsComponent implements OnInit {
   img: any = [];
 
   constructor(private clientService: ClientsService, private carsService: CarsService) { }
-  protected arrayCarsSaved: any = []
+  protected arrayCarsSaved: any = [];
+
   ngOnInit() {
 
     this.clientService.getRandomClients().subscribe(
       data => {
-        this.randomCarsArray = data
+        this.randomCarsArray = data;
         this.loadNearbyCars(0);
         this.loadNearbyCars(1);
         this.loadNearbyCars(2);
@@ -40,26 +41,26 @@ export class NearbyCarsComponent implements OnInit {
       this.horizontalCard.nativeElement.remove();
     }
   }
-   
+
   saveCarInfo(selected) {
- 
-    localStorage.setItem('clientSelected',this.randomCarsArray[selected].id_clients );
+    localStorage.setItem('clientSelected', this.randomCarsArray[selected].id_clients );
   }
+
   public loadNearbyCars(car) {
-    
     this.carsService.getCarByID(this.randomCarsArray[car].id_clients).subscribe(
       data => {
         this.randomUserCar = data;
         this.brandmark[car] = this.randomUserCar.brand;
         this.model[car] = this.randomUserCar.model;
         this.description[car] = this.randomUserCar.description;
-        this.file[car] = this.carsService.getCarImagesByID(this.randomCarsArray[car].id_clients).subscribe(
-          data => {
-            this.img[car] = '//' + this.clientService.getServer() + data[0].file
 
+        this.file[car] = this.carsService.getCarImagesByID(this.randomCarsArray[car].id_clients).subscribe(
+          // tslint:disable-next-line:no-shadowed-variable
+          data => {
+            this.img[car] = '//' + this.clientService.getServer() + data[0].file;
           }
         );
-      });
+      }
+    );
   }
-
 }
