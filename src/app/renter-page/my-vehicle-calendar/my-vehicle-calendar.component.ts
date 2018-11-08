@@ -5,6 +5,7 @@ import { CarsService } from '../../services/cars-service/cars.service';
 import { MyVehicleComponent } from '../my-vehicle/my-vehicle.component';
 import { RentersService } from '../../services/renters-service/renters.service';
 
+
 @Component({
   selector: 'app-my-vehicle-calendar',
   templateUrl: './my-vehicle-calendar.component.html',
@@ -59,8 +60,10 @@ export class MyVehicleCalendarComponent  extends MyVehicleComponent implements O
     if (this.userCarHasRentPreferences) {
       this.userCarHasRentPreferences = true;
       this.renterService.putRentPreferencesForUpdate(this.userRentPreferences).subscribe(
-        data => {
-          alert('preferencias actualizadas');
+        data =>{
+     
+                
+         alert("preferencias actualizadas")
         },
         error => {
           alert('nel');

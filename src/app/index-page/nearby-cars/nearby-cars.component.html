@@ -4,16 +4,35 @@
         <div class="col-md-6">
             <h2><fa name="car"></fa>&nbsp;&nbsp;Vehículos cerca de ti</h2>
         </div>
-      </div>
     </div>
 </div>
 <div class="container mt-2 mb-5 justify-content-center">
     <div class="row justify-content-center">
-        <div class="col-sm-6 col-md-4 mt-4"><app-car-card img='example_1.jpg'></app-car-card></div>
-        <div class="col-sm-6 col-md-4 mt-4"><app-car-card img='example_2.jpg'></app-car-card></div>
-        <div class="col-sm-6 col-md-4 mt-4"><app-car-card img='example_3.jpg'></app-car-card></div>
+        <div *ngFor="let field of randomCarsArray; let i = index">
+            <div class="col-sm-12 col-md-8 mt-1" #verticalCard>
+                <div class="card" style="width:20rem">
+                    <img class="card-img-top" src="{{img[i]}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h2 class="card-title">{{brandmark[i]}}</h2>
+                        <h5 class="card-title">{{model[i]}}</h5>
+                        <p class="card-text">{{description[i]}}</p>
+                    </div>
+                    <div class="card-footer justify-content-center text-center">
+                        <a class="btn btn-outline-primary" (click)="saveCarInfo(i)" routerLink="/client/vehicle-info">Detalles del vehículo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="row justify-content-end mt-1">
+        <div class="col-md-12 col-lx-2 mt-1">
+            <a class="col-md-12 btn btn-light" href="#!">Mostrar más</a>
+        </div>
+    </div>
+<<<<<<< HEAD
     <div class="row justify-content-end mt-5">
         <a class="col-md-4 col-sm-12 btn btn-outline-primary" href="#!">Mostrar más</a>
     </div>
+=======
+>>>>>>> dbd4b84ce539e15ee3be5df41bdc2727eb7cf0bd
 </div>
