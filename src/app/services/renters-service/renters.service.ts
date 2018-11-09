@@ -21,9 +21,9 @@ export class RentersService extends ConfigService {
     this.server = super.getServer();
 
   }
-  public getRentByClient(id) {
+  public getRentByID(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetRentByClient/?id_clients=" + id, this.httpOptions)
+    return this.http.get("http://" + this.server + "/api/GetRentByID/?id_clientsrenter=" + id, this.httpOptions)
   }
 
   public PostRent(json) {
@@ -31,6 +31,11 @@ export class RentersService extends ConfigService {
     return this.http.post("http://" + this.server + "/api/PostRent/", JSON.stringify(json), this.httpOptions);
 
   }
+  public putRentForUpdate(json) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.put("http://" + this.server + "/api/PutRentForUpdate/", JSON.stringify(json), this.httpOptions);
+  }
+
   public getRentPreferencesByClient(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
     return this.http.get("http://" + this.server + "/api/GetRentPreferencesByClient/?id_clients=" + id, this.httpOptions)

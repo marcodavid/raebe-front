@@ -54,6 +54,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
 import { RentersService } from './services/renters-service/renters.service';
 import { ImageUploadModule } from "angular2-image-upload";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RenterComponent } from './profile-page/renter/renter.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CalendarLockComponent,
     LoaderComponent,
     FileSelectDirective,
+    RenterComponent,
+    
     
   ],
   imports: [

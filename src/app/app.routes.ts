@@ -25,6 +25,7 @@ import { MessagesComponent } from './profile-page/messages/messages.component';
 import { MyInfoComponent } from './profile-page/my-info/my-info.component';
 import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock.component';
 import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
+import { RenterComponent } from './profile-page/renter/renter.component';
 
 const app_routes: Routes = [
     { path : '', component : IndexPageComponent },
@@ -34,7 +35,8 @@ const app_routes: Routes = [
         children : [
             { path : '', component : MyInfoComponent },
             { path : 'my-info', component : MyInfoComponent },
-            { path : 'rents', component : RentsComponent },
+            { path : 'rents', component : RentsComponent },           
+            { path : 'renter', component : RenterComponent },
             { path : 'reviews', component : ReviewsComponent },
             { path : 'messages', component : MessagesComponent }
         ]/*,

@@ -31,6 +31,7 @@ export class PayementComponent extends AgreementComponent implements OnInit {
   rent = {
     id_clients :0,
     id_clientsrenter :0,
+    clientname:"",
     id_car :0,
     dateofpickup :"",
     returnday :"",
@@ -60,6 +61,7 @@ export class PayementComponent extends AgreementComponent implements OnInit {
       data => { 
         this.renterCar = data;
         this.rent.id_clients = this.user.id_clients;
+        this.rent.clientname = this.user.firstname +" "+this.user.lastname+" "+"Edad:"+" "+this.user.age;
         this.rent.id_clientsrenter = this.clientSelected;
         this.rent.id_car =this.renterCar.id_car;
         this.rent.dateofpickup = this.fromDate.year+"-"+this.fromDate.month + "-"+this.fromDate.day;
