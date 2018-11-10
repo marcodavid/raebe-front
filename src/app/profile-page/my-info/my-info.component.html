@@ -9,6 +9,19 @@
             <button class="btn btn-link card-title" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <fa name="user"></fa>&nbsp;Mi Información
             </button>
+            <div class="col-sm-6">              
+                <img class="align-self-center mr-3" src="{{perfilImage}}" width="30%" alt="">    
+              </div>
+            <div *ngIf="isPerfilImage == false" class="container mb-5" [@animacionAparecer]>
+              <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-10">
+                  <h3>Imagen de perfil</h3>
+                </div>
+              </div>
+              <image-upload (change)="handleFileInput($event.target.files)" [max]="1" [buttonCaption]="'Selecciona una imagen de perfil'"
+                [dropBoxMessage]="'O puedes soltarla aquí'" [extensions]="['jpg','png']">
+              </image-upload>
+            </div>
           </h5>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
@@ -21,15 +34,18 @@
             <div class="row">
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtEmail">Email</label>
-                <input [(ngModel)]="client.email" id="txtEmail" type="email" name="txtEmail" class="form-control" placeholder="{{user.email}}" required>
+                <input [(ngModel)]="client.email" id="txtEmail" type="email" name="txtEmail" class="form-control" placeholder="{{user.email}}"
+                  required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtName">Nombre</label>
-                <input [(ngModel)]="client.firstname" id="txtName" type="text" name="txtName" class="form-control" placeholder="{{user.firstname}}" required>
+                <input [(ngModel)]="client.firstname" id="txtName" type="text" name="txtName" class="form-control" placeholder="{{user.firstname}}"
+                  required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtLastName">Apellidos</label>
-                <input [(ngModel)]="client.lastname" type="text" name="txtLastName" class="form-control" placeholder="{{user.lastname}}" required>
+                <input [(ngModel)]="client.lastname" type="text" name="txtLastName" class="form-control" placeholder="{{user.lastname}}"
+                  required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtBornDate">Fecha de Nacimiento</label>
@@ -37,7 +53,8 @@
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtCurp">CURP</label>
-                <input [(ngModel)]="client.curp" id="txtCurp" type="text" name="txtCurp" class="form-control" placeholder="{{user.curp}}" minlength="18" maxlength="18" pattern="/^[A-Z\d]{18}$/" required>
+                <input [(ngModel)]="client.curp" id="txtCurp" type="text" name="txtCurp" class="form-control" placeholder="{{user.curp}}"
+                  minlength="18" maxlength="18" pattern="/^[A-Z\d]{18}$/" required>
               </div>
             </div>
             <div class="row">
@@ -48,11 +65,13 @@
             <div class="row">
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtStreet">Calle</label>
-                <input [(ngModel)]="address.street" placeholder="{{userAddress.street}}" id="txtStreet" type="text" name="txtStreet" class="form-control" required>
+                <input [(ngModel)]="address.street" placeholder="{{userAddress.street}}" id="txtStreet" type="text" name="txtStreet" class="form-control"
+                  required>
               </div>
               <div class="form-group col-sm-12 col-md-2 mt-1">
                 <label for="txtExtNum">Número Exterior</label>
-                <input [(ngModel)]="address.numext" placeholder="{{userAddress.numext}}" id="txtExtNum" type="number" name="txtExtNum" class="form-control" required>
+                <input [(ngModel)]="address.numext" placeholder="{{userAddress.numext}}" id="txtExtNum" type="number" name="txtExtNum" class="form-control"
+                  required>
               </div>
               <div class="form-group col-sm-12 col-md-2 mt-1">
                 <label for="txtIntNum">Número Interior</label>
@@ -60,34 +79,41 @@
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtCol">Colonia</label>
-                <input [(ngModel)]="address.province" placeholder="{{userAddress.province}}" id="txtCol" type="text" name="txtCol" class="form-control" required>
+                <input [(ngModel)]="address.province" placeholder="{{userAddress.province}}" id="txtCol" type="text" name="txtCol" class="form-control"
+                  required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtCity">Ciudad</label>
-                <input [(ngModel)]="address.city" placeholder="{{userAddress.city}}" id="txtCity" type="text" name="txtCity" class="form-control" required>
+                <input [(ngModel)]="address.city" placeholder="{{userAddress.city}}" id="txtCity" type="text" name="txtCity" class="form-control"
+                  required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtCP">Código Postal</label>
-                <input [(ngModel)]="address.zipcode" placeholder="{{userAddress.zipcode}}" id="txtCP" type="number" name="txtCP" class="form-control" required>
+                <input [(ngModel)]="address.zipcode" placeholder="{{userAddress.zipcode}}" id="txtCP" type="number" name="txtCP" class="form-control"
+                  required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtCountry">País</label>
-                <input [(ngModel)]="address.country" placeholder="{{userAddress.country}}" id="txtCountry" type="text" name="txtCountry" class="form-control" required>
+                <input [(ngModel)]="address.country" placeholder="{{userAddress.country}}" id="txtCountry" type="text" name="txtCountry"
+                  class="form-control" required>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-12">Teléfono</div>
               <div class="form-group col-sm-12 col-md-2 mt-1">
                 <label for="txtPhoneCountry">Pais</label>
-                <input [(ngModel)]="client.telcountry" placeholder="{{user.telcountry}}" id="txtPhoneCountry" type="text" name="txtPhoneCountry" class="form-control" required>
+                <input [(ngModel)]="client.telcountry" placeholder="{{user.telcountry}}" id="txtPhoneCountry" type="text" name="txtPhoneCountry"
+                  class="form-control" required>
               </div>
               <div class="form-group col-sm-12 col-md-2 mt-1">
                 <label for="txtLada">Lada</label>
-                <input [(ngModel)]="client.lada" placeholder="{{user.lada}}" id="txtLada" type="number" name="txtLada" class="form-control" required>
+                <input [(ngModel)]="client.lada" placeholder="{{user.lada}}" id="txtLada" type="number" name="txtLada" class="form-control"
+                  required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtPhone">Teléfono</label>
-                <input [(ngModel)]="client.telnumber" placeholder="{{user.telnumber}}" id="txtPhone" type="number" name="txtPhone" class="form-control" required>
+                <input [(ngModel)]="client.telnumber" placeholder="{{user.telnumber}}" id="txtPhone" type="number" name="txtPhone" class="form-control"
+                  required>
               </div>
               <div class="form-group col-sm-12 ">
                 <button class="btn btn-outline-secondary float-right">
@@ -99,7 +125,7 @@
         </div>
       </div>
     </form>
-    
+
     <form ngNativeValidate (onSubmit)='saveInfo()'>
       <div class="card mt-3">
         <div class="card-header" id="headingTwo">
@@ -120,11 +146,13 @@
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtExpeditionDate">Fecha de Expedición</label>
-                <input [(ngModel)]="userDriverLicense.startday" id="txtExpeditionDate" type="date" name="txtExpeditionDate" class="form-control" required>
+                <input [(ngModel)]="userDriverLicense.startday" id="txtExpeditionDate" type="date" name="txtExpeditionDate" class="form-control"
+                  required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtExpirationDate">Fecha de Expiración</label>
-                <input [(ngModel)]="userDriverLicense.endday" id="txtExpirationDate" type="date" name="txtExpirationDate" class="form-control" required>
+                <input [(ngModel)]="userDriverLicense.endday" id="txtExpirationDate" type="date" name="txtExpirationDate" class="form-control"
+                  required>
               </div>
               <div class="form-group col-sm-12 ">
                 <button class="btn btn-outline-secondary float-right">

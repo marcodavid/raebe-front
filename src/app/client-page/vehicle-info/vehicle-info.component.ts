@@ -122,7 +122,11 @@ export class VehicleInfoComponent implements OnInit {
         }
         this.carsService.getCarImagesByID(clientSelected).subscribe(
           data => {
-            this.image = '//' + this.clientService.getServer() + data[0].file
+            for(let img in data)
+            { 
+              if(data[img].name != "/media/perfil.jpg")
+                this.image = '//' + this.clientService.getServer() + data[img].file
+            }
 
           });
 

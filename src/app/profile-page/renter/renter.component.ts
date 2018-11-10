@@ -37,7 +37,7 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-
+   
 
   }
 

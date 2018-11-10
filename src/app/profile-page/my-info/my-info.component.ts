@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ClientsService } from '../../services/clients-service/clients.service';
 import { $ } from 'protractor';
+import { CarsService } from '../../services/cars-service/cars.service';
 
 @Component({
   selector: 'app-my-info',
@@ -25,7 +26,12 @@ import { $ } from 'protractor';
 export class MyInfoComponent implements OnInit {
 
 
-  constructor(private clientService: ClientsService) { }
+  constructor(private clientService: ClientsService,protected carsService: CarsService) { }
+  protected perfilImage
+  protected isPerfilImage : boolean = false;
+  carImage: any
+  url:any
+  fileToUpload: File = null;
   private user: any
   private userAddress: any
   private userDriverLicense: any
@@ -82,10 +88,37 @@ export class MyInfoComponent implements OnInit {
             this.userDriverLicense = data;
         }
       );
-
+      this.carsService.getCarImagesByID(this.user.id_clients).subscribe(
+        data => {
+          for( let item in data) {
+              if(data[item].file == "/media/perfil.jpg") {
+                  this.perfilImage = '//' + this.clientService.getServer() + data[item].file;
+                this.isPerfilImage = true;
+              }
+                
+          }
+        });
 
   }
+  handleFileInput(files: FileList) {
+    for (var i  = 0 ; i < files.length; i ++ ) {
+      this.fileToUpload = files.item(i);
+      const formData: FormData = new FormData();  
+      let newFile = new File([this.fileToUpload],"perfil.jpg");
+      this.carsService.postCarImages(newFile,this.user.id_clients).subscribe(
+        data => {
+          alert("Imagen Guardada")
+        // do something, if upload success
+        }, error => {
+          console.log(error);
+        });
+    }
+   
+  }
 
+  public onSaveCarImages() {
+    alert("Imagenes guardadas")
+  }
   public saveInfo() {
     this.validateChangesOnUserInfo()
     this.validateChangesOnUserAddress()

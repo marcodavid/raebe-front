@@ -6,6 +6,7 @@ import { ClientsService } from '../../services/clients-service/clients.service';
 import { CarsService } from '../../services/cars-service/cars.service';
 import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { RentersService } from '../../services/renters-service/renters.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payement',
@@ -51,7 +52,7 @@ export class PayementComponent extends AgreementComponent implements OnInit {
     totalprice :0,
     gain:0
   }
-  constructor(protected clientService: ClientsService, protected carsService: CarsService,calendar: NgbCalendar,  protected renterServie:RentersService) {
+  constructor(protected router: Router,protected clientService: ClientsService, protected carsService: CarsService,calendar: NgbCalendar,  protected renterServie:RentersService) {
     super(clientService,carsService,calendar);
    }
 
@@ -79,8 +80,12 @@ export class PayementComponent extends AgreementComponent implements OnInit {
   }
 
   public onRent() {
-       this.renterServie.PostRent(this.rent).subscribe();
-
+       this.renterServie.PostRent(this.rent).subscribe(
+         data=>{
+          this.router.navigate(['/profile/rents']);
+         }
+       );
+  
 
 
   }

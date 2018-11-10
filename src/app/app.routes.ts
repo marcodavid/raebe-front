@@ -27,8 +27,11 @@ import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock
 import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
 import { RenterComponent } from './profile-page/renter/renter.component';
 
+import { PdfviewerComponent } from './pdfviewer/pdfviewer.component';
+
 const app_routes: Routes = [
     { path : '', component : IndexPageComponent },
+    { path : 'privacy', component : PdfviewerComponent },
     { path : 'home', component : IndexPageComponent, canActivate: [AuthGuardService]},
     {
         path : 'profile', component : ProfilePageComponent,

@@ -55,7 +55,12 @@ export class NearbyCarsComponent implements OnInit {
         this.description[car] = this.randomUserCar.description;
         this.file[car] = this.carsService.getCarImagesByID(this.randomCarsArray[car].id_clients).subscribe(
           data => {
-            this.img[car] = '//' + this.clientService.getServer() + data[0].file
+            for(let img in data)
+            { 
+              if(data[img].name != "/media/perfil.jpg")
+                this.img[car] = '//' + this.clientService.getServer() + data[img].file
+            }
+           
 
           }
         );

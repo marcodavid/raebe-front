@@ -24,7 +24,7 @@ import { NearbyCarsMapComponent } from './client-page/nearby-cars-map/nearby-car
 import { ClientsService } from './services/clients-service/clients.service';
 import { ConfigService } from './services/config-service/config.service';
 import {NgxMaskModule} from 'ngx-mask'
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 // Rutas
 import { app_routing } from './app.routes';
 
@@ -55,6 +55,7 @@ import { RentersService } from './services/renters-service/renters.service';
 import { ImageUploadModule } from "angular2-image-upload";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RenterComponent } from './profile-page/renter/renter.component';
+import { PdfviewerComponent } from './pdfviewer/pdfviewer.component';
 
 @NgModule({
   declarations: [
@@ -95,12 +96,14 @@ import { RenterComponent } from './profile-page/renter/renter.component';
     LoaderComponent,
     FileSelectDirective,
     RenterComponent,
+    PdfviewerComponent,
     
     
   ],
   imports: [
     NgbModule,
     BrowserModule,
+    PdfViewerModule,
     AngularFontAwesomeModule,
     app_routing,
     BrowserAnimationsModule,
