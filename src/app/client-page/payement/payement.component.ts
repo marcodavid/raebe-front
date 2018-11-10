@@ -46,6 +46,7 @@ export class PayementComponent extends AgreementComponent implements OnInit {
     isover :0,
     price: 0,
     iva:0,
+    totaldays:0,
     pricexiva:0,
     totalprice :0,
     gain:0
@@ -69,7 +70,8 @@ export class PayementComponent extends AgreementComponent implements OnInit {
         this.rent.price = this.price;
         this.rent.iva = this.iva;
         this.rent.pricexiva=this.daysXPrice;
-        this.totalPrice = this.totalPrice;
+        this.rent.totalprice = this.totalPrice;
+        this.rent.totaldays = this.totalDays;
         this.rent.gain= this.totalPrice-this.iva - (this.totalPrice*.2);
     });
    

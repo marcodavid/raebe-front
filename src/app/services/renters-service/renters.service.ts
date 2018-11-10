@@ -25,6 +25,10 @@ export class RentersService extends ConfigService {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
     return this.http.get("http://" + this.server + "/api/GetRentByID/?id_clientsrenter=" + id, this.httpOptions)
   }
+  public GetRentByIdClients(id) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.get("http://" + this.server + "/api/GetRentByIdClients/?id_clients=" + id, this.httpOptions)
+  }
 
   public PostRent(json) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())

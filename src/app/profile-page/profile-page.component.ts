@@ -11,8 +11,11 @@ export class ProfilePageComponent implements OnInit {
 
   protected isRenter:boolean;
   protected rents: any = 0;
+  protected myRents: any = 0;
   protected rentsInfo : any;
+  protected clientsRents : any;
   protected status:any;
+  protected totalDays:any;
   constructor(protected rentersService : RentersService,protected clientService: ClientsService) { }
   protected user : any
   ngOnInit() {
@@ -23,7 +26,9 @@ export class ProfilePageComponent implements OnInit {
       data=>{
         this.rentsInfo = data;
         for(let rent in this.rentsInfo) {
-          if(this.rentsInfo[rent].acceptence == 0) {
+          if(this.checkDay(this.rentsInfo[rent].dateofpickup) &&  this.rentsInfo[rent].acceptence != 4  &&  this.rentsInfo[rent].acceptence != 2)
+              this.rentsInfo[rent].acceptence = 3;
+          if(this.rentsInfo[rent].acceptence != 2) {
             this.rents++;
           }
             
@@ -31,6 +36,32 @@ export class ProfilePageComponent implements OnInit {
       },
       error=>{}
     )
+    this.rentersService.GetRentByIdClients(this.user.id_clients).subscribe(
+      data=>{
+        this.clientsRents = data;
+        for(let rent in this.clientsRents) {
+          // if(this.checkDay(this.clientsRents[rent].dateofpickup) &&  this.clientsRents[rent].acceptence != 4)
+          //     this.clientsRents[rent].acceptence = 3;
+          if(this.clientsRents[rent].acceptence != 2) {
+            this.myRents++;
+          }
+            
+        }
+      },
+      error=>{}
+    )
+  }
+
+  public checkDay(dateofpickup): boolean {
+    let day = dateofpickup.split('-')
+    let  myDay = new Date(day[0], day[1] - 1, day[2]);
+    let today = new Date()
+    today.setHours(0,0,0,0);
+
+    if(myDay.getTime() === today.getTime())
+      return true;
+    else return false;
+    
   }
 
 

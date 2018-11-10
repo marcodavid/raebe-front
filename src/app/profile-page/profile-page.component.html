@@ -9,7 +9,7 @@
   </div>
   <div class="row justify-content-start text-left">
     <p class="col-sm-12 col-md-1 mt-sm-0"><a routerLink="my-info" class="profile-link">Perfil</a></p>
-    <p class="col-sm-12 col-md-1 mt-sm-0"><a routerLink="rents" class="profile-link">Rentas</a></p>
+    <p class="col-sm-12 col-md-1 mt-sm-0"><a routerLink="rents" class="profile-link">Rentas<span class="badge badge-secondary">{{myRents}}</span></a></p>
     <p  class="col-sm-12 col-md-2 mt-sm-0"><a *ngIf="isRenter" routerLink="renter" class="profile-link">Arrendamientos <span class="badge badge-secondary">{{rents}}</span></a></p>
     <p class="col-sm-12 col-md-1 mt-sm-0"><a routerLink="reviews" class="profile-link">Reviews</a></p>
     <p class="col-sm-12 col-md-1 mt-sm-0"><a routerLink="messages" class="profile-link">Mensajes</a></p>

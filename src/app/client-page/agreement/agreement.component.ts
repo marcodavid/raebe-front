@@ -43,14 +43,21 @@ export class AgreementComponent extends VehicleInfoComponent implements OnInit {
     this.fromDate= JSON.parse(localStorage.getItem("fromDate"));
     this.toDate = JSON.parse(localStorage.getItem("toDate"));
     this.price = JSON.parse(localStorage.getItem("price"));
-    this.totalDays = this.toDate.day - this.fromDate.day;
+    this.totalDays =  this.TotalDays(this.toDate,this.fromDate);
     this.daysXPrice = this.totalDays * this.price ;
     this.iva = this.daysXPrice * .16;
     this.totalPrice = this.daysXPrice + this.iva;
    
     
   }
-
+  public TotalDays(toDate,fromDate) {
+    let day1 = new Date(toDate.year,toDate.month,toDate.day);
+    let day2 = new Date(fromDate.year,fromDate.month,fromDate.day);
+    let difference = day1.getTime()-day2.getTime();
+    let totalDay = difference/1000/60/60/24;
+    return totalDay;
+    
+  }
   isFullData() {
     if(this.user.fulldata)
       return true;

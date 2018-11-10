@@ -37,6 +37,11 @@ export class VehicleInfoComponent implements OnInit {
   hoveredDate: NgbDate;
   protected fromDate: NgbDate;
   protected toDate: NgbDate;
+  protected  today = new Date();
+  protected dd = this.today.getDate();
+  protected mm = this.today.getMonth()+1; 
+  protected yyyy = this.today.getFullYear();
+  protected  minday: NgbDate = new NgbDate(this.yyyy,this.mm,this.dd); 
 
   constructor(protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar) {
     this.vehicleName = "Dodge Attitude";
@@ -62,6 +67,9 @@ export class VehicleInfoComponent implements OnInit {
     this.clientSelected = localStorage.getItem("clientSelected");
     this.loadDescription(this.clientSelected);
 
+
+  }
+  public disableDates(){
 
   }
   onDateSelection(date: NgbDate) {
