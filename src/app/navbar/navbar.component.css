@@ -1,6 +1,6 @@
 
 .navbar-background {
-    background-color:rgb(0,170,160) !important;
+    background-color:rgb(100, 223, 198) !important;
 }
 
 .navbar-logo {
@@ -15,7 +15,7 @@
 }
 
 .navbar-link:hover{
-    color: rgb(51, 71, 34);
+    color: rgb(80, 78, 90);
 }
 
 .container-divisor{
@@ -32,7 +32,7 @@ select {
 
 input, select {
     background-color:rgba(0,0,0,0);
-    border-color: #FFF;
+    border-color: rgb(255, 255, 255);
     color: #FFF;
 }
 
