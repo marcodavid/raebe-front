@@ -211,7 +211,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d1e4ea', end
   left: -10px;
   width: 22px;
   height: 2px;
-  background: $cd;
+  /*background: $cd;*/
 }
 
 .la:after {
@@ -219,7 +219,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d1e4ea', end
   left: -2px;
   width: 6px;
   height: 12px;
-  background: $cd;
+  /*background: $cd;*/
 }
 
 .l {
