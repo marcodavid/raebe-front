@@ -1,20 +1,18 @@
 <div class="container-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>
-                    <fa name="car"></fa>&nbsp;&nbsp;Vehículos cerca de ti
-                </h2>
-            </div>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-md-6">
+            <h2><fa name="car"></fa>&nbsp;&nbsp;Vehículos cerca de ti</h2>
         </div>
     </div>
 </div>
+
 <div class="container mt-2 mb-5 justify-content-center">
     <div class="row justify-content-center">
         <div *ngFor="let field of randomCarsArray; let i = index">
             <div class="col-sm-12 col-md-8 mt-1" #verticalCard>
                 <div class="card" style="width:20rem">
-                    <img class="card-img-top" src="{{img[i]}}" alt="Card image cap">
+                    <img class="card-img-top" src="{{img[i]}}" width="30%" alt="Card image cap">
                     <div class="card-body">
                         <h2 class="card-title">{{brandmark[i]}}</h2>
                         <h5 class="card-title">{{model[i]}}</h5>
@@ -25,11 +23,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row justify-content-end mt-1">
-        <div class="col-md-12 col-lx-2 mt-1">
-            <a class="col-md-12 btn btn-light" href="#!">Mostrar más</a>
         </div>
     </div>
 </div>

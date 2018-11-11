@@ -2,95 +2,111 @@
   <div class="row justify-content-center text-center">
     <div class="col-sm-12 col-md-6">
       <img src="{{image}}" width="100%" alt="">
-    </div>  
+
+    </div>
   </div>
 </div>
 <div class="container mt-5 mb-5" [@animacionAparecer]>
-    <div class="row">
-      <div class="col-sm-12 col-md-7">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              <h3><fa name="info"></fa>&nbsp;Detalles del Viaje</h3>
-            </div>
-            <div class="col-sm-12">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem alias veniam incidunt iusto recusandae minus magni porro error ducimus aliquid aliquam, aperiam ullam? Optio, quaerat illo atque dolorum reiciendis quas!
-            </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-7">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h3>
+              <fa name="info"></fa>&nbsp;Detalles del Viaje
+            </h3>
           </div>
-          <div class="row mt-3">
-            <div class="col-sm-12">
-              <h3><fa name="car"></fa>&nbsp;Entrega</h3>
-            </div>
-            <div class="col-sm-12">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem alias veniam incidunt iusto recusandae minus magni porro error ducimus aliquid aliquam, aperiam ullam? Optio, quaerat illo atque dolorum reiciendis quas!
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-sm-12">
-              <h3><fa name="exchange"></fa>&nbsp;Devolución</h3>
-            </div>
-            <div class="col-sm-12">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem alias veniam incidunt iusto recusandae minus magni porro error ducimus aliquid aliquam, aperiam ullam? Optio, quaerat illo atque dolorum reiciendis quas!
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-sm-12">
-              <a href="!#">Contrato</a>
-            </div>
-            <div class="col-sm-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="agreeTerms">
-                <label class="form-check-label" for="agreeTerms">
-                  Acepto los términos y condiciones
-                </label>
-              </div>
-            </div>
+          <div class="col-sm-12">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem alias veniam incidunt iusto recusandae minus magni
+            porro error ducimus aliquid aliquam, aperiam ullam? Optio, quaerat illo atque dolorum reiciendis quas!
           </div>
         </div>
-      </div>
-      <div class="col-sm-12 col-md-5">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-sm-12">
-              <h3><fa name="list"></fa>&nbsp;Desglose de Costos</h3>
+        <div class="row mt-3">
+          <div class="col-sm-12">
+            <h3>
+              <fa name="car"></fa>&nbsp;Entrega
+            </h3>
+          </div>
+          <div class="col-sm-12">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem alias veniam incidunt iusto recusandae minus magni
+            porro error ducimus aliquid aliquam, aperiam ullam? Optio, quaerat illo atque dolorum reiciendis quas!
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-sm-12">
+            <h3>
+              <fa name="exchange"></fa>&nbsp;Devolución
+            </h3>
+          </div>
+          <div class="col-sm-12">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem alias veniam incidunt iusto recusandae minus magni
+            porro error ducimus aliquid aliquam, aperiam ullam? Optio, quaerat illo atque dolorum reiciendis quas!
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-sm-12">
+            <a href="!#">Contrato</a>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="agreeTerms">
+              <label class="form-check-label" for="agreeTerms">
+                Acepto los términos y condiciones
+              </label>
             </div>
-          </div>
-          <div class="row justify-content-center">
-            <table class="table">
-              <thead>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Tarifa base </td>
-                  <td>{{price| currency}}</td>
-                </tr>
-                <tr>
-                  <td>Días totales</td>
-                  <td>{{totalDays}} día(s)</td>
-                </tr>
-                <tr>
-                  <td>Precio base x días</td>
-                  <td>{{daysXPrice | currency}}</td>
-                </tr>
-                <tr>
-                  <td>IVA</td>
-                  <td>{{iva}}</td>
-                </tr>
-                <tr>
-                  <td class="justify-content-center text-center total" colspan="2">
-                    Total {{totalPrice | currency}}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="row justify-content-center text-center" *ngIf="user.fulldata==1">
-            <a routerLink="/client/payement/" class="btn btn-primary col-sm-10" (click)="isFullData()">Solicitar Renta</a>
-          </div>
-          <div class="row justify-content-center text-center" *ngIf="user.fulldata==0">
-            <h5>Hola, antes de realizar tu primera renta es necesario llenar el siguiente formulario por favor <a routerLink="/profile/my-info">click aqui!</a></h5>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-sm-12 col-md-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-sm-12">
+            <h3>
+              <fa name="list"></fa>&nbsp;Desglose de Costos
+            </h3>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <table class="table">
+            <thead>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tarifa base </td>
+                <td>{{price| currency}}</td>
+              </tr>
+              <tr>
+                <td>Días totales</td>
+                <td>
+                  <p> Del {{fromDate.day}}/{{fromDate.month}}/{{fromDate.year}} al {{toDate.day}}/{{toDate.month}}/{{toDate.year}}</p>
+                  {{totalDays}} día(s)
+                </td>
+              </tr>
+              <tr>
+                <td>Precio base x días</td>
+                <td>{{daysXPrice | currency}}</td>
+              </tr>
+              <tr>
+                <td>IVA</td>
+                <td>{{iva | currency}}</td>
+              </tr>
+              <tr>
+                <td class="justify-content-center text-center total" colspan="2">
+                  Total {{totalPrice | currency}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row justify-content-center text-center" *ngIf="user.fulldata==1">
+          <a routerLink="/client/payement/" class="btn btn-primary col-sm-10" (click)="isFullData()">Solicitar Renta</a>
+        </div>
+        <div class="row justify-content-center text-center" *ngIf="user.fulldata==0">
+          <h5>Hola, antes de realizar tu primera renta es necesario llenar el siguiente formulario por favor <a routerLink="/profile/my-info">click
+              aqui!</a></h5>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

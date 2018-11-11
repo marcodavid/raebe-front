@@ -15,12 +15,12 @@ fa {
 
 a.btn {
     border-color: #1d2786;
-    background-color: #6832a5;
+    
     color : #FFF;
 }
 
 a.btn:hover{
-    background-color: #6832a5;
+    
 }
 
 a.btn:active{

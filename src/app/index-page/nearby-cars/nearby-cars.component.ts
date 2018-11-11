@@ -40,13 +40,11 @@ export class NearbyCarsComponent implements OnInit {
       this.horizontalCard.nativeElement.remove();
     }
   }
-   
+
   saveCarInfo(selected) {
- 
     localStorage.setItem('clientSelected',this.randomCarsArray[selected].id_clients );
   }
   public loadNearbyCars(car) {
-    
     this.carsService.getCarByID(this.randomCarsArray[car].id_clients).subscribe(
       data => {
         this.randomUserCar = data;
@@ -54,6 +52,7 @@ export class NearbyCarsComponent implements OnInit {
         this.model[car] = this.randomUserCar.model;
         this.description[car] = this.randomUserCar.description;
         this.file[car] = this.carsService.getCarImagesByID(this.randomCarsArray[car].id_clients).subscribe(
+          // tslint:disable-next-line:no-shadowed-variable
           data => {
             for(let img in data)
             { 

@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Al aplicar el estilo aquí se hereda a todos los de la clase modal-header */
+.modal-header{
+    background-color:rgb(100, 184, 223) !important;
+    color: rgb(255, 255, 255);
+    text-align: center !important;
+    justify-content: center !important;
+    border: 0;
+    border-radius: 0px;
+}
+
+.modal-header a{
+    color: rgb(224, 220, 220);
+}
+
+.modal-header .close{
+    color: #FFF !important;
+}
+
+.modal-header .close:hover{
+    color: #FFF !important;
+}
+
+.btn-outline-primary {
+    color: rgb(75, 109, 102) !important;
+    border-color: rgb(127, 211, 196) !important;
+}
+
+.btn-outline-primary:hover{
+    background-color: rgb(203, 241, 228) !important;
+}
+
+input {
+    border-color: rgb(194,194,194);
+}

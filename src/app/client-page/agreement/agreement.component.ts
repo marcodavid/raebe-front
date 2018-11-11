@@ -59,9 +59,9 @@ export class AgreementComponent extends VehicleInfoComponent implements OnInit {
     
   }
   isFullData() {
-    if(this.user.fulldata)
+    if (this.user.fulldata) {
       return true;
-    else false;
+    } else { return false; }
   }
 
 }
