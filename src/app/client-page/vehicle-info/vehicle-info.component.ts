@@ -35,6 +35,8 @@ export class VehicleInfoComponent implements OnInit {
   clientSelectedCar: any
   evaluations: Evaluation[] = [];
   hoveredDate: NgbDate;
+  protected totalDays:any
+  protected totalPrice:any
   protected fromDate: NgbDate;
   protected toDate: NgbDate;
   protected  today = new Date();
@@ -42,6 +44,7 @@ export class VehicleInfoComponent implements OnInit {
   protected mm = this.today.getMonth()+1; 
   protected yyyy = this.today.getFullYear();
   protected  minday: NgbDate = new NgbDate(this.yyyy,this.mm,this.dd); 
+  
 
   constructor(protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar) {
     this.vehicleName = "Dodge Attitude";
@@ -52,22 +55,22 @@ export class VehicleInfoComponent implements OnInit {
       value: 9.6,
       date: "7 Junio 2018",
       comment: "Mucho mejor de lo que esperaba"
-    });
-
+    });   
     this.evaluations.push({
       username: "Samuel",
       value: 9.6,
       date: "7 Junio 2018",
       comment: "Mucho mejor de lo que esperaba"
     });
+    this.fromDate = calendar.getToday();
+    this.toDate = calendar.getNext(calendar.getToday(), 'd', 1);
 
   }
 
   ngOnInit() {
     this.clientSelected = localStorage.getItem("clientSelected");
     this.loadDescription(this.clientSelected);
-
-
+    this.totalDays = this.TotalDays(this.toDate,this.fromDate);
   }
   public disableDates(){
 
@@ -81,6 +84,7 @@ export class VehicleInfoComponent implements OnInit {
       this.toDate = null;
       this.fromDate = date;
     }
+    this.totalDays = this.TotalDays(this.toDate,this.fromDate);
     localStorage.setItem("fromDate", JSON.stringify(this.fromDate));
     localStorage.setItem("toDate", JSON.stringify(this.toDate));
   }
@@ -95,6 +99,15 @@ export class VehicleInfoComponent implements OnInit {
 
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
+  }
+
+  public TotalDays(toDate,fromDate) {
+    let day1 = new Date(toDate.year,toDate.month,toDate.day);
+    let day2 = new Date(fromDate.year,fromDate.month,fromDate.day);
+    let difference = day1.getTime()-day2.getTime();
+    let totalDay = difference/1000/60/60/24;
+    return totalDay;
+    
   }
   public loadDescription(clientSelected) {
 

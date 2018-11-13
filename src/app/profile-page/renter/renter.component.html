@@ -4,6 +4,8 @@
       <h3 *ngIf="rents==0">Aún no cuentas con arrendamientos</h3>
     </div>
   </div>
+  <h5>Verificar contrato de arrendamiento <a href="/assets/documents/Contrato RaeBe.pdf"
+    download="Contrato RaeBe.pdf">aquí</a></h5>
   <ng-container *ngFor="let rent of rentsInfo">
 
     <table *ngIf="rent.acceptence != 2 " class="table">
@@ -11,9 +13,10 @@
       </thead>
       <tbody>
         <tr>
-          <td>Información del interesado </td>
-          <td>{{rent.clientname}}</td>
-          <td><img class="align-self-center mr-3" src="{{perfilImage}}" width="30%" alt=""></td>
+          <td>Información del interesado</td>
+          <td>{{rent.clientname}} </td>
+          <td><a href="/assets/documents/Contrato RaeBe.pdf"
+            download="Contrato RaeBe.pdf"> Descargar contrato</a><img class="align-self-center mr-3" src="{{perfilImage}}" width="30%" alt=""></td>
         </tr>
         <tr>
           <td>Fechas:</td>
@@ -48,8 +51,7 @@
               <button *ngIf="rent.acceptence == 3" data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-success align-left">Iniciar
                 renta</button>
               <button *ngIf="rent.acceptence != 4" data-toggle="modal" data-target="#declineModal" type="button" class="btn btn-danger">Declinar</button>
-              <button *ngIf="rent.acceptence == 4" data-toggle="modal" data-target="#declineModal" type="button" class="btn btn-danger">Terminar
-                renta</button></td>
+              <button *ngIf="rent.acceptence == 4" data-toggle="modal" data-target="#declineModal" type="button" class="btn btn-danger">Carro entregado</button></td>
             <td *ngIf="rent.acceptence == 1">Aceptado</td>
             <td *ngIf="rent.acceptence == 3">Lista para iniciar</td>
             <td *ngIf="rent.acceptence == 4">En progreso</td>

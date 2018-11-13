@@ -25,8 +25,8 @@
         </ng-template>
    
       <div class="row">
-        <h4 class="justify-content-center align-right">{{clientSelectedCar.price | currency}}
-          <font size="3 ">Por día</font>
+        <h4 class="justify-content-center align-right">{{clientSelectedCar.price *totalDays *.16 +clientSelectedCar.price *totalDays | currency}}
+          <font size="3 ">Por {{totalDays}} día(s) (incluye IVA)</font>
         </h4>
       </div>
 

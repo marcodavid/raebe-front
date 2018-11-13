@@ -42,8 +42,8 @@ const app_routes: Routes = [
             { path : 'renter', component : RenterComponent },
             { path : 'reviews', component : ReviewsComponent },
             { path : 'messages', component : MessagesComponent }
-        ]/*,
-        canActivate: [AuthGuardService]*/
+        ],
+        canActivate: [AuthGuardService]
     },
     {
         path : 'client', component : ClientPageComponent,
@@ -53,8 +53,8 @@ const app_routes: Routes = [
             { path : 'vehicle-info', component : VehicleInfoComponent },
             { path : 'agreement', component : AgreementComponent },
             { path : 'payement', component : PayementComponent }
-        ]/*,
-        canActivate: [AuthGuardService]*/
+         ],
+        // canActivate: [AuthGuardService]
     },
     {
         path : 'renter', component : RenterPageComponent,
@@ -69,8 +69,8 @@ const app_routes: Routes = [
             { path : 'calendar-lock', component : CalendarLockComponent },
             { path : 'prices', component : MyVehiclePricesComponent },
             { path : 'images', component : MyVehicleImagesComponent }
-        ]/*,
-        canActivate: [AuthGuardService]*/
+        ],
+        canActivate: [AuthGuardService]
     },
     { path : '**', component : NotFoundPageComponent }
 ];
