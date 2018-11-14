@@ -53,8 +53,7 @@ export class AgreementComponent extends VehicleInfoComponent implements OnInit {
   public TotalDays(toDate,fromDate) {
     let day1 = new Date(toDate.year,toDate.month,toDate.day);
     let day2 = new Date(fromDate.year,fromDate.month,fromDate.day);
-    let difference = day1.getTime()-day2.getTime();
-    let totalDay = difference/1000/60/60/24;
+    let difference = day1.getTime()-day2.getTime();let totalDay = difference/1000/60/60/24;
     return totalDay;
     
   }

@@ -31,10 +31,12 @@ export class VehicleInfoComponent implements OnInit {
   vehicleType: string;
   features: string[];
   description: string;
+  client:any;
   clientSelected: any
   clientSelectedCar: any
   evaluations: Evaluation[] = [];
   hoveredDate: NgbDate;
+  perfilPhoto:any;
   protected totalDays:any
   protected totalPrice:any
   protected fromDate: NgbDate;
@@ -70,6 +72,9 @@ export class VehicleInfoComponent implements OnInit {
   ngOnInit() {
     this.clientSelected = localStorage.getItem("clientSelected");
     this.loadDescription(this.clientSelected);
+    this.clientService.getClientsByID( this.clientSelected).subscribe(
+      data=>{this.client = data}
+    )
     this.totalDays = this.TotalDays(this.toDate,this.fromDate);
   }
   public disableDates(){
@@ -137,8 +142,10 @@ export class VehicleInfoComponent implements OnInit {
           data => {
             for(let img in data)
             { 
-              if(data[img].name != "/media/perfil.jpg")
+              if(data[img].type != 2)
                 this.image = '//' + this.clientService.getServer() + data[img].file
+              else 
+                this.perfilPhoto = '//' + this.clientService.getServer() + data[img].file
             }
 
           });

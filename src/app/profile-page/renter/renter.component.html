@@ -6,7 +6,7 @@
   </div>
   <h5>Verificar contrato de arrendamiento <a href="/assets/documents/Contrato RaeBe.pdf"
     download="Contrato RaeBe.pdf">aquí</a></h5>
-  <ng-container *ngFor="let rent of rentsInfo">
+  <ng-container *ngFor="let rent of rentsInfo; index as i">
 
     <table *ngIf="rent.acceptence != 2 " class="table">
       <thead>
@@ -14,9 +14,9 @@
       <tbody>
         <tr>
           <td>Información del interesado</td>
-          <td>{{rent.clientname}} </td>
+          <td>{{rent.clientname}} <img class="align-self-center mr-3" src="{{perfilImage[i]}}" width="30%" alt=""> </td>
           <td><a href="/assets/documents/Contrato RaeBe.pdf"
-            download="Contrato RaeBe.pdf"> Descargar contrato</a><img class="align-self-center mr-3" src="{{perfilImage}}" width="30%" alt=""></td>
+            download="Contrato RaeBe.pdf"> Descargar contrato</a></td>
         </tr>
         <tr>
           <td>Fechas:</td>

@@ -13,7 +13,8 @@
         del vehículo</button>
     </div>
     <div class="col-sm-6">
-      
+        <img *ngIf="perfilPhoto" id="perfil" src="{{perfilPhoto}}" class="image--cover">
+        <label for="perfil">Arrendado por {{client.firstname}} {{client.lastname}}</label>
         <h5>Fechas:</h5>
         <ngb-datepicker #dp (select)="onDateSelection($event)" [minDate]="minday" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
         </ngb-datepicker>

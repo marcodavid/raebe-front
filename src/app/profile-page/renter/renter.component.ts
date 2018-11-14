@@ -4,6 +4,7 @@ import { RentersService } from '../../services/renters-service/renters.service';
 import { ClientsService } from '../../services/clients-service/clients.service';
 import * as $ from 'jquery';
 import { ProfilePageComponent } from '../profile-page.component';
+import { CarsService } from '../../services/cars-service/cars.service';
 
 @Component({
   selector: 'app-renter',
@@ -31,8 +32,8 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
   protected dd = this.today.getDate();
   protected mm = this.today.getMonth() + 1;
   protected yyyy = this.today.getFullYear();
-  constructor(protected rentersService: RentersService, protected clientService: ClientsService) {
-    super(rentersService, clientService);
+  constructor(protected rentersService: RentersService, protected clientService: ClientsService,protected carsService:CarsService) {
+    super(rentersService, clientService,carsService);
   }
 
   ngOnInit() {

@@ -12,13 +12,16 @@
             <div class="col-sm-6">              
                 <img class="align-self-center mr-3" src="{{perfilImage}}" width="30%" alt="">    
               </div>
-            <div *ngIf="isPerfilImage == false" class="container mb-5" [@animacionAparecer]>
+            <div  class="container mb-5" [@animacionAparecer]>
               <div class="row justify-content-center">
                 <div class="col-sm-12 col-md-10">
                   <h3>Imagen de perfil</h3>
                 </div>
+                <div class="col-sm-12 col-md-10">
+                    <button (click)="deletePhoto()">borrar foto de perfil</button>
+                  </div>
               </div>
-              <image-upload (change)="handleFileInput($event.target.files)" [max]="1" [buttonCaption]="'Selecciona una imagen de perfil'"
+              <image-upload *ngIf="isPerfilImage == false" (change)="handleFileInput($event.target.files)" [max]="1" [buttonCaption]="'Selecciona una imagen de perfil'"
                 [dropBoxMessage]="'O puedes soltarla aquí'" [extensions]="['jpg','png']">
               </image-upload>
             </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientsService } from '../services/clients-service/clients.service';
 import { RentersService } from '../services/renters-service/renters.service';
+import { CarsService } from '../services/cars-service/cars.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -16,12 +17,15 @@ export class ProfilePageComponent implements OnInit {
   protected clientsRents : any;
   protected status:any;
   protected totalDays:any;
-  constructor(protected rentersService : RentersService,protected clientService: ClientsService) { }
+ 
+  perfilImage = new Array();
+  constructor(protected rentersService : RentersService,protected clientService: ClientsService, protected carsService : CarsService) { }
   protected user : any
   ngOnInit() {
     this.user = JSON.parse(this.clientService.getUserInfo());
     this.isRenter = this.user.isrenter == 1 ? true:false;
     this.user = JSON.parse (this.clientService.getUserInfo());
+    
     this.rentersService.getRentByID(this.user.id_clients).subscribe(
       data=>{
         this.rentsInfo = data;
@@ -31,7 +35,7 @@ export class ProfilePageComponent implements OnInit {
           if(this.rentsInfo[rent].acceptence != 2) {
             this.rents++;
           }
-            
+         
         }
       },
       error=>{}

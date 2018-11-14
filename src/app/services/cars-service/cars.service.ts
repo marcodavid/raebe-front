@@ -27,10 +27,11 @@ export class CarsService extends ConfigService{
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
     return this.http.post("http://" + this.server + "/api/PostCar/", JSON.stringify(json), this.httpOptions);
   }
-  public postCarImages(fileToUpload: File,id)  {
+  public postCarImages(fileToUpload: File,id,type = 1)  {
     const formData: FormData = new FormData();
     formData.append('file', fileToUpload);
     formData.append('id_clients', id);
+    formData.append('type', type.toString());
     return this.http.post("http://" + this.server + "/api/PostCarImages/", formData);
      
     }
@@ -52,7 +53,11 @@ export class CarsService extends ConfigService{
     return this.http.put("http://" + this.server + "/api/PutCarForUpdate/", JSON.stringify(userCar), this.httpOptions)
 
   }
-
+  public deleteImage(id,type=1,idFile=0) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.delete("http://" + this.server + "/api/DeleteImage/?id_clients=" + id+"&type="+type+"&idFile="+idFile, this.httpOptions)
+  }
+  
   //Policy
 
   public getPolicyByID(id) {

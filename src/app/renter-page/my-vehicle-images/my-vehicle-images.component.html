@@ -6,13 +6,23 @@
     </div>
   </div>
 <image-upload
+*ngIf="cont<=6"
 (change)="handleFileInput($event.target.files)"
-[max]="6"
-[buttonCaption]="'Selecciona imagenes para tu automovil'"
+[max]="8"
+[buttonCaption]="'Selecciona imagenes para tu automovil(6 maximo)'"
 [dropBoxMessage]="'O puedes soltarlas aquí'"
 [extensions]="['jpg','png']"
 >
 </image-upload>
 </div>
-
-      
+<div *ngFor="let image of carImage;index as i">
+  <img class="align-self-center mr-3" src="{{carImage[i]}}" width="10%" alt=""> 
+  <button  (click) ="onDeleteImage(i)">eliminar foto</button>
+</div>
+ 
+<!-- <img class="align-self-center mr-3" src="{{carImage[1]}}" width="30%" alt="">  
+<img class="align-self-center mr-3" src="{{carImage[2]}}" width="30%" alt="">  
+<img class="align-self-center mr-3" src="{{carImage[3]}}" width="30%" alt="">  
+<img class="align-self-center mr-3" src="{{carImage[4]}}" width="30%" alt="">  
+<img class="align-self-center mr-3" src="{{carImage[5]}}" width="30%" alt="">  
+       -->

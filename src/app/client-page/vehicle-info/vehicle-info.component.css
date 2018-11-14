@@ -1,7 +1,15 @@
 .comment {
     margin-top: -15pt;
 }
+.image--cover {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 20px;
 
+  object-fit: cover;
+  object-position: center right;
+}
 .divisor{
     margin-top: 30px;
     margin-bottom: 30px;

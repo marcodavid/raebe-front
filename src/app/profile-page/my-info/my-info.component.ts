@@ -91,7 +91,7 @@ export class MyInfoComponent implements OnInit {
       this.carsService.getCarImagesByID(this.user.id_clients).subscribe(
         data => {
           for( let item in data) {
-              if(data[item].file == "/media/perfil.jpg") {
+              if(data[item].type == 2) {
                   this.perfilImage = '//' + this.clientService.getServer() + data[item].file;
                 this.isPerfilImage = true;
               }
@@ -100,15 +100,24 @@ export class MyInfoComponent implements OnInit {
         });
 
   }
+  public deletePhoto() {
+      this.carsService.deleteImage(this.user.id_clients,2).subscribe(
+        data=>{
+          alert("borrada")
+          this.perfilImage = "";
+          this.isPerfilImage = false;
+        },error=>{}
+      )
+  }
+
   handleFileInput(files: FileList) {
     for (var i  = 0 ; i < files.length; i ++ ) {
       this.fileToUpload = files.item(i);
-      const formData: FormData = new FormData();  
-      let newFile = new File([this.fileToUpload],"perfil.jpg");
-      this.carsService.postCarImages(newFile,this.user.id_clients).subscribe(
+        this.carsService.postCarImages(this.fileToUpload,this.user.id_clients,2).subscribe(
         data => {
           alert("Imagen Guardada")
-        // do something, if upload success
+          this.ngOnInit();
+          this.isPerfilImage = true;
         }, error => {
           console.log(error);
         });
@@ -118,6 +127,7 @@ export class MyInfoComponent implements OnInit {
 
   public onSaveCarImages() {
     alert("Imagenes guardadas")
+    this.ngOnInit();
   }
   public saveInfo() {
     this.validateChangesOnUserInfo()

@@ -9,7 +9,7 @@ export class ClientsService extends ConfigService {
   private httpOptions: any;
   private server: string;
   private authToken: any;
-
+  
   constructor(private http: HttpClient,
     private router: Router) {
     super();
@@ -19,6 +19,19 @@ export class ClientsService extends ConfigService {
     this.server = super.getServer();
 
   }
+  public getClients() {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.get("http://" + this.server + "/api/GetClients/", this.httpOptions)
+
+
+  }
+  public getClientsByID(id) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.get("http://" + this.server + "/api/GetClientsByID/?id_clients=" + id, this.httpOptions)
+
+
+  }
+
   public getRandomClients() {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
     return this.http.get("http://" + this.server + "/api/GetRandomClients/", this.httpOptions)

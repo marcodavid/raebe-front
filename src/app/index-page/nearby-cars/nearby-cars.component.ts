@@ -12,24 +12,25 @@ export class NearbyCarsComponent implements OnInit {
   horizontal: boolean;
   @ViewChild('verticalCard') verticalCard: ElementRef;
   @ViewChild('horizontalCard') horizontalCard: ElementRef;
-  randomCarsArray: any = [];
+  CarsArray: any = [];
   randomUserCar: any;
   brandmark: any = [];
   model: any = [];
   description: any = [];
   file: any = [];
   img: any = [];
-
+  moreCars=3;
+  carsCont = new Array();
+  isMoreCars: boolean = true;
   constructor(private clientService: ClientsService, private carsService: CarsService) { }
   protected arrayCarsSaved: any = []
   ngOnInit() {
 
-    this.clientService.getRandomClients().subscribe(
+    this.clientService.getClients().subscribe(
       data => {
-        this.randomCarsArray = data
-        this.loadNearbyCars(0);
-        this.loadNearbyCars(1);
-        this.loadNearbyCars(2);
+        this.CarsArray = data
+        this.loadNearbyCars(this.moreCars);
+
 
       },
       error => { }
@@ -42,28 +43,40 @@ export class NearbyCarsComponent implements OnInit {
   }
 
   saveCarInfo(selected) {
-    localStorage.setItem('clientSelected',this.randomCarsArray[selected].id_clients );
+    localStorage.setItem('clientSelected',this.CarsArray[selected].id_clients );
   }
-  public loadNearbyCars(car) {
-    this.carsService.getCarByID(this.randomCarsArray[car].id_clients).subscribe(
-      data => {
-        this.randomUserCar = data;
-        this.brandmark[car] = this.randomUserCar.brand;
-        this.model[car] = this.randomUserCar.model;
-        this.description[car] = this.randomUserCar.description;
-        this.file[car] = this.carsService.getCarImagesByID(this.randomCarsArray[car].id_clients).subscribe(
-          // tslint:disable-next-line:no-shadowed-variable
-          data => {
-            for(let img in data)
-            { 
-              if(data[img].name != "/media/perfil.jpg")
-                this.img[car] = '//' + this.clientService.getServer() + data[img].file
+  public loadNearbyCars(limit) {
+    
+    for(let  car = 0;car < limit; car++) {
+      this.carsCont.push("");
+      this.carsService.getCarByID(this.CarsArray[car].id_clients).subscribe(
+        data => {
+          this.randomUserCar = data;
+          this.brandmark[car] = this.randomUserCar.brand;
+          this.model[car] = this.randomUserCar.model;
+          this.description[car] = this.randomUserCar.description;
+          this.file[car] = this.carsService.getCarImagesByID(this.CarsArray[car].id_clients).subscribe(
+            // tslint:disable-next-line:no-shadowed-variable
+            data => {
+              for(let img in data)
+              { 
+                if(data[img].type != 2)
+                  this.img[car] = '//' + this.clientService.getServer() + data[img].file
+              }
+             
+  
             }
-           
-
-          }
-        );
-      });
+          );
+        });
+    }
+   
   }
 
+  public showMoreCars(){
+    this.moreCars +=3;
+    if(this.CarsArray.lenght>this.moreCars)
+      this.loadNearbyCars(this.moreCars) 
+    else this.isMoreCars = false;
+
+  }
 }
