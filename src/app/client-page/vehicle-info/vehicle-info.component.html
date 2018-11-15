@@ -7,17 +7,14 @@
 </div>
 <div class="container mt-2" [@animacionAparecer]>
   <div class="row">
-    <div class="col-sm-6">
-      <!--<img src="{{image}}" width="80%" alt=""> -->
+    <div class="col-sm-6 text-center">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-          <li *ngFor="let image of carrouselImages; let i = index" data-target="#carouselExampleIndicators" (data-slide-to)="i" (class)="i==0?'active':''"></li>
-          <!-- <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+          <li *ngFor="let image of carrouselImages; let i = index" data-target="#carouselExampleIndicators" [attr.data-slide-to]="i" [className]="i==0?'active':''"></li>
         </ol>
         <div class="carousel-inner">
-          <div *ngFor="let image of carrouselImages; let i = index" (class)="i==0?'carrousel-item active':'carrousel-item'">
-            <img class="d-block w-100" (src)="image.file">
+          <div *ngFor="let image of carrouselImages; let i = index" [className]="i==0?'carousel-item active':'carousel-item'">
+            <img class="d-block w-100" [src]="image.file">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
