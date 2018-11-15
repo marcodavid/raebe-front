@@ -55,7 +55,7 @@ import { RentersService } from './services/renters-service/renters.service';
 import { ImageUploadModule } from "angular2-image-upload";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RenterComponent } from './profile-page/renter/renter.component';
-import { PdfviewerComponent } from './pdfviewer/pdfviewer.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -96,7 +96,7 @@ import { PdfviewerComponent } from './pdfviewer/pdfviewer.component';
     LoaderComponent,
     FileSelectDirective,
     RenterComponent,
-    PdfviewerComponent,
+
     
     
   ],
@@ -112,6 +112,7 @@ import { PdfviewerComponent } from './pdfviewer/pdfviewer.component';
     ReactiveFormsModule,
     ImageUploadModule.forRoot(),
     NgxMaskModule.forRoot(),
+    NgxSpinnerModule
   
   ],
   providers: [

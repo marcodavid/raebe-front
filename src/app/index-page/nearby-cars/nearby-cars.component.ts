@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { CarsService } from '../../services/cars-service/cars.service';
 import { ClientsService } from '../../services/clients-service/clients.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-nearby-cars',
@@ -22,10 +23,11 @@ export class NearbyCarsComponent implements OnInit {
   moreCars=3;
   carsCont = new Array();
   isMoreCars: boolean = true;
-  constructor(private clientService: ClientsService, private carsService: CarsService) { }
+  
+  constructor(private spinner: NgxSpinnerService,private clientService: ClientsService, private carsService: CarsService) { this.spinner.show(); }
   protected arrayCarsSaved: any = []
   ngOnInit() {
-
+   
     this.clientService.getClients().subscribe(
       data => {
         this.CarsArray = data
@@ -46,11 +48,12 @@ export class NearbyCarsComponent implements OnInit {
     localStorage.setItem('clientSelected',this.CarsArray[selected].id_clients );
   }
   public loadNearbyCars(limit) {
-    
+    this.spinner.show();
     for(let  car = 0;car < limit; car++) {
       this.carsCont.push("");
       this.carsService.getCarByID(this.CarsArray[car].id_clients).subscribe(
         data => {
+         
           this.randomUserCar = data;
           this.brandmark[car] = this.randomUserCar.brand;
           this.model[car] = this.randomUserCar.model;
@@ -67,6 +70,7 @@ export class NearbyCarsComponent implements OnInit {
   
             }
           );
+          this.spinner.hide();
         });
     }
    
