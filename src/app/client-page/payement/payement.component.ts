@@ -53,7 +53,7 @@ export class PayementComponent extends AgreementComponent implements OnInit {
     gain:0
   }
   constructor(protected router: Router,protected clientService: ClientsService, protected carsService: CarsService,calendar: NgbCalendar,  protected renterServie:RentersService) {
-    super(clientService,carsService,calendar);
+    super(clientService,carsService,calendar,renterServie);
    }
 
   ngOnInit() {

@@ -75,13 +75,10 @@
     <div class="col-sm-12">
       <h2>Evaluaciones</h2>
       <div class="container">
-        <div class="row mt-3" *ngFor='let evaluation of evaluations'>
+        <div class="row mt-3" *ngFor='let rate of rates'>
           <div class="col-sm-12">
-            <h4><b>{{evaluation.username}}</b> {{evaluation.value}}</h4>
-            <p>{{evaluation.date}}</p>
-          </div>
-          <div class="col-sm-12 comment">
-            {{evaluation.comment}}
+            <ngb-rating [(rate)]="rate.rate"  [readonly]="true" ></ngb-rating>
+            <h5>{{rate.comment}}</h5> 
           </div>
         </div>
       </div>

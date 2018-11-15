@@ -4,6 +4,7 @@ import { ClientsService } from '../../services/clients-service/clients.service';
 import { VehicleInfoComponent } from '../vehicle-info/vehicle-info.component';
 import { CarsService } from '../../services/cars-service/cars.service';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { RentersService } from '../../services/renters-service/renters.service';
 
 @Component({
   selector: 'app-agreement',
@@ -33,8 +34,8 @@ export class AgreementComponent extends VehicleInfoComponent implements OnInit {
   protected daysXPrice: number;
   
    
-  constructor(protected clientService: ClientsService, protected carsService: CarsService,calendar: NgbCalendar) {
-    super(clientService,carsService,calendar);
+  constructor(protected clientService: ClientsService, protected carsService: CarsService,calendar: NgbCalendar,protected rentersService:RentersService) {
+    super(clientService,carsService,calendar,rentersService);
    }
 
   ngOnInit() {

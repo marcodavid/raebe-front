@@ -6,6 +6,7 @@ import { CarsService } from '../../services/cars-service/cars.service';
 import * as $ from 'jquery';
 import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { Session } from 'protractor';
+import { RentersService } from '../../services/renters-service/renters.service';
 @Component({
   selector: 'app-vehicle-info',
   templateUrl: './vehicle-info.component.html',
@@ -27,11 +28,14 @@ import { Session } from 'protractor';
 })
 export class VehicleInfoComponent implements OnInit {
   image: string;
+  comment:any;
+  rating:any;
   vehicleName: string;
   vehicleType: string;
   features: string[];
   description: string;
   client:any;
+  rates:any;
   clientSelected: any
   clientSelectedCar: any
   evaluations: Evaluation[] = [];
@@ -48,7 +52,7 @@ export class VehicleInfoComponent implements OnInit {
   protected  minday: NgbDate = new NgbDate(this.yyyy,this.mm,this.dd); 
   
 
-  constructor(protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar) {
+  constructor(protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar,protected renterService: RentersService) {
     this.vehicleName = "Dodge Attitude";
     this.vehicleType = "Automovil";
     this.features = [];
@@ -64,6 +68,8 @@ export class VehicleInfoComponent implements OnInit {
       date: "7 Junio 2018",
       comment: "Mucho mejor de lo que esperaba"
     });
+    
+   
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 1);
 
@@ -76,7 +82,14 @@ export class VehicleInfoComponent implements OnInit {
       data=>{this.client = data}
     )
     this.totalDays = this.TotalDays(this.toDate,this.fromDate);
+    this.renterService.getRatetByIdClients(this.clientSelected).subscribe(
+      data=>{
+        this.rates = data;
+      }
+    )
   }
+
+  
   public disableDates(){
 
   }

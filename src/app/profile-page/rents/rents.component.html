@@ -4,7 +4,7 @@
       <h3 *ngIf="myRents==0">Aún no cuentas con rentas realizadas</h3>
     </div>
   </div>
-  <ng-container *ngFor="let rent of clientsRents">
+  <ng-container *ngFor="let rent of clientsRents;index as i">
     <table *ngIf="rent.acceptence != 2" class="table">
       <thead>
       </thead>
@@ -31,39 +31,33 @@
         </tr>
         <tr>
         <tr>
-          <td>Total a pagar</td>
+          <td>TPrecio Total</td>
           <td><b>{{rent.totalprice | currency}}</b></td>
           <td></td>
         </tr>
         <tr>
           <td>Estatus</td>
-          <td><button *ngIf="rent.acceptence != 4"  data-toggle="modal" data-target="#declineModal" type="button" class="btn btn-danger">Declinar</button></td>
+          <td><button *ngIf="rent.acceptence <4"  (click)="onAcceptence(2,rent)"   type="button" class="btn btn-danger">Declinar</button></td>
           <td *ngIf="rent.acceptence == 1">Aceptado</td>
           <td *ngIf="rent.acceptence == 0">Sin estatus aún</td>
           <td *ngIf="rent.acceptence == 2">Declinado</td>
           <td *ngIf="rent.acceptence == 4">Aceptado, hoy es el día!</td>
+          <td *ngIf="rent.acceptence == 5">Terminado</td>
           <td></td>
         </tr>
+        <tr  *ngIf="rent.acceptence == 5">
+          <td>Ingresa un comentario
+            <input [(ngModel)]="comments[i]">
+          </td>
+          <td >
+           Del 1  al 10, ¿Qué tanto recomendarias este carro?
+           <ngb-rating [(rate)]="rates[i]"  [readonly]="readonly"></ngb-rating>
+          </td> 
+          <td >
+            <button (click)="onRate(rent,i)">Enviar</button>
+           </td>       
+        </tr>
       </tbody>
-      <div class="modal fade" id="declineModal" tabindex="-1" role="dialog" aria-labelledby="declinelLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="declinelLabel">Atención</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p *ngIf="rent.acceptence != 4">Estas a punto de declinar una renta lo cual va a eliminarla de tu lista de rentas,¿deseas continuar?</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button *ngIf="rent.acceptence != 4" (click)="onAcceptence(2,rent)" type="button" data-dismiss="modal" class="btn btn-primary ">Continuar</button>
-              </div>
-            </div>
-          </div>
-        </div>
     </table>
   </ng-container>
 </div>

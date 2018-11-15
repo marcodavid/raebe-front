@@ -17,7 +17,8 @@ export class ProfilePageComponent implements OnInit {
   protected clientsRents : any;
   protected status:any;
   protected totalDays:any;
- 
+  protected comments = new Array();
+  protected rates = new Array();
   perfilImage = new Array();
   constructor(protected rentersService : RentersService,protected clientService: ClientsService, protected carsService : CarsService) { }
   protected user : any
@@ -30,7 +31,7 @@ export class ProfilePageComponent implements OnInit {
       data=>{
         this.rentsInfo = data;
         for(let rent in this.rentsInfo) {
-          if(this.checkDay(this.rentsInfo[rent].dateofpickup) &&  this.rentsInfo[rent].acceptence != 4  &&  this.rentsInfo[rent].acceptence != 2)
+          if(this.checkDay(this.rentsInfo[rent].dateofpickup) &&  this.rentsInfo[rent].acceptence != 4  &&  this.rentsInfo[rent].acceptence != 2&&  this.rentsInfo[rent].acceptence != 5)
               this.rentsInfo[rent].acceptence = 3;
           if(this.rentsInfo[rent].acceptence != 2) {
             this.rents++;
@@ -44,10 +45,11 @@ export class ProfilePageComponent implements OnInit {
       data=>{
         this.clientsRents = data;
         for(let rent in this.clientsRents) {
-          // if(this.checkDay(this.clientsRents[rent].dateofpickup) &&  this.clientsRents[rent].acceptence != 4)
-          //     this.clientsRents[rent].acceptence = 3;
+          this.comments.push("")
+          this.rates.push("")
           if(this.clientsRents[rent].acceptence != 2) {
             this.myRents++;
+           
           }
             
         }

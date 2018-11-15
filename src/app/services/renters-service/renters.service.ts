@@ -35,6 +35,16 @@ export class RentersService extends ConfigService {
     return this.http.post("http://" + this.server + "/api/PostRent/", JSON.stringify(json), this.httpOptions);
 
   }
+  public getRatetByIdClients(id) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.get("http://" + this.server + "/api/GetRateByIdClients/?id_clients=" + id, this.httpOptions)
+  }
+
+  public postRate(json) {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.post("http://" + this.server + "/api/PostRate/", JSON.stringify(json), this.httpOptions);
+
+  }
   public putRentForUpdate(json) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
     return this.http.put("http://" + this.server + "/api/PutRentForUpdate/", JSON.stringify(json), this.httpOptions);

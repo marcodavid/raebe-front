@@ -27,6 +27,7 @@ import { CarsService } from '../../services/cars-service/cars.service';
 })
 export class RenterComponent extends ProfilePageComponent implements OnInit {
   protected user: any;
+  protected secure:false;
   protected cont = 0;
   protected today = new Date();
   protected dd = this.today.getDate();
@@ -71,6 +72,15 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
             alert("renta en progreso")
+
+          }
+        );
+        break;
+        case 5:
+        rentToUpdate.acceptence = 5;//3 lista,4 iniciada
+        this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
+          data => {
+            alert("renta terminada")
 
           }
         );

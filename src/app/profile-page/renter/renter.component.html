@@ -8,7 +8,7 @@
     download="Contrato RaeBe.pdf">aquí</a></h5>
   <ng-container *ngFor="let rent of rentsInfo; index as i">
 
-    <table *ngIf="rent.acceptence != 2 " class="table">
+    <table *ngIf="rent.acceptence != 2 && rent.acceptence != 5 " class="table">
       <thead>
       </thead>
       <tbody>
@@ -47,62 +47,20 @@
           <tr>
             <td>Aceptar/Declinar</td>
             <td>
-              <button *ngIf="rent.acceptence == 0" data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-success align-left">Aceptar</button>
-              <button *ngIf="rent.acceptence == 3" data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-success align-left">Iniciar
+              <input *ngIf="rent.acceptence == 4" type="checkbox" #checkCar (change)="0">Activar entrega de carro
+              <button *ngIf="rent.acceptence == 0"  (click) ="onAcceptence(1,rent)"  type="button" class="btn btn-success align-left">Aceptar</button>
+              <button *ngIf="rent.acceptence == 3"  (click)="onAcceptence(3,rent)" type="button" class="btn btn-success align-left">Iniciar
                 renta</button>
-              <button *ngIf="rent.acceptence != 4" data-toggle="modal" data-target="#declineModal" type="button" class="btn btn-danger">Declinar</button>
-              <button *ngIf="rent.acceptence == 4" data-toggle="modal" data-target="#declineModal" type="button" class="btn btn-danger">Carro entregado</button></td>
+              <button *ngIf="rent.acceptence < 4" (click)="onAcceptence(2,rent)" type="button" class="btn btn-danger">Declinar</button>
+              <button *ngIf="rent.acceptence == 4"  (click)="onAcceptence(5,rent)"  type="button" class="btn btn-danger">Carro entregado</button></td>
             <td *ngIf="rent.acceptence == 1">Aceptado</td>
             <td *ngIf="rent.acceptence == 3">Lista para iniciar</td>
             <td *ngIf="rent.acceptence == 4">En progreso</td>
-          </tr>
+            <td *ngIf="rent.acceptence == 5">Terminado</td>
+        </tr>
       </tbody>
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p *ngIf="rent.acceptence == 0">Estas a punto de aceptar una renta, recuerda tomar nota del día y descargar
-                el contrato</p>
-              <p *ngIf="rent.acceptence == 3">Estas a punto de iniciar una renta, verifica la licencia de conducir del conductor
-                y que concuerden la foto,nombre y edad de la renta</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button *ngIf="rent.acceptence == 0" (click)="onAcceptence(1,rent)" type="button" class="btn btn-primary " data-dismiss="modal">Continuar</button>
-              <button *ngIf="rent.acceptence == 3" (click)="onAcceptence(3,rent)" type="button" class="btn btn-primary " data-dismiss="modal">Continuar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-            <!-- Decline Modal -->
-      <div class="modal fade" id="declineModal" tabindex="-1" role="dialog" aria-labelledby="declinelLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="declinelLabel">Atención</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p *ngIf="rent.acceptence == 4 ">Estas a punto de terminar una renta,¿ deseas continuar?</p>
-              <p *ngIf="rent.acceptence != 4">Estas a punto de declinar una renta lo cual va a eliminarla de tu lista de rentas,¿deseas continuar?</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button *ngIf="rent.acceptence != 4" (click)="onAcceptence(2,rent)" type="button" data-dismiss="modal" class="btn btn-primary ">Continuar</button>
-              <button *ngIf="rent.acceptence == 4" (click)="onAcceptence(2,rent)" type="button" data-dismiss="modal" class="btn btn-primary ">Continuar</button>
-            </div>
-          </div>
-        </div>
-      </div>
+    
     </table>
   </ng-container>
 </div>

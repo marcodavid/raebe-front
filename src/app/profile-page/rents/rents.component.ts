@@ -26,6 +26,14 @@ import { CarsService } from '../../services/cars-service/cars.service';
   ]
 })
 export class RentsComponent extends ProfilePageComponent implements OnInit {
+  myRate = {
+    id_clientsreceiver:"",
+    id_clientscommenter:"",
+    comment:"",
+    rate:"" 
+
+  }
+  readonly = false;
 
   constructor(protected router: Router,protected rentersService : RentersService,protected clientService: ClientsService,protected carsService : CarsService) { 
     super(rentersService,clientService,carsService);
@@ -36,6 +44,24 @@ export class RentsComponent extends ProfilePageComponent implements OnInit {
     super.ngOnInit();
   }
 
+
+  public onRate(rent,index) {
+    this.myRate.id_clientsreceiver = rent.id_clients;
+    this.myRate.id_clientscommenter = this.user.id_clients;
+    this.myRate.comment = this.comments[index];
+    this.myRate.rate = this.rates[index]; 
+    this.rentersService.postRate(this.myRate).subscribe(
+      data=>{
+        rent.acceptence = 2
+        this.rentersService.putRentForUpdate(rent).subscribe(
+          data => {
+            alert("renta terminada")
+
+          }
+        );
+      }
+    )
+  }
   public setClient(id_clientRenter){
     localStorage.setItem(id_clientRenter,"clientSelected");
     this.router.navigate(['/client/vehicle-info']);
@@ -66,6 +92,15 @@ export class RentsComponent extends ProfilePageComponent implements OnInit {
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
             alert("renta en progreso")
+
+          }
+        );
+        break;
+        case 5:
+        rentToUpdate.acceptence = 5;//3 lista,4 iniciada
+        this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
+          data => {
+            alert("renta terminada")
 
           }
         );
