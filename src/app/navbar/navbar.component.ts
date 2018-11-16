@@ -11,6 +11,10 @@ export class NavbarComponent implements OnInit {
     isLogged = false;
   private user: any;
   public userIsRenter : boolean;
+  itemState = [
+    'Marca','Modelo','Año','Precio'
+  ];
+  searchItem:any
   constructor(private clientsService : ClientsService) { }
 
   @ViewChild('unloggedButtons') unloggedButtons: ElementRef;
@@ -29,5 +33,14 @@ export class NavbarComponent implements OnInit {
       this.loggedButtons.nativeElement.remove();
     }
   }
-
+  onChange(value: any){
+   
+    sessionStorage.setItem("searchSelected",value);
+  }
+  onSearch()
+  {
+    console.log(this.searchItem)
+    sessionStorage.setItem("searchItem",this.searchItem)
+  }
+  
 }

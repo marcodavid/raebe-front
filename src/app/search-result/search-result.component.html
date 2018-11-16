@@ -1,0 +1,32 @@
+
+<div class="container-fluid">
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>
+          <fa name="search"></fa>&nbsp;&nbsp;Busqueda
+        </h2>
+        
+    </div>
+  </div>
+  <div class="container mt-2 mb-5 justify-content-center">
+    <div class="row justify-content-center">
+      <div *ngFor="let car of carsCont | filterBy: userFilter">
+          <div class="col-sm-12 col-md-8 mt-1" #verticalCard>
+            <div class="card" style="width:20rem">
+              <img class="card-img-top " src="{{car.file}}" width="100%" alt="Card image cap">
+              <div class="card-body">
+                <h2 class="card-title">{{car.data.brand}}</h2>
+                <h5 class="card-title">{{car.data.model}}</h5>
+                <p class="card-text">{{car.data.description}}</p>
+              </div>
+              <div class="card-footer justify-content-center text-center">
+                <a class="btn btn-outline-primary" (click)="saveCarInfo(i)" routerLink="/client/vehicle-info">Detalles del
+                  vehículo</a>
+              </div>
+            </div>
+          </div>      
+      </div>
+      <li *ngIf="(carsCont | filterBy: userFilter).length === 0"><h4>No encontramoslo que buscabas :(</h4></li>
+    </div>
+  </div>

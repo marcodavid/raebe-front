@@ -26,12 +26,15 @@ import { MyInfoComponent } from './profile-page/my-info/my-info.component';
 import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock.component';
 import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
 import { RenterComponent } from './profile-page/renter/renter.component';
+import { SearchComponent } from './search/search.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 
 
 const app_routes: Routes = [
     { path : '', component : IndexPageComponent },
     { path : 'home', component : IndexPageComponent, canActivate: [AuthGuardService]},
+    { path : 'search-result', component : SearchResultComponent},
     {
         path : 'profile', component : ProfilePageComponent,
         children : [

@@ -56,7 +56,8 @@ import { ImageUploadModule } from "angular2-image-upload";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RenterComponent } from './profile-page/renter/renter.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
+import { SearchResultComponent } from './search-result/search-result.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,6 +97,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     LoaderComponent,
     FileSelectDirective,
     RenterComponent,
+    SearchResultComponent,
 
     
     
@@ -112,7 +114,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     ImageUploadModule.forRoot(),
     NgxMaskModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FilterPipeModule
   
   ],
   providers: [
