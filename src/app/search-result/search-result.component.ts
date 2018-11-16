@@ -96,8 +96,8 @@ export class SearchResultComponent implements OnInit {
 
   }
 }
-  saveCarInfo(selected) {
-    localStorage.setItem('clientSelected', this.CarsArray[selected].id_clients);
+  saveCarInfo(id) {
+    localStorage.setItem('clientSelected', id);
   }
   public loadNearbyCars() {
     for (let car in this.CarsArray) {
