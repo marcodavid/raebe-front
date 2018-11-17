@@ -7,6 +7,7 @@ import { CarsService } from '../../services/cars-service/cars.service';
 import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { RentersService } from '../../services/renters-service/renters.service';
 import { Router } from '@angular/router';
+import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
 
 @Component({
   selector: 'app-payement',
@@ -28,6 +29,7 @@ import { Router } from '@angular/router';
   ]
 })
 export class PayementComponent extends AgreementComponent implements OnInit {
+  public payPalConfig?: PayPalConfig;
   renterCar:any
   rent = {
     id_clients :0,
@@ -75,7 +77,7 @@ export class PayementComponent extends AgreementComponent implements OnInit {
         this.rent.totaldays = this.totalDays;
         this.rent.gain= this.totalPrice-this.iva - (this.totalPrice*.2);
     });
-   
+    this.initConfig();
 
   }
 
@@ -85,9 +87,33 @@ export class PayementComponent extends AgreementComponent implements OnInit {
           this.router.navigate(['/profile/rents']);
          }
        );
-  
-
-
   }
-
+  private initConfig(): void {
+    this.payPalConfig = new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, {
+      commit: true,
+      client: {
+        sandbox: 'Aa3LNkrw6Nbqb7BwfjLMWTwBQ8LrF1NBYxApsnWOqErSUMDPUCwmvkDRm7LFaLMITxFvPbjcHHP83uqR',
+      },
+      button: {
+        label: 'paypal',
+      },
+      onPaymentComplete: (data, actions) => {
+        console.log('OnPaymentComplete');
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel');
+      },
+      onError: (err) => {
+        console.log('OnError');
+      },
+      transactions: [{
+        amount: {
+          currency: 'MXN',
+          total: this.totalPrice
+        }
+      }]
+    });
+  }
 }
+
+

@@ -58,6 +58,7 @@ import { RenterComponent } from './profile-page/renter/renter.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { NgxPayPalModule } from 'ngx-paypal';
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,7 +116,8 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     ImageUploadModule.forRoot(),
     NgxMaskModule.forRoot(),
     NgxSpinnerModule,
-    FilterPipeModule
+    FilterPipeModule,
+    NgxPayPalModule
   
   ],
   providers: [
