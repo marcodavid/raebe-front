@@ -28,7 +28,9 @@ import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-payp
     ])
   ]
 })
+
 export class PayementComponent extends AgreementComponent implements OnInit {
+  client:any
   public payPalConfig?: PayPalConfig;
   renterCar:any
   rent = {
@@ -77,6 +79,9 @@ export class PayementComponent extends AgreementComponent implements OnInit {
         this.rent.totaldays = this.totalDays;
         this.rent.gain= this.totalPrice-this.iva - (this.totalPrice*.2);
     });
+    this.clientService.getClientsByID(this.clientSelected).subscribe(
+      data=>{this.client = data}
+    );
     this.initConfig();
 
   }
@@ -84,7 +89,13 @@ export class PayementComponent extends AgreementComponent implements OnInit {
   public onRent() {
        this.renterServie.PostRent(this.rent).subscribe(
          data=>{
-          this.renterService.postMail(this.user.email,"<h3>Gracias por tu renta "+this.user.firstname+"!</h3><br>Tu coche es <p>"+this.vehicleName+" "+this.vehicleType+"</p><br><b>"+this.rent.dateofpickup+" al "+this.rent.returnday+"</b><br><b>Total: $"+this.totalPrice+" MXN</b>","Notificación de renta RaeBe").subscribe(
+          this.rentersService.postMail(this.client.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acaban de proponerte una renta  para el usuario "+this.user.firstname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
+            data=>{
+              
+            }
+          );
+      
+          this.renterService.postMail(this.user.email,"<h3>Gracias por tu renta "+this.user.firstname+"!</h3><br>Tu coche es <p>"+this.vehicleName+" "+this.vehicleType+"</p><br><b>"+this.rent.dateofpickup+" al "+this.rent.returnday+"</b><br><b>Total: $"+this.totalPrice+" MXN</b><br>"+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
             data=>{
                 this.router.navigate(['/profile/rents']);
             }

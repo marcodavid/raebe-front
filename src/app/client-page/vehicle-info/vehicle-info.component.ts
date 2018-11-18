@@ -27,21 +27,21 @@ import { RentersService } from '../../services/renters-service/renters.service';
   ]
 })
 export class VehicleInfoComponent implements OnInit {
-  images = new Array();
-  comment:any;
-  rating:any;
-  vehicleName: string;
-  vehicleType: string;
-  features: string[];
-  description: string;
-  client:any;
-  rates:any;
-  clientSelected: any
-  clientSelectedCar: any
-  evaluations: Evaluation[] = [];
-  hoveredDate: NgbDate;
-  perfilPhoto:any;
-  showButton = false;
+  protected images = new Array();
+  protected comment:any;
+  protected rating:any;
+  protected vehicleName: string;
+  protected vehicleType: string;
+  protected features: string[];
+  protected description: string;
+  protected client:any;
+  protected rates:any;
+  protected  clientSelected: any
+  protected clientSelectedCar: any
+  protected evaluations: Evaluation[] = [];
+  protected hoveredDate: NgbDate;
+  protected perfilPhoto:any;
+  protected showButton = false;
   protected totalDays:any
   protected totalPrice:any
   protected fromDate: NgbDate;
@@ -51,7 +51,7 @@ export class VehicleInfoComponent implements OnInit {
   protected mm = this.today.getMonth()+1; 
   protected yyyy = this.today.getFullYear();
   protected  minday: NgbDate = new NgbDate(this.yyyy,this.mm,this.dd); 
-  user: any;
+  protected user: any;
   
 
   constructor(protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar,protected renterService: RentersService) {

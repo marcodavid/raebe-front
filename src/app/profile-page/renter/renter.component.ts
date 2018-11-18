@@ -54,7 +54,11 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
           data => {
 
             alert("renta aceptada")
-
+            this.rentersService.postMail(this.user.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acabas de aceptar una renta para el usuario "+rentToUpdate.clientname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
+              data=>{
+                
+              }
+            );
           }
         );
         break;
@@ -62,8 +66,12 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
         rentToUpdate.acceptence = 2;
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
-            alert("renta declinada")
-
+           
+            this.rentersService.postMail(this.user.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acabas de declinar una renta para el usuario "+rentToUpdate.clientname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
+              data=>{
+                
+              }
+            );
           }
         );
         break;
@@ -72,6 +80,7 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
             alert("renta en progreso")
+            
 
           }
         );
@@ -81,7 +90,10 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
             alert("renta terminada")
-
+            this.rentersService.postMail(this.user.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acabas de finalizar  una renta para el usuario "+rentToUpdate.clientname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
+              data=>{
+              }
+            );
           }
         );
         break;
