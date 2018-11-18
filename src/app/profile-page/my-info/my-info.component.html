@@ -1,6 +1,20 @@
 <script src="jquery.toaster.js"></script>
 
 <div class="container mt-2 mb-5" [@animacionAparecer]>
+
+    <div class="col-sm-6 ">              
+        <img  src="{{perfilImage}}" height ="50%" alt=""> 
+      
+           <button  *ngIf="isPerfilImage == true" class="btn btn-light "  (click)="deletePhoto()">Cambiar foto de perfil</button>
+ 
+        <image-upload *ngIf="isPerfilImage == false" (change)="handleFileInput($event.target.files)" [max]="1" [buttonCaption]="'Selecciona una imagen de perfil'"
+        [dropBoxMessage]="'O puedes soltarla aquí'" [extensions]="['jpg','png']">
+      </image-upload>
+      </div>
+
+<br>
+<br>
+
   <div id="accordion">
     <form ngNativeValidate (ngSubmit)='saveInfo()'>
       <div class="card">
@@ -9,22 +23,6 @@
             <button class="btn btn-link card-title" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <fa name="user"></fa>&nbsp;Mi Información
             </button>
-            <div class="col-sm-6">              
-                <img class="align-self-center mr-3" src="{{perfilImage}}" width="30%" alt="">    
-              </div>
-            <div  class="container mb-5" [@animacionAparecer]>
-              <div class="row justify-content-center">
-                <div class="col-sm-12 col-md-10">
-                  <h3>Imagen de perfil</h3>
-                </div>
-                <div class="col-sm-12 col-md-10">
-                    <button (click)="deletePhoto()">borrar foto de perfil</button>
-                  </div>
-              </div>
-              <image-upload *ngIf="isPerfilImage == false" (change)="handleFileInput($event.target.files)" [max]="1" [buttonCaption]="'Selecciona una imagen de perfil'"
-                [dropBoxMessage]="'O puedes soltarla aquí'" [extensions]="['jpg','png']">
-              </image-upload>
-            </div>
           </h5>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">

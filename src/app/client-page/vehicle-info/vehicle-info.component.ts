@@ -27,7 +27,7 @@ import { RentersService } from '../../services/renters-service/renters.service';
   ]
 })
 export class VehicleInfoComponent implements OnInit {
-  image: string;
+  images = new Array();
   comment:any;
   rating:any;
   vehicleName: string;
@@ -153,12 +153,22 @@ export class VehicleInfoComponent implements OnInit {
         }
         this.carsService.getCarImagesByID(clientSelected).subscribe(
           data => {
+            let index = 0;
             for(let img in data)
             { 
-              if(data[img].type != 2)
-                this.image = '//' + this.clientService.getServer() + data[img].file
+              if(data[img].type != 2) {
+                this.images[index] = '//' + this.clientService.getServer() + data[img].file;
+                index++;
+              }              
               else 
                 this.perfilPhoto = '//' + this.clientService.getServer() + data[img].file
+              if(index < 5 ) {
+                for( let i = index ; i  < 6 ; i++ ) {
+                  if(data[img].type != 2)
+                    this.images[i] = '//' + this.clientService.getServer() + data[img].file;
+                }
+
+              }
             }
 
           });

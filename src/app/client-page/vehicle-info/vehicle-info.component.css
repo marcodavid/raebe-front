@@ -41,3 +41,13 @@
   .custom-day.faded {
     background-color: rgba(2, 117, 216, 0.5);
   }
+  .containerHero{
+    width: 1000px;
+    height: 500px;
+  }
+
+/* resize images */
+.containerHero img {
+    width: 100%;
+    height: auto;
+}

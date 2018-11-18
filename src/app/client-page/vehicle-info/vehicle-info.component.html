@@ -7,14 +7,48 @@
 </div>
 <div class="container mt-2" [@animacionAparecer]>
   <div class="row">
-    <div class="col-sm-6">
-      <img src="{{image}}" width="100%" alt="">
-      <button routerLink="/client/agreement" class="btn btn-primary btn-lg btn-block justify-content-center">Mostrar contrato
-        del vehículo</button>
+    <div class="row">
+      <div class="col-sm-12">
+        <ngb-carousel *ngIf="images">
+
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero " [src]="images[0]" alt="Random first slide">
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero" [src]="images[1]" alt="Random first slide">
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero" [src]="images[2]" alt="Random first slide">
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero" [src]="images[3]" alt="Random first slide">
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero" [src]="images[4]" alt="Random first slide">
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero" [src]="images[5]" alt="Random first slide">
+          </ng-template>
+        </ngb-carousel>
+
+
+      </div>
+
     </div>
-    <div class="col-sm-6">
+    <div class="row">
+      <div class="col-sm-7">
         <img *ngIf="perfilPhoto" id="perfil" src="{{perfilPhoto}}" class="image--cover">
         <label for="perfil">Arrendado por {{client.firstname}} {{client.lastname}}</label>
+        <br>
+        <br>
+        <h4 class="justify-content-center align-right">{{clientSelectedCar.price *totalDays *.16 +clientSelectedCar.price
+          *totalDays | currency}}
+          <font size="3 ">Por {{totalDays}} día(s) (incluye IVA)</font>
+        </h4>
+        <button routerLink="/client/agreement" class="btn btn-primary btn-lg btn-block justify-content-center">Mostrar contrato
+          del vehículo</button>
+      </div>
+      <div class="col-sm-5">
         <h5>Fechas:</h5>
         <ngb-datepicker #dp (select)="onDateSelection($event)" [minDate]="minday" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
         </ngb-datepicker>
@@ -24,18 +58,7 @@
             {{ date.day }}
           </span>
         </ng-template>
-   
-      <div class="row">
-        <h4 class="justify-content-center align-right">{{clientSelectedCar.price *totalDays *.16 +clientSelectedCar.price *totalDays | currency}}
-          <font size="3 ">Por {{totalDays}} día(s) (incluye IVA)</font>
-        </h4>
       </div>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6 ">
-
     </div>
   </div>
 </div>
@@ -77,8 +100,8 @@
       <div class="container">
         <div class="row mt-3" *ngFor='let rate of rates'>
           <div class="col-sm-12">
-            <ngb-rating [(rate)]="rate.rate"  [readonly]="true" ></ngb-rating>
-            <h5>{{rate.comment}}</h5> 
+            <ngb-rating [(rate)]="rate.rate" [readonly]="true"></ngb-rating>
+            <h5>{{rate.comment}}</h5>
           </div>
         </div>
       </div>
