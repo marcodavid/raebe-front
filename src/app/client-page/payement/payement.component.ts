@@ -84,9 +84,16 @@ export class PayementComponent extends AgreementComponent implements OnInit {
   public onRent() {
        this.renterServie.PostRent(this.rent).subscribe(
          data=>{
-          this.router.navigate(['/profile/rents']);
+          this.renterService.postMail(this.user.email,"<h3>Gracias por tu renta "+this.user.firstname+"!</h3><br>Tu coche es <p>"+this.vehicleName+" "+this.vehicleType+"</p><br><b>"+this.rent.dateofpickup+" al "+this.rent.returnday+"</b><br><b>Total: $"+this.totalPrice+" MXN</b>","Notificación de renta RaeBe").subscribe(
+            data=>{
+                this.router.navigate(['/profile/rents']);
+            }
+          );
+         
          }
        );
+     
+
   }
   private initConfig(): void {
     this.payPalConfig = new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, {
