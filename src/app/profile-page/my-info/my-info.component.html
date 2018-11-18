@@ -14,12 +14,17 @@
 
 <br>
 <br>
-
+  
   <div id="accordion">
     <form ngNativeValidate (ngSubmit)='saveInfo()'>
+       
       <div class="card">
+      
         <div class="card-header" id="headingOne">
           <h5 class="mb-0">
+           <button class="btn btn-outline-secondary float-right">
+                  <fa name="save"></fa>&nbsp;Guardar
+        </button>
             <button class="btn btn-link card-title" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <fa name="user"></fa>&nbsp;Mi Información
             </button>
@@ -35,29 +40,24 @@
             <div class="row">
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtEmail">Email</label>
-                <input [(ngModel)]="client.email" id="txtEmail" type="email" name="txtEmail" class="form-control" placeholder="{{user.email}}"
+                <input [(ngModel)]="user.email" id="txtEmail" type="email" name="txtEmail" class="form-control" placeholder="{{user.email}}"
                   required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtName">Nombre</label>
-                <input [(ngModel)]="client.firstname" id="txtName" type="text" name="txtName" class="form-control" placeholder="{{user.firstname}}"
+                <input [(ngModel)]="user.firstname" id="txtName" type="text" name="txtName" class="form-control" placeholder="{{user.firstname}}"
                   required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtLastName">Apellidos</label>
-                <input [(ngModel)]="client.lastname" type="text" name="txtLastName" class="form-control" placeholder="{{user.lastname}}"
+                <input [(ngModel)]="user.lastname" type="text" name="txtLastName" class="form-control" placeholder="{{user.lastname}}"
                   required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtBornDate">Fecha de Nacimiento</label>
                 <input [(ngModel)]="user.age" id="txtBornDate" type="date" name="txtBornDate" class="form-control" required>
               </div>
-              <div class="form-group col-sm-12 col-md-4 mt-1">
-                <label for="txtCurp">CURP</label>
-                <input [(ngModel)]="client.curp" id="txtCurp" type="text" name="txtCurp" class="form-control" placeholder="{{user.curp}}"
-                  minlength="18" maxlength="18"  required>
               </div>
-            </div>
             <div class="row">
               <div class="col-sm-12">
                 <h4>Dirección</h4>
@@ -66,36 +66,36 @@
             <div class="row">
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtStreet">Calle</label>
-                <input [(ngModel)]="address.street" placeholder="{{userAddress.street}}" id="txtStreet" type="text" name="txtStreet" class="form-control"
+                <input [(ngModel)]="userAddress.street" placeholder="{{userAddress.street}}" id="txtStreet" type="text" name="txtStreet" class="form-control"
                   required>
               </div>
               <div class="form-group col-sm-12 col-md-2 mt-1">
                 <label for="txtExtNum">Número Exterior</label>
-                <input [(ngModel)]="address.numext" placeholder="{{userAddress.numext}}" id="txtExtNum" type="number" name="txtExtNum" class="form-control"
+                <input [(ngModel)]="userAddress.numext" placeholder="{{userAddress.numext}}" id="txtExtNum" type="number" name="txtExtNum" class="form-control"
                   required>
               </div>
               <div class="form-group col-sm-12 col-md-2 mt-1">
                 <label for="txtIntNum">Número Interior</label>
-                <input [(ngModel)]="address.numint" placeholder="{{userAddress.numint}}" id="txtIntNum" type="number" name="txtIntNum" class="form-control">
+                <input [(ngModel)]="userAddress.numint" placeholder="{{userAddress.numint}}" id="txtIntNum" type="number" name="txtIntNum" class="form-control">
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtCol">Colonia</label>
-                <input [(ngModel)]="address.province" placeholder="{{userAddress.province}}" id="txtCol" type="text" name="txtCol" class="form-control"
+                <input [(ngModel)]="userAddress.province" placeholder="{{userAddress.province}}" id="txtCol" type="text" name="txtCol" class="form-control"
                   required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtCity">Ciudad</label>
-                <input [(ngModel)]="address.city" placeholder="{{userAddress.city}}" id="txtCity" type="text" name="txtCity" class="form-control"
+                <input [(ngModel)]="userAddress.city" placeholder="{{userAddress.city}}" id="txtCity" type="text" name="txtCity" class="form-control"
                   required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtCP">Código Postal</label>
-                <input [(ngModel)]="address.zipcode" placeholder="{{userAddress.zipcode}}" id="txtCP" type="number" name="txtCP" class="form-control"
+                <input [(ngModel)]="userAddress.zipcode" placeholder="{{userAddress.zipcode}}" id="txtCP" type="number" name="txtCP" class="form-control"
                   required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtCountry">País</label>
-                <input [(ngModel)]="address.country" placeholder="{{userAddress.country}}" id="txtCountry" type="text" name="txtCountry"
+                <input [(ngModel)]="userAddress.country" placeholder="{{userAddress.country}}" id="txtCountry" type="text" name="txtCountry"
                   class="form-control" required>
               </div>
             </div>
@@ -103,31 +103,26 @@
               <div class="col-sm-12">Teléfono</div>
               <div class="form-group col-sm-12 col-md-2 mt-1">
                 <label for="txtPhoneCountry">Pais</label>
-                <input [(ngModel)]="client.telcountry" placeholder="{{user.telcountry}}" id="txtPhoneCountry" type="text" name="txtPhoneCountry"
+                <input [(ngModel)]="user.telcountry" placeholder="{{user.telcountry}}" id="txtPhoneCountry" type="text" name="txtPhoneCountry"
                   class="form-control" required>
               </div>
               <div class="form-group col-sm-12 col-md-2 mt-1">
                 <label for="txtLada">Lada</label>
-                <input [(ngModel)]="client.lada" placeholder="{{user.lada}}" id="txtLada" type="number" name="txtLada" class="form-control"
+                <input [(ngModel)]="user.lada" placeholder="{{user.lada}}" id="txtLada" type="number" name="txtLada" class="form-control"
                   required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtPhone">Teléfono</label>
-                <input [(ngModel)]="client.telnumber" placeholder="{{user.telnumber}}" id="txtPhone" type="number" name="txtPhone" class="form-control"
+                <input [(ngModel)]="user.telnumber" placeholder="{{user.telnumber}}" id="txtPhone" type="number" name="txtPhone" class="form-control"
                   required>
               </div>
               <div class="form-group col-sm-12 ">
-                <button class="btn btn-outline-secondary float-right">
-                  <fa name="save"></fa>&nbsp;Guardar
-                </button>
+            
               </div>
             </div>
           </div>
         </div>
       </div>
-    </form>
-
-    <form ngNativeValidate (onSubmit)='saveInfo()'>
       <div class="card mt-3">
         <div class="card-header" id="headingTwo">
           <h5 class="mb-0">
@@ -142,7 +137,7 @@
             <div class="row">
               <div class="form-group col-sm-12 col-md-4 mt-1">
                 <label for="txtLicenceNumber">Número de Licencia</label>
-                <input [(ngModel)]="driverlicense.licensenum" placeholder="{{userDriverLicense.licensenum}}" id="txtLicenceNumber" type="number"
+                <input [(ngModel)]="userDriverLicense.licensenum"  id="txtLicenceNumber" type="number"
                   name="txtLicenceNumber" class="form-control" required>
               </div>
               <div class="form-group col-sm-12 col-md-4 mt-1">
@@ -155,53 +150,11 @@
                 <input [(ngModel)]="userDriverLicense.endday" id="txtExpirationDate" type="date" name="txtExpirationDate" class="form-control"
                   required>
               </div>
-              <div class="form-group col-sm-12 ">
-                <button class="btn btn-outline-secondary float-right">
-                  <fa name="save"></fa>&nbsp;Guardar
-                </button>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </form>
-
-    <form ngNativeValidate (onSubmit)='saveInfo()'>
-      <div class="card mt-3">
-        <div class="card-header" id="headingThree">
-          <h5 class="mb-0">
-            <button class="btn btn-link card-title collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
-              aria-controls="collapseThree">
-              <fa name="lock"></fa>&nbsp;Cambiar Contraseña
-            </button>
-          </h5>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-          <div class="card-body container">
-            <div class="row">
-              <div class="form-group col-sm-12 col-md-4 mt-1">
-                <label for="txtCurrentPassword">Contraseña Actual</label>
-                <input id="txtCurrentPassword" type="password" name="txtCurrentPassword" class="form-control" required>
-              </div>
-              <div class="form-group col-sm-12 col-md-4 mt-1">
-                <label for="txtNewPassword">Nueva Contraseña</label>
-                <input id="txtNewPassword" type="password" name="txtNewPassword" class="form-control" required>
-              </div>
-              <div class="form-group col-sm-12 col-md-4 mt-1">
-                <label for="txtConfirmNewPassword">Confirmar Contraseña Nueva</label>
-                <input id="txtConfirmNewPassword" type="password" name="txtConfirmNewPassword" class="form-control" required>
-              </div>
-            </div>
-          </div>
-          <div class="form-group col-sm-12 ">
-            <button class="btn btn-outline-secondary float-right">
-              <fa name="save"></fa>&nbsp;Guardar
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-
     <div class="card mt-3">
       <div class="card-header" id="headingThree">
         <h5 class="mb-0">

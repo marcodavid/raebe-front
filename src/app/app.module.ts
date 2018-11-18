@@ -59,6 +59,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { RouterModule, Routes } from '@angular/router';
+const routes: Routes = [
+  { path : 'search-result', component : SearchResultComponent}
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -117,10 +121,13 @@ import { NgxPayPalModule } from 'ngx-paypal';
     NgxMaskModule.forRoot(),
     NgxSpinnerModule,
     FilterPipeModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
   
   ],
+  exports: [RouterModule],
   providers: [
+  
     ClientsService,
     ConfigService,
     AuthGuardService,

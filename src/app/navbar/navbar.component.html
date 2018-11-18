@@ -8,11 +8,11 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2 mt-1 mb-1" [(ngModel)]="searchItem" name="searchItem" (change)="onSearch($event)" type="search" placeholder="Ej. Automóvil Ejecutivo" aria-label="Search">
+            <input class="form-control mr-sm-2 mt-1 mb-1" [(ngModel)]="searchItem" name="searchItem" (change)="onSearchItem($event)" type="search" placeholder="Ej. Automóvil Ejecutivo" aria-label="Search">
               <select class="form-control mr-sm-2 mt-1 mb-1" (change)="onChange($event.target.value)">
                 <option *ngFor="let state of itemState" value="{{state}}">{{state}}</option>
               </select>
-            <button class="btn btn-outline-light my-2 my-sm-0"  routerLink="/search-result" >Buscar</button>
+            <button class="btn btn-outline-light my-2 my-sm-0"  (click)="onSearch()" >Buscar</button>
           </form>
       </li>
     </ul>

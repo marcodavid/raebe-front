@@ -20,14 +20,14 @@ export class NearbyCarsComponent implements OnInit {
   description: any = [];
   file: any = [];
   img: any = [];
-  moreCars=3;
+  moreCars = 3;
   carsCont = new Array();
   isMoreCars: boolean = true;
-  
-  constructor(private spinner: NgxSpinnerService,private clientService: ClientsService, private carsService: CarsService) { this.spinner.show(); }
+
+  constructor(private spinner: NgxSpinnerService, private clientService: ClientsService, private carsService: CarsService) { this.spinner.show(); }
   protected arrayCarsSaved: any = []
   ngOnInit() {
-   
+
     this.clientService.getClients().subscribe(
       data => {
         this.CarsArray = data
@@ -45,15 +45,16 @@ export class NearbyCarsComponent implements OnInit {
   }
 
   saveCarInfo(selected) {
-    localStorage.setItem('clientSelected',this.CarsArray[selected].id_clients );
+    localStorage.setItem('clientSelected', this.CarsArray[selected].id_clients);
   }
   public loadNearbyCars(limit) {
+    this.carsCont = [];
     this.spinner.show();
-    for(let  car = 0;car < limit; car++) {
+    for (let car = 0; car < limit; car++) {
       this.carsCont.push("");
       this.carsService.getCarByID(this.CarsArray[car].id_clients).subscribe(
         data => {
-         
+
           this.randomUserCar = data;
           this.brandmark[car] = this.randomUserCar.brand;
           this.model[car] = this.randomUserCar.model;
@@ -61,26 +62,25 @@ export class NearbyCarsComponent implements OnInit {
           this.file[car] = this.carsService.getCarImagesByID(this.CarsArray[car].id_clients).subscribe(
             // tslint:disable-next-line:no-shadowed-variable
             data => {
-              for(let img in data)
-              { 
-                if(data[img].type != 2)
+              for (let img in data) {
+                if (data[img].type != 2)
                   this.img[car] = '//' + this.clientService.getServer() + data[img].file
               }
-             
-  
+
+
             }
           );
           this.spinner.hide();
         });
     }
-   
+
   }
 
-  public showMoreCars(){
-    this.moreCars +=3;
-    if(this.CarsArray.lenght>this.moreCars)
-      this.loadNearbyCars(this.moreCars) 
-    else this.isMoreCars = false;
+  public showMoreCars() {
+    this.moreCars += 1;
+
+    this.loadNearbyCars(this.moreCars)
+
 
   }
 }

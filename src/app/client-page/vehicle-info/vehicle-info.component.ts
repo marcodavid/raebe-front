@@ -41,6 +41,7 @@ export class VehicleInfoComponent implements OnInit {
   evaluations: Evaluation[] = [];
   hoveredDate: NgbDate;
   perfilPhoto:any;
+  showButton = false;
   protected totalDays:any
   protected totalPrice:any
   protected fromDate: NgbDate;
@@ -50,6 +51,7 @@ export class VehicleInfoComponent implements OnInit {
   protected mm = this.today.getMonth()+1; 
   protected yyyy = this.today.getFullYear();
   protected  minday: NgbDate = new NgbDate(this.yyyy,this.mm,this.dd); 
+  user: any;
   
 
   constructor(protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar,protected renterService: RentersService) {
@@ -76,6 +78,10 @@ export class VehicleInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.clientService.getUserInfo();
+    if(this.user)
+      this.showButton = true;
+    else this.showButton = false;
     this.clientSelected = localStorage.getItem("clientSelected");
     this.loadDescription(this.clientSelected);
     this.clientService.getClientsByID( this.clientSelected).subscribe(
@@ -181,7 +187,6 @@ export class VehicleInfoComponent implements OnInit {
           "Puertas:  " + this.clientSelectedCar["doors"],
           "Aire acondicionado:  " + this.clientSelectedCar["ac"],
           "Audio auxiliar:  " + this.clientSelectedCar["audioaux"],
-          "Audio bluetooth:  " + this.clientSelectedCar["audiobluetooth "],
           "Turbo:  " + this.clientSelectedCar["turbo"],
           "Bolsas de aire:  " + this.clientSelectedCar["airbags"],
           "Asiento de bebé: " + this.clientSelectedCar["babysit"],

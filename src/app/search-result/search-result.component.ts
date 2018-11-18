@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ClientsService } from '../services/clients-service/clients.service';
 import { CarsService } from '../services/cars-service/cars.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-result',
@@ -40,9 +41,10 @@ export class SearchResultComponent implements OnInit {
   itemState = [
     'Marca','Modelo','Año','Precio'
   ];
-  constructor(private spinner: NgxSpinnerService, private clientService: ClientsService, private carsService: CarsService) { }
+  constructor(protected router: Router,protected spinner: NgxSpinnerService, protected clientService: ClientsService, protected carsService: CarsService) { }
   protected arrayCarsSaved: any = []
   ngOnInit() {
+   
     this.spinner.show();
     this.clientService.getClients().subscribe(
       data => {
@@ -71,14 +73,7 @@ export class SearchResultComponent implements OnInit {
     }
   
   }
-  onChange(value: any){
-   
-    sessionStorage.setItem("searchSelected",value);
-  }
-  onSearch()
-  {
-    sessionStorage.setItem("searchItem",this.searchItem)
-  }
+ 
   onSearchClicked() {
     this.filterBy = sessionStorage.getItem("searchSelected");
     this.searchItem = sessionStorage.getItem("searchItem")

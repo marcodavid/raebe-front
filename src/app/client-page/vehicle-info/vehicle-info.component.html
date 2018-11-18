@@ -45,8 +45,11 @@
           *totalDays | currency}}
           <font size="3 ">Por {{totalDays}} día(s) (incluye IVA)</font>
         </h4>
-        <button routerLink="/client/agreement" class="btn btn-primary btn-lg btn-block justify-content-center">Mostrar contrato
+        <button *ngIf="showButton == true" routerLink="/client/agreement" class="btn btn-primary btn-lg btn-block justify-content-center">Mostrar contrato
           del vehículo</button>
+          <h4 *ngIf="showButton == false">Por favor inicia sesión para realizar una renta, da click  en los siguientes enlaces:
+          <a  href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#signupModal">Registrate!</a>
+      <a href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#loginModal">Ingresa</a></h4>
       </div>
       <div class="col-sm-5">
         <h5>Fechas:</h5>
@@ -110,3 +113,8 @@
 </div>
 <div class="container mt-3 mb-5">
 </div>
+<app-login-modal>
+</app-login-modal>
+
+<app-signup-modal>
+</app-signup-modal>

@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
           <label for="year">Año del Automóvil</label>
-          <input [(ngModel)]="userCar.year"   name="userCar.year" value="2018" type="number" id="year" class="form-control" required>
+          <input [(ngModel)]="userCar.year" name="userCar.year" value="2018" type="number" id="year" class="form-control" required>
         </div>
         <div class="form-group">
           <label for="year">Numero de placa</label>
@@ -51,13 +51,15 @@
       <div class="col-sm-12 col-md-3">
         <div class="form-group">
           <label for="air">Asientos Disponibles</label>
-          <input [(ngModel)]="userCar.passagers" name="userCar.passagers" type="number" min="2" max="10" value="4" step="1" id="air" class="form-control" required>
+          <input [(ngModel)]="userCar.passagers" name="userCar.passagers" type="number" min="2" max="10" value="4" step="1" id="air"
+            class="form-control" required>
         </div>
       </div>
       <div class="col-sm-12 col-md-3">
         <div class="form-group">
           <label for="air">Puertas</label>
-          <input [(ngModel)]="userCar.doors" name="userCar.doors" type="number" min="2" max="4" step="1" value="4" id="air" class="form-control" required>
+          <input [(ngModel)]="userCar.doors" name="userCar.doors" type="number" min="2" max="4" step="1" value="4" id="air" class="form-control"
+            required>
         </div>
       </div>
     </div>
@@ -85,7 +87,7 @@
       <div class="col-sm-12 col-md-3">
         <div class="form-group">
           <label for="air">Bolsas de Aire</label>
-          <select [(ngModel)]="userCar.airbags"  name="userCar.airbags" id="air" class="form-control" required>
+          <select [(ngModel)]="userCar.airbags" name="userCar.airbags" id="air" class="form-control" required>
             <option value=""></option>
             <option value="Si">Si</option>
             <option value="No">No</option>
@@ -97,7 +99,7 @@
       <div class="col-sm-12 col-md-3">
         <div class="form-group">
           <label for="air">Espacio para Maletas</label>
-          <select [(ngModel)]="userCar.numsuitcase"  name="userCar.numsuitcase" id="air" class="form-control" required>
+          <select [(ngModel)]="userCar.numsuitcase" name="userCar.numsuitcase" id="air" class="form-control" required>
             <option value=""></option>
             <option value="Si">Si</option>
             <option value="No">No</option>
@@ -116,7 +118,7 @@
       </div>
       <div class="col-sm-12 col-md-3">
         <div class="form-group">
-          <label for="air">Audio Auxiliar</label>
+          <label for="air">Llanta de Refacción</label>
           <select [(ngModel)]="userCar.audioaux" name="userCar.audioaux" id="air" class="form-control" required>
             <option value=""></option>
             <option value="Si">Si</option>
@@ -128,26 +130,6 @@
     <div class="row justify-content-center">
       <div class="col-sm-12 col-md-3">
         <div class="form-group">
-          <label for="air">Llanta de Refacción</label>
-          <select [(ngModel)]="userCar.audioaux" name="userCar.audioaux" id="air" class="form-control" required>
-            <option value=""></option>
-            <option value="Si">Si</option>
-            <option value="No">No</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-3">
-        <div class="form-group">
-          <label for="air">Alarma</label>
-          <select [(ngModel)]="userCar.alarm"name="userCar.alarm" id="air" class="form-control" required>
-            <option value=""></option>
-            <option value="Si">Si</option>
-            <option value="No">No</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-3">
-        <div class="form-group">
           <label for="air">Llave con Sensor de Proximidad</label>
           <select [(ngModel)]="userCar.sensor" name="userCar.sensor" id="air" class="form-control" required>
             <option value=""></option>
@@ -156,11 +138,28 @@
           </select>
         </div>
       </div>
+  
+      <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label for="air">Alarma</label>
+            <select [(ngModel)]="userCar.alarm" name="userCar.alarm" id="air" class="form-control" required>
+              <option value=""></option>
+              <option value="Si">Si</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-3">
+            <div class="form-group">
+          
+            </div>
+          </div>
       <div class="col-sm-12 col-md-9">
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Describe porque deberian de rentar tu vehículo:</label>
-          <textarea placeholder="Mínimo 50 caracteres" [(ngModel)]="userCar.description" name="userCar.description" class="form-control" id="exampleFormControlTextarea1" rows="3" minlength="50" required></textarea> 
-        </div>           
+          <textarea placeholder="Mínimo 50 caracteres" [(ngModel)]="userCar.description" name="userCar.description" class="form-control"
+            id="exampleFormControlTextarea1" rows="3" minlength="50" required></textarea>
+        </div>
       </div>
     </div>
   </div>

@@ -100,6 +100,16 @@ export class MyInfoComponent implements OnInit {
         });
 
   }
+  public saveInfo() {
+
+    this.user.fulldata = this.checkFullData();
+    this.clientService.putClientForUpdate(this.user);
+    this.clientService.putAddressForUpdate(this.userAddress);
+    this.clientService.putDriverLicenseForUpdate(this.userDriverLicense)
+
+    
+
+  }
   public deletePhoto() {
       this.carsService.deleteImage(this.user.id_clients,2).subscribe(
         data=>{
@@ -129,18 +139,7 @@ export class MyInfoComponent implements OnInit {
     alert("Imagenes guardadas")
     this.ngOnInit();
   }
-  public saveInfo() {
-    this.validateChangesOnUserInfo()
-    this.validateChangesOnUserAddress()
-    this.validateChangesOnUserDriverLicense();
-    this.user.fulldata = this.checkFullData();
-    this.clientService.putClientForUpdate(this.user);
-    this.clientService.putAddressForUpdate(this.userAddress);
-    this.clientService.putDriverLicenseForUpdate(this.userDriverLicense)
 
-    
-
-  }
 
   public checkFullData() {
     let isFullData = 1;
@@ -165,74 +164,74 @@ export class MyInfoComponent implements OnInit {
     return isFullData;
 
   }
-  public validateChangesOnUserInfo() {
+  // public validateChangesOnUserInfo() {
 
-    if (this.client.firstname != "")
-      this.user.firstname = this.client.firstname;
+  //   if (this.client.firstname != "")
+  //     this.user.firstname = this.client.firstname;
 
 
 
-    if (this.client.lastname != "") {
-      this.user.lastname = this.client.lastname;
+  //   if (this.client.lastname != "") {
+  //     this.user.lastname = this.client.lastname;
 
-    }
+  //   }
 
-    if (this.client.email != "") {
-      this.user.email = this.client.email;
+  //   if (this.client.email != "") {
+  //     this.user.email = this.client.email;
 
-    }
+  //   }
 
-    if (this.client.curp != "") {
-      this.user.curp = this.client.curp;
+  //   if (this.client.curp != "") {
+  //     this.user.curp = this.client.curp;
 
-    }
+  //   }
 
-    if (this.client.telcountry != "") {
-      this.user.telcountry = this.client.telcountry;
+  //   if (this.client.telcountry != "") {
+  //     this.user.telcountry = this.client.telcountry;
 
-    }
-    if (this.client.telnumber != "") {
-      this.user.telnumber = this.client.telnumber;
+  //   }
+  //   if (this.client.telnumber != "") {
+  //     this.user.telnumber = this.client.telnumber;
 
-    }
-    if (this.client.lada != "") {
-      this.user.lada = this.client.lada;
+  //   }
+  //   if (this.client.lada != "") {
+  //     this.user.lada = this.client.lada;
 
-    }
-  }
+  //   }
+  // }
 
-  public validateChangesOnUserAddress() {
+  // public validateChangesOnUserAddress() {
 
-    if (this.address.zipcode != "")
-      this.userAddress.zipcode = this.address.zipcode;
+  //   if (this.address.zipcode != "")
+  //     this.userAddress.zipcode = this.address.zipcode;
 
-    if (this.address.country != "")
-      this.userAddress.country = this.address.country;
+  //   if (this.address.country != "")
+  //     this.userAddress.country = this.address.country;
 
-    if (this.address.state != "")
-      this.userAddress.state = this.address.state;
+  //   if (this.address.state != "")
+  //     this.userAddress.state = this.address.state;
 
-    if (this.address.city != "")
-      this.userAddress.city = this.address.city;
+  //   if (this.address.city != "")
+  //     this.userAddress.city = this.address.city;
 
-    if (this.address.province != "")
-      this.userAddress.province = this.address.province;
+  //   if (this.address.province != "")
+  //     this.userAddress.province = this.address.province;
 
-    if (this.address.street != "")
-      this.userAddress.province = this.address.street;
+  //   if (this.address.street != "")
+  //     this.userAddress.province = this.address.street;
 
-    if (this.address.numint != "")
-      this.userAddress.numint = this.address.numint;
+  //   if (this.address.numint != "")
+  //     this.userAddress.numint = this.address.numint;
 
-    if (this.address.numext != "")
-      this.userAddress.numext = this.address.numext;
+  //   if (this.address.numext != "")
+  //     this.userAddress.numext = this.address.numext;
 
-  }
+  // }
 
-  public validateChangesOnUserDriverLicense() {
-    if (this.driverlicense.licensenum != "")
-      this.userDriverLicense.licensenum = this.driverlicense.licensenum;
-  }
+  // public validateChangesOnUserDriverLicense() {
+  //   if (this.driverlicense.licensenum != "")
+  //     this.userDriverLicense.licensenum = this.driverlicense.licensenum;
+  // }
 
   public changeDatePicker() {
     this.showDatePicker = true;
