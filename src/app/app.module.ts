@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FooterComponent } from './footer/footer.component';
 import { SignupModalComponent } from './index-page/signup-modal/signup-modal.component';
+import { AgmCoreModule } from '@agm/core';
 
 import { ClientPageComponent } from './client-page/client-page.component';
 import { IndexPageComponent } from './index-page/index-page.component';
@@ -60,6 +61,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { RouterModule, Routes } from '@angular/router';
+import { MapsComponent } from './maps/maps.component';
 const routes: Routes = [
   { path : 'search-result', component : SearchResultComponent}
 ];
@@ -103,6 +105,7 @@ const routes: Routes = [
     FileSelectDirective,
     RenterComponent,
     SearchResultComponent,
+    MapsComponent,
 
     
     
@@ -122,8 +125,9 @@ const routes: Routes = [
     NgxSpinnerModule,
     FilterPipeModule,
     NgxPayPalModule,
-    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
-  
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCV_vanvRIAvlMTqG1XFShqFOQkKnA9RVY'
+    })    
   ],
   exports: [RouterModule],
   providers: [

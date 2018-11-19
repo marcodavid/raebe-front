@@ -52,7 +52,9 @@ export class VehicleInfoComponent implements OnInit {
   protected yyyy = this.today.getFullYear();
   protected  minday: NgbDate = new NgbDate(this.yyyy,this.mm,this.dd); 
   protected user: any;
-  
+  title: string = 'My first AGM project';
+  lat: number = 20.676667;
+  lng: number = -103.3475;
 
   constructor(protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar,protected renterService: RentersService) {
     this.vehicleName = "Dodge Attitude";
