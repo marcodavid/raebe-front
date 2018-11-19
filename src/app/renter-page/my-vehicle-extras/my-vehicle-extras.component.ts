@@ -53,7 +53,6 @@ export class MyVehicleExtrasComponent extends MyVehicleComponent implements OnIn
       this.carsService.putCarForUpdate(this.car).subscribe(
         data => {
           if (data) {
-            alert('Carro actualizado, cambiar este mensaje por uno mejor');
             super.ngOnInit();
           }
         }
@@ -61,11 +60,9 @@ export class MyVehicleExtrasComponent extends MyVehicleComponent implements OnIn
     } else {
       this.carsService.postCar(this.car).subscribe(
         data => {
-          alert('Carro creado, cambiar este mensaje por uno mejor');
           super.ngOnInit();
         },
         error => {
-          alert('nel');
         }
       );
     }

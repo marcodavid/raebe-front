@@ -31,10 +31,17 @@
         </tr>
         <tr>
         <tr>
-          <td>TPrecio Total</td>
+          <td>Precio Total</td>
           <td><b>{{rent.totalprice | currency}}</b></td>
           <td></td>
         </tr>
+        <tr>
+            <td>Enviar mensaje a través de Raebe mail</td>
+            <td><textarea rows="4" cols="50">
+                </textarea>
+              </td>
+            <td><button>Enviar</button></td>
+          </tr>
         <tr>
           <td>Estatus</td>
           <td><button *ngIf="rent.acceptence <4"  (click)="onAcceptence(2,rent)"   type="button" class="btn btn-danger">Declinar</button></td>

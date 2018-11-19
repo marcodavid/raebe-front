@@ -63,21 +63,17 @@ export class MyVehicleCalendarComponent  extends MyVehicleComponent implements O
         data =>{
      
                 
-         alert("preferencias actualizadas")
         },
         error => {
-          alert('nel');
         }
       );
     } else {
       this.userRentPreferences.id_clients = this.user.id_clients;
       this.renterService.PostRentPreferences(this.userRentPreferences).subscribe(
         data => {
-         alert('preferencias creadas');
          this.loadCalendar();
         },
         error => {
-          alert('nel');
         }
       );
     }

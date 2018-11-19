@@ -16,6 +16,7 @@ export class NearbyCarsComponent implements OnInit {
   CarsArray: any = [];
   randomUserCar: any;
   brandmark: any = [];
+  price: any = [];
   model: any = [];
   description: any = [];
   file: any = [];
@@ -59,6 +60,7 @@ export class NearbyCarsComponent implements OnInit {
           this.brandmark[car] = this.randomUserCar.brand;
           this.model[car] = this.randomUserCar.model;
           this.description[car] = this.randomUserCar.description;
+          this.price[car] = this.randomUserCar.price;
           this.file[car] = this.carsService.getCarImagesByID(this.CarsArray[car].id_clients).subscribe(
             // tslint:disable-next-line:no-shadowed-variable
             data => {

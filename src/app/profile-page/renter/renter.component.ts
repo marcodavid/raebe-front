@@ -55,7 +55,6 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
 
-            alert("renta aceptada")
             this.rentersService.postMail(this.user.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acabas de aceptar una renta para el usuario "+rentToUpdate.clientname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
               data=>{
                 
@@ -81,7 +80,6 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
         rentToUpdate.acceptence = 4;//3 lista,4 iniciada
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
-            alert("renta en progreso")
             
 
           }
@@ -91,7 +89,6 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
         rentToUpdate.acceptence = 5;//3 lista,4 iniciada
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
-            alert("renta terminada")
             this.rentersService.postMail(this.user.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acabas de finalizar  una renta para el usuario "+rentToUpdate.clientname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
               data=>{
                 location.reload();

@@ -58,9 +58,8 @@ export class MyVehicleImagesComponent extends MyVehicleComponent implements OnIn
   handleFileInput(files: FileList) {
     for (var i  = 0 ; i < files.length; i ++ ) {
       this.fileToUpload = files.item(i);
-      this.carsService.postCarImages(this.fileToUpload,this.user.id_clients).subscribe(
+      this.carsService.postCarImages(this.fileToUpload,this.user.id_clients,1).subscribe(
         data => {
-          alert("Imagen Guardada")
           window.location.reload()
           
         }, error => {
@@ -72,13 +71,11 @@ export class MyVehicleImagesComponent extends MyVehicleComponent implements OnIn
   public onDeleteImage(index) {
     this.carsService.deleteImage(this.user.id_clients,1,this.carImageConteiner[index].id).subscribe(
       data=>{
-        alert("imagen borrada");
         window.location.reload()
           
       }
     );
   }
   public onSaveCarImages() {
-    alert("Imagenes guardadas")
   }
 }

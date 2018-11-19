@@ -113,7 +113,6 @@ export class MyInfoComponent implements OnInit {
   public deletePhoto() {
       this.carsService.deleteImage(this.user.id_clients,2).subscribe(
         data=>{
-          alert("borrada")
           this.perfilImage = "";
           this.isPerfilImage = false;
         },error=>{}
@@ -125,7 +124,6 @@ export class MyInfoComponent implements OnInit {
       this.fileToUpload = files.item(i);
         this.carsService.postCarImages(this.fileToUpload,this.user.id_clients,2).subscribe(
         data => {
-          alert("Imagen Guardada")
           this.ngOnInit();
           this.isPerfilImage = true;
         }, error => {
@@ -136,7 +134,6 @@ export class MyInfoComponent implements OnInit {
   }
 
   public onSaveCarImages() {
-    alert("Imagenes guardadas")
     this.ngOnInit();
   }
 

@@ -50,23 +50,19 @@ export class MyVehicleInsuranceComponent extends MyVehicleComponent implements O
     if (this.userCarHasPolicy) {
         this.carsService.putPolicyForUpdate(this.userPolicy).subscribe(
           data => {
-            alert('guardado, poliza actualizada');
             this.onSaveCoverages();
           },
           error => {
-            alert('nel');
           }
         );
     } else {
       this.userPolicy.id_car = this.userCar.id_car;
       this.carsService.postPolicy(this.userPolicy).subscribe(
         data => {
-          alert('guardado, poliza creada');
           this.onSaveCoverages();
           super.ngOnInit();
         },
         error => {
-          alert('nel');
         }
       );
     }
@@ -81,10 +77,8 @@ export class MyVehicleInsuranceComponent extends MyVehicleComponent implements O
       this.carsService.deleteCoverage(this.userCoverages[0].id_policy).subscribe();
       this.carsService.postCoverage(this.userCoverages).subscribe(
         data => {
-          alert('guardado, coverage actualizado');
         },
         error => {
-          alert('nel');
         }
       );
     } else {
@@ -94,11 +88,9 @@ export class MyVehicleInsuranceComponent extends MyVehicleComponent implements O
       }
       this.carsService.postCoverage(this.userCoverages).subscribe(
         data => {
-          alert('guardado, coverage creado');
           super.ngOnInit();
         },
         error => {
-          alert('nel');
         }
       );
     }

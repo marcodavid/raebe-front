@@ -56,7 +56,6 @@ export class RentsComponent extends ProfilePageComponent implements OnInit {
         rent.acceptence = 2
         this.rentersService.putRentForUpdate(rent).subscribe(
           data => {
-            alert("renta terminada")
 
           }
         );
@@ -74,7 +73,6 @@ export class RentsComponent extends ProfilePageComponent implements OnInit {
         rentToUpdate.acceptence = 1;
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
-            alert("renta aceptada")
 
           }
         );
@@ -83,7 +81,6 @@ export class RentsComponent extends ProfilePageComponent implements OnInit {
         rentToUpdate.acceptence = 2;
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
-            alert("renta declinada")
 
           }
         );
@@ -92,7 +89,6 @@ export class RentsComponent extends ProfilePageComponent implements OnInit {
         rentToUpdate.acceptence = 4;//3 lista,4 iniciada
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
-            alert("renta en progreso")
 
           }
         );
@@ -101,7 +97,6 @@ export class RentsComponent extends ProfilePageComponent implements OnInit {
         rentToUpdate.acceptence = 5;//3 lista,4 iniciada
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
-            alert("renta terminada")
 
           }
         );
