@@ -5,6 +5,7 @@ import { RentersService } from '../../services/renters-service/renters.service';
 import { ClientsService } from '../../services/clients-service/clients.service';
 import { Router } from '@angular/router';
 import { CarsService } from '../../services/cars-service/cars.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-rents',
@@ -35,8 +36,8 @@ export class RentsComponent extends ProfilePageComponent implements OnInit {
   }
   readonly = false;
 
-  constructor(protected router: Router,protected rentersService : RentersService,protected clientService: ClientsService,protected carsService : CarsService) { 
-    super(rentersService,clientService,carsService);
+  constructor(protected spinner: NgxSpinnerService,protected router: Router,protected rentersService : RentersService,protected clientService: ClientsService,protected carsService : CarsService) { 
+    super(spinner,rentersService,clientService,carsService);
   }
 
 

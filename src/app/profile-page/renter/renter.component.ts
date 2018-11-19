@@ -5,6 +5,7 @@ import { ClientsService } from '../../services/clients-service/clients.service';
 import * as $ from 'jquery';
 import { ProfilePageComponent } from '../profile-page.component';
 import { CarsService } from '../../services/cars-service/cars.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-renter',
@@ -33,8 +34,9 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
   protected dd = this.today.getDate();
   protected mm = this.today.getMonth() + 1;
   protected yyyy = this.today.getFullYear();
-  constructor(protected rentersService: RentersService, protected clientService: ClientsService,protected carsService:CarsService) {
-    super(rentersService, clientService,carsService);
+
+  constructor(protected spinner: NgxSpinnerService,protected rentersService: RentersService, protected clientService: ClientsService,protected carsService:CarsService) {
+    super(spinner,rentersService, clientService,carsService);
   }
 
   ngOnInit() {
@@ -69,7 +71,7 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
            
             this.rentersService.postMail(this.user.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acabas de declinar una renta para el usuario "+rentToUpdate.clientname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
               data=>{
-                
+               location.reload();
               }
             );
           }
@@ -92,6 +94,7 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
             alert("renta terminada")
             this.rentersService.postMail(this.user.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acabas de finalizar  una renta para el usuario "+rentToUpdate.clientname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
               data=>{
+                location.reload();
               }
             );
           }

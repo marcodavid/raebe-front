@@ -117,6 +117,8 @@ export class PayementComponent extends AgreementComponent implements OnInit {
       },
       onPaymentComplete: (data, actions) => {
         console.log('OnPaymentComplete');
+        this.router.navigate(['/profile/rents']);
+
       },
       onCancel: (data, actions) => {
         console.log('OnCancel');

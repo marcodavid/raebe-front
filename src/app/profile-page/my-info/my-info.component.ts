@@ -145,7 +145,7 @@ export class MyInfoComponent implements OnInit {
     let isFullData = 1;
 
     for (var item in this.user) {
-      if (this.user[item] || item == "isrenter" || item == "fulldata" || item == "imgprofilephoto" || item == "id_address")
+      if (this.user[item] || item == "isrenter" || item == "curp" || item == "fulldata" || item == "imgprofilephoto" || item == "id_address")
         continue;
       else isFullData = 0;
     }
