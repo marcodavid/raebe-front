@@ -52,7 +52,6 @@ export class VehicleInfoComponent implements OnInit {
   protected yyyy = this.today.getFullYear();
   protected  minday: NgbDate = new NgbDate(this.yyyy,this.mm,this.dd); 
   protected user: any;
-  title: string = 'My first AGM project';
   lat: number = 20.676667;
   lng: number = -103.3475;
 
@@ -204,4 +203,9 @@ export class VehicleInfoComponent implements OnInit {
 
       });
   }
+  onChoseLocation(event) {
+    this.lat = event.coords.lat;
+    this.lng = event.coords.lng;
+  }
 }
+ 

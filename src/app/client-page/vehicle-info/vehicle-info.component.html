@@ -72,18 +72,18 @@
 </div>
 <div class="container mt-2" [@animacionAparecer]>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <h2>Características</h2>
       <li *ngFor='let feature of features'>
           {{feature}}
         </li>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-8">
         <h5>Lugar de entrega</h5>
-
+        
         <!-- this creates a google map on the page with the given lat/lng from -->
         <!-- the component as the initial center of the map: -->
-        <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)">
           <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
         </agm-map>
     </div>
