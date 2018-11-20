@@ -29,7 +29,7 @@ import { VehicleMapComponent } from './client-page/vehicle-map/vehicle-map.compo
 
 const app_routes: Routes = [
     { path : '', component : IndexPageComponent },
-    { path : 'home', component : IndexPageComponent ,canActivate: [AuthGuardService]},
+    { path : 'home', component : IndexPageComponent, /* canActivate: [AuthGuardService]*/ },
     {
         path : 'profile', component : ProfilePageComponent,
         children : [
@@ -39,7 +39,7 @@ const app_routes: Routes = [
             { path : 'reviews', component : ReviewsComponent },
             { path : 'messages', component : MessagesComponent }
         ],
-        canActivate: [AuthGuardService]
+        /* canActivate: [AuthGuardService] */
 
     },
     {
