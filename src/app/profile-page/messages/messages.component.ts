@@ -35,13 +35,9 @@ export class MessagesComponent implements OnInit {
       this.getConversations();
     });
 
-    this.messagesInterval = interval(1500).pipe(
-      map((event) => {
-          this.getConversationMessages(this.idConversation);
-        }
-      ),
-      share()
-    );
+    this.messagesInterval = interval(1500).subscribe( (event) => {
+      this.getConversationMessages(this.idConversation);
+    });
   }
 
   ngOnInit() { }
