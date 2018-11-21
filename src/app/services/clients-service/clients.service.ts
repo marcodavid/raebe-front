@@ -23,6 +23,10 @@ export class ClientsService extends ConfigService {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
     return this.http.get("http://" + this.server + "/api/GetClients/", this.httpOptions)
   }
+  public getLocations() {
+    this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
+    return this.http.get("http://" + this.server + "/api/GetLocations/", this.httpOptions)
+  }
   public getClientsByID(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
     return this.http.get("http://" + this.server + "/api/GetClientsByID/?id_clients=" + id, this.httpOptions)

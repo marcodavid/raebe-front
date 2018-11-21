@@ -16,7 +16,7 @@ export class NavbarComponent  extends SearchResultComponent implements OnInit {
   protected user: any;
   public userIsRenter : boolean;
   itemState = [
-    'Marca','Modelo','Año','Precio'
+    'Marca','Modelo','Año'
   ];
   searchItem:any
   constructor(protected spinner: NgxSpinnerService,protected router: Router,protected clientsService : ClientsService, protected carsService: CarsService) {
@@ -53,8 +53,10 @@ export class NavbarComponent  extends SearchResultComponent implements OnInit {
 
   }
   onRentPerfil(){
-    localStorage.setItem(this.user.id_clients,"clientSelected");
-    this.router.navigate(['/client/vehicle-info']);
+    
+    localStorage.setItem("clientSelected",this.user.id_clients,);
+    
+    this.router.navigate(['/client/vehicle-info-user']);
   }
   onSearch()
   {
@@ -67,9 +69,6 @@ export class NavbarComponent  extends SearchResultComponent implements OnInit {
         this.router.navigated = false;
         this.router.navigate(['/search-result']);
       })
-   
-    
-
   }
   
 }

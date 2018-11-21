@@ -55,6 +55,8 @@ const app_routes: Routes = [
             { path : '', component : FeaturedVehiclesComponent },
             { path : 'featured-vehicles', component : FeaturedVehiclesComponent },
             { path : 'vehicle-info', component : VehicleInfoComponent },
+            { path : 'vehicle-info-user', component : VehicleInfoComponent },
+
             { path : 'agreement', component : AgreementComponent },
             { path : 'payement', component : PayementComponent }
          ],
