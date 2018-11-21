@@ -126,7 +126,7 @@ const routes: Routes = [
     FilterPipeModule,
     NgxPayPalModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCV_vanvRIAvlMTqG1XFShqFOQkKnA9RVY'
+      apiKey: ''
     })    
   ],
   exports: [RouterModule],

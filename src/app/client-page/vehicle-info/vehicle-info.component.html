@@ -45,11 +45,11 @@
           *totalDays | currency}}
           <font size="3 ">Por {{totalDays}} día(s) (incluye IVA)</font>
         </h4>
-        <button *ngIf="showButton == true" routerLink="/client/agreement" class="btn btn-primary btn-lg btn-block justify-content-center">Mostrar contrato
-          del vehículo</button>
-          <h4 *ngIf="showButton == false">Por favor inicia sesión para realizar una renta, da click  en los siguientes enlaces:
-          <a  href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#signupModal">Registrate!</a>
-      <a href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#loginModal">Ingresa</a></h4>
+        <button *ngIf="showButton == true" routerLink="/client/agreement" class="btn btn-primary btn-lg btn-block justify-content-center">Mostrar
+          contrato del vehículo</button>
+        <h4 *ngIf="showButton == false">Por favor inicia sesión para realizar una renta, da click en los siguientes enlaces:
+          <a href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#signupModal">Registrate!</a>
+          <a href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#loginModal">Ingresa</a></h4>
       </div>
       <div class="col-sm-5">
         <h5>Fechas:</h5>
@@ -75,20 +75,25 @@
     <div class="col-sm-4">
       <h2>Características</h2>
       <li *ngFor='let feature of features'>
-          {{feature}}
-        </li>
+        {{feature}}
+      </li>
     </div>
     <div class="col-sm-8">
+      <div *ngIf="isOwner==true">
+        <h6>Hola {{client.firstname}} por favor <b>seleccióna el lugar en el mapa donde entregarías el vehículo</b> (doble click) </h6>
+          <agm-map [latitude]="location.lat" [longitude]="location.lng" (mapClick)="onChoseLocation($event)">
+            <agm-marker [latitude]="location.lat" [longitude]="location.lng"></agm-marker>
+          </agm-map>
+      </div>
+      <div *ngIf="isOwner==false">
         <h5>Lugar de entrega</h5>
-        
-        <!-- this creates a google map on the page with the given lat/lng from -->
-        <!-- the component as the initial center of the map: -->
-        <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)">
-          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        <agm-map [latitude]="location.lat" [longitude]="location.lng">
+          <agm-marker [latitude]="location.lat" [longitude]="location.lng"></agm-marker>
         </agm-map>
+      </div>
     </div>
   </div>
- 
+
 </div>
 <div class="container mt-5" [@animacionAparecer]>
   <div class="row">

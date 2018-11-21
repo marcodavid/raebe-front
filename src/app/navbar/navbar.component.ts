@@ -23,6 +23,7 @@ export class NavbarComponent  extends SearchResultComponent implements OnInit {
     super(router, spinner,clientsService,carsService);
    }
 
+
   @ViewChild('unloggedButtons') unloggedButtons: ElementRef;
   @ViewChild('loggedButtons') loggedButtons: ElementRef;
 
@@ -50,6 +51,10 @@ export class NavbarComponent  extends SearchResultComponent implements OnInit {
     console.log(this.searchItem)
     sessionStorage.setItem("searchItem",this.searchItem)
 
+  }
+  onRentPerfil(){
+    localStorage.setItem(this.user.id_clients,"clientSelected");
+    this.router.navigate(['/client/vehicle-info']);
   }
   onSearch()
   {

@@ -28,34 +28,40 @@ import { RentersService } from '../../services/renters-service/renters.service';
 })
 export class VehicleInfoComponent implements OnInit {
   protected images = new Array();
-  protected comment:any;
-  protected rating:any;
+  protected comment: any;
+  protected rating: any;
   protected vehicleName: string;
   protected vehicleType: string;
   protected features: string[];
   protected description: string;
-  protected client:any;
-  protected rates:any;
-  protected  clientSelected: any
+  protected client: any;
+  protected rates: any;
+  protected clientSelected: any
   protected clientSelectedCar: any
   protected evaluations: Evaluation[] = [];
   protected hoveredDate: NgbDate;
-  protected perfilPhoto:any;
+  protected perfilPhoto: any;
   protected showButton = false;
-  protected totalDays:any
-  protected totalPrice:any
+  protected totalDays: any
+  protected totalPrice: any
   protected fromDate: NgbDate;
   protected toDate: NgbDate;
-  protected  today = new Date();
+  protected today = new Date();
   protected dd = this.today.getDate();
-  protected mm = this.today.getMonth()+1; 
+  protected mm = this.today.getMonth() + 1;
   protected yyyy = this.today.getFullYear();
-  protected  minday: NgbDate = new NgbDate(this.yyyy,this.mm,this.dd); 
+  protected minday: NgbDate = new NgbDate(this.yyyy, this.mm, this.dd);
   protected user: any;
-  lat: number = 20.676667;
-  lng: number = -103.3475;
+  locatioResult:any;
+  location = {
+    id_clients: "",
+    lat: 20.676667,
+    lng: -103.3475
+  }
+  isOwner: boolean;
 
-  constructor(protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar,protected renterService: RentersService) {
+
+  constructor(protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar, protected renterService: RentersService) {
     this.vehicleName = "Dodge Attitude";
     this.vehicleType = "Automovil";
     this.features = [];
@@ -64,42 +70,64 @@ export class VehicleInfoComponent implements OnInit {
       value: 9.6,
       date: "7 Junio 2018",
       comment: "Mucho mejor de lo que esperaba"
-    });   
+    });
     this.evaluations.push({
       username: "Samuel",
       value: 9.6,
       date: "7 Junio 2018",
       comment: "Mucho mejor de lo que esperaba"
     });
-    
-   
+
+
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 1);
 
   }
 
   ngOnInit() {
-    this.user = this.clientService.getUserInfo();
-    if(this.user)
-      this.showButton = true;
-    else this.showButton = false;
+   
     this.clientSelected = localStorage.getItem("clientSelected");
+    this.totalDays = this.TotalDays(this.toDate, this.fromDate);
+    this.user = JSON.parse (this.clientService.getUserInfo());
+    if( this.clientSelected == this.user.id_clients)
+      this.isOwner = true;
+      else this.isOwner = false;
     this.loadDescription(this.clientSelected);
-    this.clientService.getClientsByID( this.clientSelected).subscribe(
-      data=>{this.client = data}
+
+    this.location.id_clients = this.clientSelected;
+   
+    if (this.user)
+      this.showButton = true;
+
+    else this.showButton = false;
+
+    this.clientService.getClientsByID(this.clientSelected).subscribe(
+      data => { this.client = data }
     )
-    this.totalDays = this.TotalDays(this.toDate,this.fromDate);
+    
     this.renterService.getRatetByIdClients(this.clientSelected).subscribe(
-      data=>{
+      data => {
         this.rates = data;
       }
     )
+
+    this.clientService.getLocationByID(this.clientSelected).subscribe(
+      data => {
+         this.locatioResult = data;
+        this.location.lat = Number(this.locatioResult.lat);
+        this.location.lng = Number(this.locatioResult.lng);
+      },
+      error => {
+        this.clientService.postLocation(this.location).subscribe(
+          data => {
+
+          },
+        )
+      }
+
+    )
   }
 
-  
-  public disableDates(){
-
-  }
   onDateSelection(date: NgbDate) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
@@ -109,7 +137,7 @@ export class VehicleInfoComponent implements OnInit {
       this.toDate = null;
       this.fromDate = date;
     }
-    this.totalDays = this.TotalDays(this.toDate,this.fromDate);
+    this.totalDays = this.TotalDays(this.toDate, this.fromDate);
     localStorage.setItem("fromDate", JSON.stringify(this.fromDate));
     localStorage.setItem("toDate", JSON.stringify(this.toDate));
   }
@@ -126,20 +154,20 @@ export class VehicleInfoComponent implements OnInit {
     return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
   }
 
-  public TotalDays(toDate,fromDate) {
-    let day1 = new Date(toDate.year,toDate.month,toDate.day);
-    let day2 = new Date(fromDate.year,fromDate.month,fromDate.day);
-    let difference = day1.getTime()-day2.getTime();
-    let totalDay = difference/1000/60/60/24;
+  public TotalDays(toDate, fromDate) {
+    let day1 = new Date(toDate.year, toDate.month, toDate.day);
+    let day2 = new Date(fromDate.year, fromDate.month, fromDate.day);
+    let difference = day1.getTime() - day2.getTime();
+    let totalDay = difference / 1000 / 60 / 60 / 24;
     return totalDay;
-    
+
   }
   public loadDescription(clientSelected) {
 
     this.carsService.getCarByID(clientSelected).subscribe(
       data => {
         this.clientSelectedCar = data
-        localStorage.setItem("price",this.clientSelectedCar.price)
+        localStorage.setItem("price", this.clientSelectedCar.price)
         this.vehicleName = this.clientSelectedCar.model;
         this.vehicleType = this.clientSelectedCar.brand;
 
@@ -161,17 +189,16 @@ export class VehicleInfoComponent implements OnInit {
         this.carsService.getCarImagesByID(clientSelected).subscribe(
           data => {
             let index = 0;
-            for(let img in data)
-            { 
-              if(data[img].type != 2) {
+            for (let img in data) {
+              if (data[img].type != 2) {
                 this.images[index] = '//' + this.clientService.getServer() + data[img].file;
                 index++;
-              }              
-              else 
+              }
+              else
                 this.perfilPhoto = '//' + this.clientService.getServer() + data[img].file
-              if(index < 5 ) {
-                for( let i = index ; i  < 6 ; i++ ) {
-                  if(data[img].type != 2)
+              if (index < 5) {
+                for (let i = index; i < 6; i++) {
+                  if (data[img].type != 2)
                     this.images[i] = '//' + this.clientService.getServer() + data[img].file;
                 }
 
@@ -204,8 +231,10 @@ export class VehicleInfoComponent implements OnInit {
       });
   }
   onChoseLocation(event) {
-    this.lat = event.coords.lat;
-    this.lng = event.coords.lng;
+
+    this.location.lat = event.coords.lat;
+    this.location.lng = event.coords.lng;
+    this.clientService.putLocationForUpdate(this.location).subscribe();
   }
 }
- 
+
