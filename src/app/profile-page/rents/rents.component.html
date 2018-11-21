@@ -1,7 +1,70 @@
 <div class="container" [@animacionAparecer]>
   <div class="row">
     <div class="col-sm-12">
-        <h3>Aún no cuentas con rentas realizadas</h3>
+      <h3 *ngIf="myRents==0">Aún no cuentas con rentas realizadas</h3>
     </div>
   </div>
+  <ng-container *ngFor="let rent of clientsRents;index as i">
+    <table *ngIf="rent.acceptence != 2" class="table">
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Arrendador:</td>
+          <td ><a style="color:blue" (click)="setClient(rent.id_clientrenter)">click aquí para ver perfil arrendador</a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fechas:</td>
+          <td>{{rent.dateofpickup}} al {{rent.returnday}}</td>
+          <td>Dias totales: {{rent.totaldays}} día(s)</td>
+        </tr>
+        <tr>
+          <td>Precio base:</td>
+          <td>{{rent.price| currency}}</td>
+          <td>Días x Precio base:{{rent.price*rent.totaldays| currency}}</td>
+        </tr>
+        <tr>
+          <td>IVA</td>
+          <td>{{rent.iva| currency}}</td>
+          <td>Precio más IVA:{{rent.pricexiva | currency}}</td>
+        </tr>
+        <tr>
+        <tr>
+          <td>Precio Total</td>
+          <td><b>{{rent.totalprice | currency}}</b></td>
+          <td></td>
+        </tr>
+        <tr>
+            <td>Enviar mensaje a través de Raebe mail</td>
+            <td><textarea rows="4" cols="50">
+                </textarea>
+              </td>
+            <td><button>Enviar</button></td>
+          </tr>
+        <tr>
+          <td>Estatus</td>
+          <td><button *ngIf="rent.acceptence <4"  (click)="onAcceptence(2,rent)"   type="button" class="btn btn-danger">Declinar</button></td>
+          <td *ngIf="rent.acceptence == 1">Aceptado</td>
+          <td *ngIf="rent.acceptence == 0">Sin estatus aún</td>
+          <td *ngIf="rent.acceptence == 2">Declinado</td>
+          <td *ngIf="rent.acceptence == 4">Aceptado, hoy es el día!</td>
+          <td *ngIf="rent.acceptence == 5">Terminado</td>
+          <td></td>
+        </tr>
+        <tr  *ngIf="rent.acceptence == 5">
+          <td>Ingresa un comentario
+            <input [(ngModel)]="comments[i]">
+          </td>
+          <td >
+           Del 1  al 10, ¿Qué tanto recomendarias este carro?
+           <ngb-rating [(rate)]="rates[i]"  [readonly]="readonly"></ngb-rating>
+          </td> 
+          <td >
+            <button class="btn btn-info" (click)="onRate(rent,i)">Enviar</button>
+           </td>       
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
 </div>

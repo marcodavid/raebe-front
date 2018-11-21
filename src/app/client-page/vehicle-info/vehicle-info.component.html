@@ -1,81 +1,133 @@
 <div class="container mt-2" [@animacionAparecer]>
   <div class="row">
     <div class="col-sm-12">
-      <h2>Información del Vehículo</h2>
+      <h2>{{vehicleName}} {{vehicleType}}</h2>
     </div>
   </div>
 </div>
-
 <div class="container mt-2" [@animacionAparecer]>
   <div class="row">
-    <div class="col-sm-6">
-        <img src="/assets/img/example_2.jpg" width="80%" alt="">
+    <div class="row">
+      <div class="col-sm-12">
+        <ngb-carousel *ngIf="images">
+
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero " [src]="images[0]" alt="Random first slide">
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero" [src]="images[1]" alt="Random first slide">
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero" [src]="images[2]" alt="Random first slide">
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero" [src]="images[3]" alt="Random first slide">
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero" [src]="images[4]" alt="Random first slide">
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class="img-fluid containerHero" [src]="images[5]" alt="Random first slide">
+          </ng-template>
+        </ngb-carousel>
+
+
+      </div>
+
     </div>
-    <div class="col-sm-6">
-      <h2>{{vehicleName}}</h2>
-      <h3>{{vehicleType}}</h3>
+    <div class="row">
+      <div class="col-sm-7">
+        <img *ngIf="perfilPhoto" id="perfil" src="{{perfilPhoto}}" class="image--cover">
+        <label for="perfil">Arrendado por {{client.firstname}} {{client.lastname}}</label>
+        <br>
+        <br>
+        <h4 class="justify-content-center align-right">{{clientSelectedCar.price *totalDays *.16 +clientSelectedCar.price
+          *totalDays | currency}}
+          <font size="3 ">Por {{totalDays}} día(s) (incluye IVA)</font>
+        </h4>
+        <button *ngIf="showButton == true" routerLink="/client/agreement" class="btn btn-primary btn-lg btn-block justify-content-center">Mostrar
+          contrato del vehículo</button>
+        <h4 *ngIf="showButton == false">Por favor inicia sesión para realizar una renta, da click en los siguientes enlaces:
+          <a href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#signupModal">Registrate!</a>
+          <a href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#loginModal">Ingresa</a></h4>
+      </div>
+      <div class="col-sm-5">
+        <h5>Fechas:</h5>
+        <ngb-datepicker #dp (select)="onDateSelection($event)" [minDate]="minday" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+        </ngb-datepicker>
+        <ng-template #t let-date let-focused="focused">
+          <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)" [class.faded]="isHovered(date) || isInside(date)"
+            (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+          </span>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="col-sm-12 divisor">
-      &nbsp;
+    &nbsp;
   </div>
 </div>
-
 <div class="container mt-2" [@animacionAparecer]>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <h2>Características</h2>
+      <li *ngFor='let feature of features'>
+        {{feature}}
+      </li>
+    </div>
+    <div class="col-sm-8">
+      <div *ngIf="isOwner==true">
+        <h6>Hola {{client.firstname}} por favor <b>seleccióna el lugar en el mapa donde entregarías el vehículo</b> (doble click) </h6>
+          <agm-map [latitude]="location.lat" [longitude]="location.lng" (mapClick)="onChoseLocation($event)">
+            <agm-marker [latitude]="location.lat" [longitude]="location.lng"></agm-marker>
+          </agm-map>
+      </div>
+      <div *ngIf="isOwner==false">
+        <h5>Lugar de entrega</h5>
+        <agm-map [latitude]="location.lat" [longitude]="location.lng">
+          <agm-marker [latitude]="location.lat" [longitude]="location.lng"></agm-marker>
+        </agm-map>
+      </div>
     </div>
   </div>
-  <li *ngFor='let feature of features'>
-    {{feature}}
-  </li>
-</div>
 
+</div>
 <div class="container mt-5" [@animacionAparecer]>
   <div class="row">
-    <div class="col-sm-8">
-      <h2>Reglas del Carro</h2>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi ducimus voluptatibus maxime provident perferendis, eligendi officiis odio, facere eveniet neque maiores quasi sequi error cum numquam! Rerum in adipisci commodi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem voluptatem itaque blanditiis alias omnis. Alias minus quas quia magni iure, provident a at ut blanditiis voluptates harum velit quo vitae?</p>
+    <div class="col-sm-6">
+      <h2>Detalles adiciónales</h2>
+      <p>{{description}}</p>
     </div>
-    <div class="col-sm-4">
-      <img src="/assets/img/group.png" width="80%">
-    </div>
+
   </div>
 </div>
-
 <div class="container">
   <div class="col-sm-12 divisor">
-      &nbsp;
+    &nbsp;
   </div>
 </div>
-
 <div class="container mt-5">
   <div class="row">
     <div class="col-sm-12">
       <h2>Evaluaciones</h2>
       <div class="container">
-        <div class="row mt-3" *ngFor='let evaluation of evaluations'>
+        <div class="row mt-3" *ngFor='let rate of rates'>
           <div class="col-sm-12">
-            <h4><b>{{evaluation.username}}</b> {{evaluation.value}}</h4>
-            <p>{{evaluation.date}}</p>
-          </div>
-          <div class="col-sm-12 comment">
-            {{evaluation.comment}}
+            <ngb-rating [(rate)]="rate.rate" [readonly]="true"></ngb-rating>
+            <h5>{{rate.comment}}</h5>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <div class="container mt-3 mb-5">
-  <div class="row">
-    <div class="col-sm-12">
-      <a routerLink="/client/agreement" class="btn btn-primary">Mostrar contrato del vehículo</a>
-    </div>
-  </div>
 </div>
+<app-login-modal>
+</app-login-modal>
+
+<app-signup-modal>
+</app-signup-modal>

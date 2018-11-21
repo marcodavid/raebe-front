@@ -8,10 +8,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SearchComponent } from './search/search.component';
 import { CarCardComponent } from './car-card/car-card.component';
 import { LoginModalComponent } from './index-page/login-modal/login-modal.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';    	
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FooterComponent } from './footer/footer.component';
 import { SignupModalComponent } from './index-page/signup-modal/signup-modal.component';
+import { AgmCoreModule } from '@agm/core';
 
 import { ClientPageComponent } from './client-page/client-page.component';
 import { IndexPageComponent } from './index-page/index-page.component';
@@ -23,8 +24,8 @@ import { PayementComponent } from './client-page/payement/payement.component';
 import { NearbyCarsMapComponent } from './client-page/nearby-cars-map/nearby-cars-map.component';
 import { ClientsService } from './services/clients-service/clients.service';
 import { ConfigService } from './services/config-service/config.service';
-import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
-
+import {NgxMaskModule} from 'ngx-mask'
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 // Rutas
 import { app_routing } from './app.routes';
 
@@ -46,11 +47,24 @@ import { ReviewsComponent } from './profile-page/reviews/reviews.component';
 import { MessagesComponent } from './profile-page/messages/messages.component';
 import { MyInfoComponent } from './profile-page/my-info/my-info.component';
 import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock.component';
-import { VehicleMapComponent } from './client-page/vehicle-map/vehicle-map.component';
-
-// Angular Google Maps
-import { AgmCoreModule } from '@agm/core';
-
+import { CarsService } from './services/cars-service/cars.service';
+import { LoaderComponent } from './loader/loader/loader.component';
+import { LoaderService } from './services/loader-service/loader.service';
+import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
+import { FileSelectDirective } from 'ng2-file-upload';
+import { RentersService } from './services/renters-service/renters.service';
+import { ImageUploadModule } from "angular2-image-upload";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RenterComponent } from './profile-page/renter/renter.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { RouterModule, Routes } from '@angular/router';
+import { MapsComponent } from './maps/maps.component';
+const routes: Routes = [
+  { path : 'search-result', component : SearchResultComponent}
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,23 +101,43 @@ import { AgmCoreModule } from '@agm/core';
     MessagesComponent,
     MyInfoComponent,
     CalendarLockComponent,
-    VehicleMapComponent,
+    LoaderComponent,
+    FileSelectDirective,
+    RenterComponent,
+    SearchResultComponent,
+    MapsComponent,
+
+    
+    
   ],
   imports: [
+    NgbModule,
     BrowserModule,
+    PdfViewerModule,
     AngularFontAwesomeModule,
     app_routing,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    ImageUploadModule.forRoot(),
+    NgxMaskModule.forRoot(),
+    NgxSpinnerModule,
+    FilterPipeModule,
+    NgxPayPalModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBLdKMt-GsD7dfG6yoh6H4Rorbe0ER3vdg'
-    }),
+      apiKey: ''
+    })    
   ],
+  exports: [RouterModule],
   providers: [
+  
     ClientsService,
     ConfigService,
-    AuthGuardService
+    AuthGuardService,
+    CarsService,
+    LoaderService,
+    RentersService
     ],
   bootstrap: [AppComponent]
 })

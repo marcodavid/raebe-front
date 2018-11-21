@@ -1,160 +1,168 @@
+<script src="jquery.toaster.js"></script>
+
 <div class="container mt-2 mb-5" [@animacionAparecer]>
+
+    <div class="col-sm-6 ">              
+        <img  src="{{perfilImage}}" height ="50%" alt=""> 
+      
+           <button  *ngIf="isPerfilImage == true" class="btn btn-light "  (click)="deletePhoto()">Cambiar foto de perfil</button>
+ 
+        <image-upload *ngIf="isPerfilImage == false" (change)="handleFileInput($event.target.files)" [max]="1" [buttonCaption]="'Selecciona una imagen de perfil'"
+        [dropBoxMessage]="'O puedes soltarla aquí'" [extensions]="['jpg','png']">
+      </image-upload>
+      </div>
+
+<br>
+<br>
+  
   <div id="accordion">
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h5 class="mb-0">
-          <button class="btn btn-link card-title" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <fa name="user"></fa>&nbsp;Mi Información
-          </button>
-        </h5>
-      </div>
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body container">
-          <div class="row">
-            <div class="col-sm-12">
-              <h4>Datos Personales</h4>
+    <form ngNativeValidate (ngSubmit)='saveInfo()'>
+       
+      <div class="card">
+      
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+           <button class="btn btn-outline-secondary float-right">
+                  <fa name="save"></fa>&nbsp;Guardar
+        </button>
+            <button class="btn btn-link card-title" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <fa name="user"></fa>&nbsp;Mi Información
+            </button>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>Datos Personales</h4>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtEmail">Email</label>
-              <input id="txtEmail" type="text" name="txtEmail" class="form-control">
+            <div class="row">
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtEmail">Email</label>
+                <input [(ngModel)]="user.email" id="txtEmail" type="email" name="txtEmail" class="form-control" placeholder="{{user.email}}"
+                  required>
+              </div>
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtName">Nombre</label>
+                <input [(ngModel)]="user.firstname" id="txtName" type="text" name="txtName" class="form-control" placeholder="{{user.firstname}}"
+                  required>
+              </div>
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtLastName">Apellidos</label>
+                <input [(ngModel)]="user.lastname" type="text" name="txtLastName" class="form-control" placeholder="{{user.lastname}}"
+                  required>
+              </div>
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtBornDate">Fecha de Nacimiento</label>
+                <input [(ngModel)]="user.age" id="txtBornDate" type="date" name="txtBornDate" class="form-control" required>
+              </div>
+              </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>Dirección</h4>
+              </div>
             </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtName">Nombre</label>
-              <input id="txtName" type="text" name="txtName" class="form-control">
+            <div class="row">
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtStreet">Calle</label>
+                <input [(ngModel)]="userAddress.street" placeholder="{{userAddress.street}}" id="txtStreet" type="text" name="txtStreet" class="form-control"
+                  required>
+              </div>
+              <div class="form-group col-sm-12 col-md-2 mt-1">
+                <label for="txtExtNum">Número Exterior</label>
+                <input [(ngModel)]="userAddress.numext" placeholder="{{userAddress.numext}}" id="txtExtNum" type="number" name="txtExtNum" class="form-control"
+                  required>
+              </div>
+              <div class="form-group col-sm-12 col-md-2 mt-1">
+                <label for="txtIntNum">Número Interior</label>
+                <input [(ngModel)]="userAddress.numint" placeholder="{{userAddress.numint}}" id="txtIntNum" type="number" name="txtIntNum" class="form-control">
+              </div>
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtCol">Colonia</label>
+                <input [(ngModel)]="userAddress.province" placeholder="{{userAddress.province}}" id="txtCol" type="text" name="txtCol" class="form-control"
+                  required>
+              </div>
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtCity">Ciudad</label>
+                <input [(ngModel)]="userAddress.city" placeholder="{{userAddress.city}}" id="txtCity" type="text" name="txtCity" class="form-control"
+                  required>
+              </div>
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtCP">Código Postal</label>
+                <input [(ngModel)]="userAddress.zipcode" placeholder="{{userAddress.zipcode}}" id="txtCP" type="number" name="txtCP" class="form-control"
+                  required>
+              </div>
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtCountry">País</label>
+                <input [(ngModel)]="userAddress.country" placeholder="{{userAddress.country}}" id="txtCountry" type="text" name="txtCountry"
+                  class="form-control" required>
+              </div>
             </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtLastName">Apellidos</label>
-              <input id="txtLastName" type="text" name="txtLastName" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtNationality">Nacionalidad</label>
-              <input id="txtNationality" type="text" name="txtNationality" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtBornDate">Fecha de Nacimiento</label>
-              <input id="txtBornDate" type="date" name="txtBornDate" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtCurp">CURP</label>
-              <input id="txtCurp" type="text" name="txtCurp" class="form-control">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <h4>Dirección</h4>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtStreet">Calle</label>
-              <input id="txtStreet" type="text" name="txtStreet" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-2 mt-1">
-              <label for="txtExtNum">Número Exterior</label>
-              <input id="txtExtNum" type="number" name="txtExtNum" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-2 mt-1">
-              <label for="txtIntNum">Número Interior</label>
-              <input id="txtIntNum" type="number" name="txtIntNum" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtCol">Colonia</label>
-              <input id="txtCol" type="text" name="txtCol" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtCity">Ciudad</label>
-              <input id="txtCity" type="text" name="txtCity" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtCP">Código Postal</label>
-              <input id="txtCP" type="text" name="txtCP" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtCountry">País</label>
-              <input id="txtCountry" type="text" name="txtCountry" class="form-control">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">Teléfono</div>
-            <div class="form-group col-sm-12 col-md-2 mt-1">
-              <label for="txtPhoneCountry">Pais</label>
-              <input id="txtPhoneCountry" type="text" name="txtPhoneCountry" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-2 mt-1">
-              <label for="txtLada">Lada</label>
-              <input id="txtLada" type="text" name="txtLada" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtPhone">Teléfono</label>
-              <input id="txtPhone" type="text" name="txtPhone" class="form-control">
-              <p class="row justify-content-end mr-1">Agregar Otro</p>
+            <div class="row">
+              <div class="col-sm-12">Teléfono</div>
+              <div class="form-group col-sm-12 col-md-2 mt-1">
+                <label for="txtPhoneCountry">Pais</label>
+                <input [(ngModel)]="user.telcountry" placeholder="{{user.telcountry}}" id="txtPhoneCountry" type="text" name="txtPhoneCountry"
+                  class="form-control" required>
+              </div>
+              <div class="form-group col-sm-12 col-md-2 mt-1">
+                <label for="txtLada">Lada</label>
+                <input [(ngModel)]="user.lada" placeholder="{{user.lada}}" id="txtLada" type="number" name="txtLada" class="form-control"
+                  required>
+              </div>
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtPhone">Teléfono</label>
+                <input [(ngModel)]="user.telnumber" placeholder="{{user.telnumber}}" id="txtPhone" type="number" name="txtPhone" class="form-control"
+                  required>
+              </div>
+              <div class="form-group col-sm-12 ">
+            
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="card mt-3">
-      <div class="card-header" id="headingTwo">
-        <h5 class="mb-0">
-          <button class="btn btn-link card-title collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <fa name="id-card"></fa>&nbsp;Licencia
-          </button>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-        <div class="card-body container">
-          <div class="row">
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtLicenceNumber">Número de Licencia</label>
-              <input id="txtLicenceNumber" type="text" name="txtLicenceNumber" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtExpeditionDate">Fecha de Expedición</label>
-              <input id="txtExpeditionDate" type="date" name="txtExpeditionDate" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtExpirationDate">Fecha de Expiración</label>
-              <input id="txtExpirationDate" type="date" name="txtExpirationDate" class="form-control">
+      <div class="card mt-3">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link card-title collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+              aria-controls="collapseTwo">
+              <fa name="id-card"></fa>&nbsp;Licencia
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body container">
+            <div class="row">
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtLicenceNumber">Número de Licencia</label>
+                <input [(ngModel)]="userDriverLicense.licensenum"  id="txtLicenceNumber" type="number"
+                  name="txtLicenceNumber" class="form-control" required>
+              </div>
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtExpeditionDate">Fecha de Expedición</label>
+                <input [(ngModel)]="userDriverLicense.startday" id="txtExpeditionDate" type="date" name="txtExpeditionDate" class="form-control"
+                  required>
+              </div>
+              <div class="form-group col-sm-12 col-md-4 mt-1">
+                <label for="txtExpirationDate">Fecha de Expiración</label>
+                <input [(ngModel)]="userDriverLicense.endday" id="txtExpirationDate" type="date" name="txtExpirationDate" class="form-control"
+                  required>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
     <div class="card mt-3">
       <div class="card-header" id="headingThree">
         <h5 class="mb-0">
-          <button class="btn btn-link card-title collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              <fa name="lock"></fa>&nbsp;Cambiar Contraseña
+          <button class="btn btn-link card-title collapsed" (click)="logOut()">
+            <fa name="flag"></fa>&nbsp;Cerrar Sesión
           </button>
         </h5>
       </div>
-      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body container">
-          <div class="row">
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtCurrentPassword">Contraseña Actual</label>
-              <input id="txtCurrentPassword" type="password" name="txtCurrentPassword" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtNewPassword">Nueva Contraseña</label>
-              <input id="txtNewPassword" type="password" name="txtNewPassword" class="form-control">
-            </div>
-            <div class="form-group col-sm-12 col-md-4 mt-1">
-              <label for="txtConfirmNewPassword">Confirmar Contraseña Nueva</label>
-              <input id="txtConfirmNewPassword" type="password" name="txtConfirmNewPassword" class="form-control">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link card-title collapsed" (click)="logOut()" >
-            <fa name="flag"></fa>&nbsp;Cerrar Sesión
-        </button>
-      </h5>
     </div>
   </div>
 </div>

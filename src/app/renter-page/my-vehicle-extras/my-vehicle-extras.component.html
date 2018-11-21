@@ -1,36 +1,40 @@
-<div class="container mt-2 mb-2">
+<form ngNativeValidate (ngSubmit)="onSaveCar()">
+  <div class="container mt-5 mb-2"> 
+    <button class="btn btn-outline-secondary float-right">
+      <fa name="save"></fa>&nbsp;Guardar
+    </button>
+  </div>
+  <div class="container mb-5" [@animacionAparecer]>
     <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-12"><h3>Hola Silvana</h3></div>
-    </div> 
-</div>
-
-<div class="container mb-5" [@animacionAparecer]>
-  <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-5 text-center">
-        <img src="/assets/img/appointment-book.png" width="60%">
-    </div>
-    <div class="col-sm-12 col-md-4">
-      <h3>Extras</h3>
-      <div class="form-group">
-        <label for="marca">Disponibilidad Silla Bebé</label>
-        <select id="marca" class="form-control">
-          <option value="Si">Si</option>
-          <option value="No">No</option>
-        </select>
+      <div class="col-sm-12 col-md-5 text-center">
+          <img src="/assets/img/appointment-book.png" width="60%">
       </div>
-      <div class="form-group">
-        <label for="model">Disponibilidad Silla Infante</label>
-        <select id="marca" class="form-control">
+      <div class="col-sm-12 col-md-4">
+        <h3>Extras</h3>
+        <div class="form-group">
+          <label for="marca">Disponibilidad Silla Bebé</label>
+          <select  [(ngModel)]="userCar.babysit"  name="userCar.babysit" id="marca" class="form-control" required>
+            <option value=""></option>
             <option value="Si">Si</option>
             <option value="No">No</option>
           </select>
-      </div>
-      <div class="form-group">
-        <label for="year">Disponibilidad GPS</label>
-        <select id="marca" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="model">Disponibilidad Silla Infante</label>
+          <select [(ngModel)]="userCar.childsit" name="userCar.childsit" id="marca" class="form-control" required>
+              <option value=""></option>
+              <option value="Si">Si</option>
+              <option value="No">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="year">Disponibilidad GPS</label>
+          <select [(ngModel)]="userCar.gps" name="userCar.gps"  id="marca" class="form-control" required>
+            <option value=""></option>
             <option value="Si">Si</option>
             <option value="No">No</option>
           </select>
       </div>
     </div>
   </div>
+</div>

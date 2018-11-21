@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MyVehicleComponent } from '../my-vehicle/my-vehicle.component';
+import { ClientsService } from '../../services/clients-service/clients.service';
+import { CarsService } from '../../services/cars-service/cars.service';
 
 @Component({
   selector: 'app-my-vehicle-insurance',
@@ -20,11 +23,76 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ])
   ]
 })
-export class MyVehicleInsuranceComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+export class MyVehicleInsuranceComponent extends MyVehicleComponent implements OnInit  {
+  constructor( clientsService: ClientsService, carsService: CarsService) {
+    super(clientsService, carsService);
   }
 
+  ngOnInit() {
+    super.ngOnInit();
+  }
+
+  addCoverture() {
+    this.userCoverages.push(this.coverage);
+    this.coverage = {
+      id_policy: '',
+      description: '',
+      assurancesum: '',
+      deductibles: ''
+    };
+  }
+
+  removeCoverture(index) {
+    this.userCoverages.splice(index, 1);
+  }
+
+  public onSavePolicy()  {
+    if (this.userCarHasPolicy) {
+        this.carsService.putPolicyForUpdate(this.userPolicy).subscribe(
+          data => {
+            this.onSaveCoverages();
+          },
+          error => {
+          }
+        );
+    } else {
+      this.userPolicy.id_car = this.userCar.id_car;
+      this.carsService.postPolicy(this.userPolicy).subscribe(
+        data => {
+          this.onSaveCoverages();
+          super.ngOnInit();
+        },
+        error => {
+        }
+      );
+    }
+  }
+
+  public onSaveCoverages() {
+    if (this.userCarHasCoverages) {
+       // tslint:disable-next-line:forin
+      for (let item in this.userCoverages) {
+        this.userCoverages[item].id_policy = this.userPolicy.id_policy;
+      }
+      this.carsService.deleteCoverage(this.userCoverages[0].id_policy).subscribe();
+      this.carsService.postCoverage(this.userCoverages).subscribe(
+        data => {
+        },
+        error => {
+        }
+      );
+    } else {
+      // tslint:disable-next-line:forin
+      for (let item in this.userCoverages) {
+        this.userCoverages[item].id_policy = this.userPolicy.id_policy;
+      }
+      this.carsService.postCoverage(this.userCoverages).subscribe(
+        data => {
+          super.ngOnInit();
+        },
+        error => {
+        }
+      );
+    }
+  }
 }

@@ -1,44 +1,52 @@
-<div class="container mt-2 mb-2">
+<form ngNativeValidate (ngSubmit)="onSaveCalendar()">
+  <div class="container mt-5 mb-2">
+    <button type="submit" class="btn btn-outline-secondary float-right" >
+      <fa name="save"></fa>&nbsp;Guardar
+    </button>
+  </div>
+  <div class="container mb-5" [@animacionAparecer]>
     <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-12"><h3>Hola Silvana</h3></div>
-    </div> 
-</div>
-
-<div class="container mb-5" [@animacionAparecer]>
-  <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-4">
+      <div class="col-sm-12 col-md-4">
         <img src="/assets/img/calendar.png" width="80%">
-    </div>
-    <div class="col-sm-12 col-md-5">
-      <h3>Calendario</h3>
-      <div class="form-group">
-        <label for="marca">Frecuencia de Rentas</label>
-        <input type="text" id="marca" class="form-control">
       </div>
-      <div class="form-group">
-        <label for="model">Tiempo de antelación de notificación</label>
-        <input type="text" id="model" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="year">Hora inicial de disponibilidad</label>
-        <input type="text" id="year" class="form-control" value="Cualquiera">
-      </div>
-      <div class="form-group">
-        <label for="year">Hora final de disponibilidad</label>
-        <input type="text" id="year" class="form-control" value="Cualquiera">
-      </div>
-      <div class="form-group">
-        <label for="transmission">Tiempo de Anticipación para Reservar</label>
-        <input type="text" id="transmission" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="transmission">Tiempo mínimo en renta</label>
-        <input type="text" id="transmission" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="transmission">Tiempo máximo en renta</label>
-        <input type="text" id="transmission" class="form-control">
+      <div class="col-sm-12 col-md-5">
+        <h3>Calendario</h3>
+        <div class="input-group mb-3">
+          <label for="year">Hora inicial de disponibilidad:&nbsp;&nbsp;</label>
+          <input [(ngModel)]="userRentPreferences.firsthour" name="firsthour" type="number" id="year" min="0" max="24" step="1"  class="form-control" required>
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">:00</span>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <label for="year">Hora final de disponibilidad:&nbsp;&nbsp;</label>
+          <input [(ngModel)]="userRentPreferences.lasthour"  name="lasthour" type="number" id="year" min="0" max="24" step="1"  class="form-control" required>
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">:00</span>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <label for="transmission">Tiempo de Anticipación para Reservar:&nbsp;&nbsp;</label>
+          <input [(ngModel)]="userRentPreferences.daysbeforerent" name="daysbeforerent" type="number" id="year" min="0" max="24" step="1"  class="form-control" required>
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">:00</span>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <label for="transmission">Tiempo mínimo en renta:&nbsp;&nbsp;</label>
+          <input [(ngModel)]="userRentPreferences.mintime" name="mintime " type="number" id="year" min="0" max="24" step="1"  class="form-control" required>
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">:00</span>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <label for="transmission">Tiempo máximo en renta:&nbsp;&nbsp;</label>
+          <input [(ngModel)]="userRentPreferences.maxtime"  name="maxtime " type="number" id="year" min="0" max="24" step="1"  class="form-control" required>
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">:00</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>

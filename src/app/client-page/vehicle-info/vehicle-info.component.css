@@ -1,7 +1,15 @@
 .comment {
     margin-top: -15pt;
 }
+.image--cover {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 20px;
 
+  object-fit: cover;
+  object-position: center right;
+}
 .divisor{
     margin-top: 30px;
     margin-bottom: 30px;
@@ -9,4 +17,40 @@
     height:5px;
 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-header-img > img.img-circle {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #51D2B7;
+}
+.custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+  }
+  agm-map {
+    height: 400px;
+  }
+  .custom-day.focused {
+    background-color: #e6e6e6;
+  }
+  .custom-day.range, .custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+  }
+  .custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+  }
+  .containerHero{
+    width: 1000px;
+    height: 600px;
+  }
+
+/* resize images */
+.containerHero img {
+    width: 100%;
+    height: auto;
 }

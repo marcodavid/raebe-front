@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientsService } from '../../services/clients-service/clients.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { TransitiveCompileNgModuleMetadata } from '@angular/compiler';
 import * as $ from 'jquery';
 
@@ -11,30 +11,38 @@ import * as $ from 'jquery';
   styleUrls: ['./login-modal.component.css']
 })
 export class LoginModalComponent implements OnInit {
-  private showAlert  = false;
-  constructor(private clientsService: ClientsService,private router:Router) { }
-  json  = {
-    email:"" ,
-    password:"" ,
+  private showAlert = false;
+  constructor(private clientsService: ClientsService, private router: Router) { }
+  json = {
+    email: "",
+    password: "",
   }
   ngOnInit() {
   }
 
-  onLogin() {  
+  onLogin() {
+    this.clientsService.showLoader();
     this.clientsService.postClientToLogin(this.json).subscribe(
-      data => {              
-        if(data) {
-          this.clientsService.setToken(data['token']); 
+      
+      data => {
+        if (data) {
+          this.clientsService.setToken(data['token']);
           this.clientsService.setUserInfo(data['data']);
           $("#loginModal").hide();
           $('body').removeClass('modal-open');
           $('.modal-backdrop').remove();
           location.reload();
-        }    
+          this.clientsService.hideLoader();
+        }
+      },
+      error => {
+          this.showAlert = true;
+          this.clientsService.hideLoader();
       }
-    );    
-    this.showAlert = true;  
- 
+
+    );
+
+
   }
 
 }
