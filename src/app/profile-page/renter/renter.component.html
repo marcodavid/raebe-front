@@ -1,4 +1,13 @@
 <div class="container" [@animacionAparecer]>
+    <div class="row">
+      <div class="col-sm-12">
+        <h3 *ngIf="myRents==0">Aún no cuentas con rentas realizadas</h3>
+      </div>
+    </div>
+   
+  </div>
+  <div class="row">
+<div class="container" [@animacionAparecer]>
   <div class="row">
     <div class="col-sm-12">
       <h3 *ngIf="rents==0">Aún no cuentas con arrendamientos</h3>
@@ -27,11 +36,19 @@
                         alt=""> </td>
                     <td><a href="/assets/documents/Contrato RaeBe.pdf" download="Contrato RaeBe.pdf"> Descargar contrato</a></td>
                   </tr>
+                  <tr>
+                    <td>Mensajes</td>
+                    <td>
+                      <textarea rows="10" cols="50" readonly>{{rent.data.comments}}</textarea  >
+                  </td>
+                    <td></td>
+                  </tr>
+                  <tr>
                   <td>Enviar mensaje a través de Raebe mail</td>
-                  <td><textarea rows="4" cols="50">
-                      </textarea>
+                  <td><textarea rows="4" cols="50" [(ngModel)]="message"></textarea>
                     </td>
-                  <td><button>Enviar</button></td>
+                  <td><button class="btn btn-info" (click)="onSendMessage(rent.data)">Enviar mensaje</button></td>
+                </tr>
                   <tr>
                     <td>Fechas:</td>
                     <td>{{rent.data.dateofpickup}} al {{rent.data.returnday}}</td>
@@ -85,4 +102,5 @@
     </div>
   </div>
 
+</div>
 </div>
