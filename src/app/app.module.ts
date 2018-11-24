@@ -25,7 +25,7 @@ import { NearbyCarsMapComponent } from './client-page/nearby-cars-map/nearby-car
 import { ClientsService } from './services/clients-service/clients.service';
 import { ConfigService } from './services/config-service/config.service';
 import {NgxMaskModule} from 'ngx-mask'
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 // Rutas
 import { app_routing } from './app.routes';
 
@@ -61,6 +61,7 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { RouterModule, Routes } from '@angular/router';
 import { MapsComponent } from './maps/maps.component';
+import { AdminComponent } from './admin/admin.component';
 const routes: Routes = [
   { path : 'search-result', component : SearchResultComponent}
 ];
@@ -105,13 +106,14 @@ const routes: Routes = [
     SearchResultComponent,
     MapsComponent,
 
+    AdminComponent
+
     
     
   ],
   imports: [
     NgbModule,
     BrowserModule,
-    PdfViewerModule,
     AngularFontAwesomeModule,
     app_routing,
     BrowserAnimationsModule,
