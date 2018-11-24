@@ -1,30 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-background shadow">
-  <a class="navbar-brand navbar-logo mt-1 mb-1 " routerLink="/home"><img src="/assets/img/wolf_navbar.png" width="30px"> &nbsp;RaeBe</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-background">
+  <a class="navbar-brand navbar-logo mt-1 mb-1 " routerLink="/home"><img src="/assets/img/wolf_navbar.png" width="35px"> <b>RaeBe</b> &nbsp;</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2 mt-1 mb-1" type="search" placeholder="Ej. Automóvil Ejecutivo" aria-label="Search">
-            <select class="form-control mr-sm-2 mt-1 mb-1">
-              <option value="0" disabled>Filtros</option>
-            </select>
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+            <input class="form-control mr-sm-2 mt-1 mb-1" [(ngModel)]="searchItem" name="searchItem" (change)="onSearchItem($event)" type="search" placeholder="Ej. Automóvil Ejecutivo" aria-label="Search">
+              <select class="form-control mr-sm-2 mt-1 mb-1" (change)="onChange($event.target.value)">
+                <option *ngFor="let state of itemState" value="{{state}}">{{state}}</option>
+              </select>
+            <button class="btn btn-outline-light my-2 my-sm-0"  (click)="onSearch()" >Buscar</button>
           </form>
       </li>
     </ul>
-
     <div #unloggedButtons>
-      <a href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#signupModal">Registrate!</a>
+      <a  href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#signupModal">Registrate!</a>
       <a href="#!" class="navbar-link mr-2 ml-2" data-toggle="modal" data-target="#loginModal">Ingresa</a>
     </div>
     <div #loggedButtons>
-     
+      <div *ngIf="userIsRenter; else  elseBlock">
+          <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['']" (click)="onRentPerfil()"> Perfil de renta</a>
+          <a  class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['renter']">Preferencias de renta</a>
+          <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['profile']"><fa name="car"></fa> {{user.firstname}}</a>
+      </div>
+    <ng-template #elseBlock>
       <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['renter']">Renta tu carro</a>
       <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['profile']"><fa name="user"></fa> {{user.firstname}}</a>
-    </div>
 
+    </ng-template>
+    </div>
   </div>
 </nav>

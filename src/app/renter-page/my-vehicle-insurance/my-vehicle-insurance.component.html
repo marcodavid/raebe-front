@@ -1,69 +1,71 @@
-<div class="container mt-2 mb-2"> 
-  <button class="btn btn-outline-secondary float-right" (click)="onSavePolicy()">
-    <fa name="save"></fa>&nbsp;Guardar
-  </button>
-</div>
-<div class="container mb-5" [@animacionAparecer]>
-  <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-5 text-center">
-        <img src="/assets/img/shield.png" width="70%">
-    </div>
-    <div class="col-sm-12 col-md-4">
-      <h3>Seguro</h3>
-      <div class="form-group">
-        <label for="marca">Número de Póliza</label>
-        <input [(ngModel)]="userPolicy.clientpolicynumber" type="text" id="marca" class="form-control">
+<form ngNativeValidate (ngSubmit)='onSavePolicy()'>
+  <div class="container mt-5 mb-2"> 
+    <button class="btn btn-outline-secondary float-right">
+      <fa name="save"></fa>&nbsp;Guardar
+    </button>
+  </div>
+  <div class="container mb-5" [@animacionAparecer]>
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-5 text-center">
+          <img src="/assets/img/shield.png" width="70%">
       </div>
-      <div class="form-group">
-        <label for="model">Compañía</label>
-        <input [(ngModel)]="userPolicy.company" type="text" id="model" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="year">Nombre del Cliente en la Póliza</label>
-        <input [(ngModel)]="userPolicy.clientpolicyname" type="text" id="year" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="transmission">Fecha de Inicio</label>
-        <input [(ngModel)]="userPolicy.validationdatestart" type="date" id="transmission" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="transmission">Fecha de Terminación</label>
-        <input [(ngModel)]="userPolicy.validationdateend" type="date" id="transmission" class="form-control">
+      <div class="col-sm-12 col-md-4">
+        <h3>Seguro</h3>
+        <div class="form-group">
+          <label for="marca">Número de Póliza</label>
+          <input [(ngModel)]="userPolicy.clientpolicynumber" name="userPolicy.clientpolicynumber" type="text" id="marca" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="model">Compañía</label>
+          <input [(ngModel)]="userPolicy.company"  name="userPolicy.company" type="text" id="model" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="year">Nombre del Cliente en la Póliza</label>
+          <input [(ngModel)]="userPolicy.clientpolicyname"  name="userPolicy.clientpolicyname" type="text" id="year" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="transmission">Fecha de Inicio</label>
+          <input [(ngModel)]="userPolicy.validationdatestart" name="userPolicy.validationdatestart"type="date" id="transmission" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="transmission">Fecha de Terminación</label>
+          <input [(ngModel)]="userPolicy.validationdateend" name="userPolicy.validationdateend" type="date" id="transmission" class="form-control" required>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="container mb-5">
-  <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-9">
-      <h3>Covertura</h3>
+  <div class="container mb-5">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-9">
+        <h3>Covertura</h3>
+      </div>
+      <div class="col-sm-12 col-md-9">
+        <button type="button" class="btn btn-link" (click)="addCoverture()">Agregar <fa name="plus-circle"></fa></button>
+      </div>
     </div>
-    <div class="col-sm-12 col-md-9">
-        <button type="button" class="btn btn-link"  (click)="addCoverture()">Agregar <fa name="plus-circle"></fa></button>
+    <div class="row justify-content-center" *ngFor="let field of userCoverages; let i = index"> 
+        <h6>{{i+1}})</h6>
+      <div class="col-sm-12 col-md-3">
+        <div class="form-group">      
+          <label for="description">Descripción</label>       
+          <input [(ngModel)]="userCoverages[i].description" name="userCoverages.description" type="text" id="description" class="form-control" minlength="20" required>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <div class="form-group">
+          <label for="description">Suma Asegurada</label>
+          <input [(ngModel)]="userCoverages[i].assurancesum" mask="0*" name="userCoverages.assurancesum" type="text" id="description" class="form-control" required>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-2">
+        <div class="form-group">
+          <label for="description">Deducibles</label>
+          <input [(ngModel)]="userCoverages[i].deductibles" mask="0*" name="userCoverages.deductibles" type="text" id="description" class="form-control">
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-3" >      
+        <fa name="remove" (click)="removeCoverture(i)" ></fa>      
+      </div>
     </div>
   </div>
-  <div class="row justify-content-center" *ngFor="let field of userCoverages; let i = index"> 
-      <h6>{{i+1}})</h6>
-    <div class="col-sm-12 col-md-3">
-      <div class="form-group">      
-        <label for="description">Descripción</label>       
-        <input [(ngModel)]="userCoverages[i].description" type="text" id="description" class="form-control">
-      </div>
-    </div>
-    <div class="col-sm-12 col-md-3">
-      <div class="form-group">
-        <label for="description">Suma Asegurada</label>
-        <input [(ngModel)]="userCoverages[i].assurancesum" type="text" id="description" class="form-control">
-      </div>
-    </div>
-    <div class="col-sm-12 col-md-2">
-      <div class="form-group">
-        <label for="description">Deducibles</label>
-        <input [(ngModel)]="userCoverages[i].deductibles" type="text" id="description" class="form-control">
-      </div>
-    </div>
-    <div class="col-sm-12 col-md-3" >      
-      <fa name="remove" (click)="removeCoverture(i)" ></fa>      
-    </div>
-  </div>
-</div>
+</form>

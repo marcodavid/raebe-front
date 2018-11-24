@@ -6,29 +6,22 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./car-card.component.css']
 })
 export class CarCardComponent implements OnInit {
-  @Input()
-    horizontal : boolean;
+  // Obtenemos la imagen del vehículo
+  @Input() img: string;
+  brandmark: string;
+  model: string;
+  description: string;
+  cardStyle: any;
 
-  @ViewChild('verticalCard') verticalCard : ElementRef;
-  @ViewChild('horizontalCard') horizontalCard : ElementRef;
-
-  img           : string;
-  brandmark     : string;
-  model         : string;
-  description   : string;
-
-  constructor() { 
-    this.img          = '/assets/img/example_1.jpg';
-    this.brandmark    = 'Marca';
-    this.model        = "Modelo";
-    this.description  = "Esto es una descripción corta de prueba para el vehículo";
+  constructor() {
+    this.brandmark = 'Marca';
+    this.model = 'Modelo';
+    this.description = 'Esto es una descripción corta de prueba para el vehículo';
   }
 
   ngOnInit() {
-    if(this.horizontal){
-        this.verticalCard.nativeElement.remove();
-    } else {
-      this.horizontalCard.nativeElement.remove();
-    }
+    this.cardStyle = {
+      'background-image' : 'url(\'/assets/img/' + this.img + '\')'
+    };
   }
 }

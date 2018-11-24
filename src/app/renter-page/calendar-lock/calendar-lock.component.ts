@@ -12,4 +12,8 @@ export class CalendarLockComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSaveCalendarLock() {
+    console.log('Esto debería funcionar');
+  }
+
 }

@@ -1,0 +1,99 @@
+
+  <div class="row">
+<div class="container" [@animacionAparecer]>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 *ngIf="rents==0">Aún no cuentas con arrendamientos</h3>
+    </div>
+  </div>
+  <h5>Verificar contrato de arrendamiento <a href="/assets/documents/Contrato RaeBe.pdf" download="Contrato RaeBe.pdf">aquí</a></h5>
+
+  <div *ngFor="let rent of rentAndImage; index as i">
+    <div >
+      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel >
+            <ng-template ngbPanelTitle>
+                <span><img class="image--cover" [src]="rent.file" alt="">{{rent.data.clientname}}</span>
+              </ng-template>
+          <ng-template ngbPanelContent>
+            <ng-container>
+                
+
+              <table class="table">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Información del interesado</td>
+                    <td>{{rent.data.clientname}} <img class="align-self-center mr-3" src="{{perfilImage[i]}}" width="30%"
+                        alt=""> </td>
+                    <td><a href="/assets/documents/Contrato RaeBe.pdf" download="Contrato RaeBe.pdf"> Descargar contrato</a></td>
+                  </tr>
+                  <tr>
+                    <td>Mensajes</td>
+                    <td>
+                      <textarea rows="10" cols="50" readonly>{{rent.data.comments}}</textarea  >
+                  </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                  <td>Enviar mensaje a través de Raebe mail</td>
+                  <td><textarea rows="4" cols="50" [(ngModel)]="message"></textarea>
+                    </td>
+                  <td><button class="btn btn-info" (click)="onSendMessage(rent.data)">Enviar mensaje</button></td>
+                </tr>
+                  <tr>
+                    <td>Fechas:</td>
+                    <td>{{rent.data.dateofpickup}} al {{rent.data.returnday}}</td>
+                    <td>Dias totales: {{rent.data.totaldays}} día(s)</td>
+                  </tr>
+                  <tr>
+                    <td>Precio base:</td>
+                    <td>{{rent.data.price| currency}}</td>
+                    <td>Días x Precio base:{{rent.data.price*rent.data.totaldays| currency}}</td>
+                  </tr>
+                  <tr>
+                    <td>IVA</td>
+                    <td>{{rent.data.iva| currency}}</td>
+                    <td>Precio más IVA:{{rent.data.pricexiva | currency}}</td>
+                  </tr>
+                  <tr>
+                    <tr>
+                      <td>Total a pagar</td>
+                      <td><b>{{rent.data.totalprice | currency}}</b></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Tu ganancia total</td>
+                      <td><b style="color:green">{{rent.data.gain | currency}}</b></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Aceptar/Declinar</td>
+                      <td>
+                        
+                        <button *ngIf="rent.data.acceptence == 0" (click)="onAcceptence(1,rent.data)" type="button" class="btn btn-success align-left">Aceptar</button>
+                        <button *ngIf="rent.data.acceptence == 3" (click)="onAcceptence(3,rent.data)" type="button" class="btn btn-success align-left">Iniciar
+                          renta
+                        </button>
+                        <button *ngIf="rent.data.acceptence < 4" (click)="onAcceptence(2,rent.data)" type="button" class="btn btn-danger">Declinar</button>
+                        <button *ngIf="rent.data.acceptence == 4" (click)="onAcceptence(5,rent.data)" type="button" class="btn btn-danger">Carro
+                          entregado</button></td>
+                      <td *ngIf="rent.data.acceptence == 1">Aceptado</td>
+                      <td *ngIf="rent.data.acceptence == 3">Lista para iniciar</td>
+                      <td *ngIf="rent.data.acceptence == 4">En progreso</td>
+                      <td *ngIf="rent.data.acceptence == 5">Terminado</td>
+                    </tr>
+                </tbody>
+
+
+              </table>
+            </ng-container>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  </div>
+
+</div>
+</div>

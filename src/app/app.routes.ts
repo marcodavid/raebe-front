@@ -25,21 +25,29 @@ import { MessagesComponent } from './profile-page/messages/messages.component';
 import { MyInfoComponent } from './profile-page/my-info/my-info.component';
 import { CalendarLockComponent } from './renter-page/calendar-lock/calendar-lock.component';
 import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
+import { RenterComponent } from './profile-page/renter/renter.component';
+import { SearchComponent } from './search/search.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { MapsComponent } from './maps/maps.component';
+
+
 
 const app_routes: Routes = [
     { path : '', component : IndexPageComponent },
-    { path : 'home', component : IndexPageComponent ,canActivate: [AuthGuardService]},
+    { path : 'home', component : IndexPageComponent, canActivate: [AuthGuardService]},
+    { path : 'search-result', component : SearchResultComponent},
+    { path : 'maps', component : MapsComponent},
     {
         path : 'profile', component : ProfilePageComponent,
         children : [
             { path : '', component : MyInfoComponent },
             { path : 'my-info', component : MyInfoComponent },
-            { path : 'rents', component : RentsComponent },
+            { path : 'rents', component : RentsComponent },           
+            { path : 'renter', component : RenterComponent },
             { path : 'reviews', component : ReviewsComponent },
             { path : 'messages', component : MessagesComponent }
         ],
         canActivate: [AuthGuardService]
-
     },
     {
         path : 'client', component : ClientPageComponent,
@@ -47,11 +55,12 @@ const app_routes: Routes = [
             { path : '', component : FeaturedVehiclesComponent },
             { path : 'featured-vehicles', component : FeaturedVehiclesComponent },
             { path : 'vehicle-info', component : VehicleInfoComponent },
+            { path : 'vehicle-info-user', component : VehicleInfoComponent },
+
             { path : 'agreement', component : AgreementComponent },
             { path : 'payement', component : PayementComponent }
-        ],
-        canActivate: [AuthGuardService]
-
+         ],
+        // canActivate: [AuthGuardService]
     },
     {
         path : 'renter', component : RenterPageComponent,
@@ -68,7 +77,6 @@ const app_routes: Routes = [
             { path : 'images', component : MyVehicleImagesComponent }
         ],
         canActivate: [AuthGuardService]
-
     },
     { path : '**', component : NotFoundPageComponent }
 ];

@@ -24,8 +24,14 @@ import { CarsService } from '../../services/cars-service/cars.service';
   ]
 })
 export class MyVehicleImagesComponent extends MyVehicleComponent implements OnInit  {
+  cont = 0
+  user : any
+  url:any
+  token:any
+  fileToUpload: File = null;
+  protected carImage  = new Array();
+  protected carImageConteiner  = new Array();
   
-  carImage: any
   constructor( clientsService: ClientsService, carsService: CarsService) {
     
     super(clientsService,carsService);
@@ -33,14 +39,43 @@ export class MyVehicleImagesComponent extends MyVehicleComponent implements OnIn
   }
 
   ngOnInit() {
-    super.ngOnInit()
-
-
+   
+    this.user = JSON.parse(this.clientService.getUserInfo());
+    this.token = "{Authorization', 'bearer'"+this.clientService.getToken()+" 'Content-Type': 'form-data'}";
+    this.carsService.getCarImagesByID(this.user.id_clients).subscribe(
+      data => {
+        for( let item in data) {
+            if(data[item].type == 1) {
+              this.carImage.push('//' + this.clientService.getServer() + data[item].file);
+              this.carImageConteiner.push(data[item]);
+              this.cont++;
+            }
+              
+        }
+      });
   }
-  saveCarImages() {
-
-    console.log(this.carImage);
-
-      
+ 
+  handleFileInput(files: FileList) {
+    for (var i  = 0 ; i < files.length; i ++ ) {
+      this.fileToUpload = files.item(i);
+      this.carsService.postCarImages(this.fileToUpload,this.user.id_clients,1).subscribe(
+        data => {
+          window.location.reload()
+          
+        }, error => {
+          console.log(error);
+        });
+    }
+   
+  }
+  public onDeleteImage(index) {
+    this.carsService.deleteImage(this.user.id_clients,1,this.carImageConteiner[index].id).subscribe(
+      data=>{
+        window.location.reload()
+          
+      }
+    );
+  }
+  public onSaveCarImages() {
   }
 }
