@@ -4,8 +4,8 @@ import {Router} from '@angular/router';
 @Injectable()
 export class AuthGuardService extends ConfigService {
   
-  constructor(private router:Router ) {super();};
-  private authToken = super.getToken();
+  constructor(public router:Router ) {super();};
+  public authToken = super.getToken();
   canActivate() {
     if(typeof this.authToken!='undefined' && this.authToken)
       return true;

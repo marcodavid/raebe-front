@@ -36,7 +36,7 @@ export class RentsComponent extends ProfilePageComponent implements OnInit {
   }
   readonly = false;
 
-  constructor(protected spinner: NgxSpinnerService,protected router: Router,protected rentersService : RentersService,protected clientService: ClientsService,protected carsService : CarsService) { 
+  constructor(public spinner: NgxSpinnerService,public router: Router,public rentersService : RentersService,public clientService: ClientsService,public carsService : CarsService) { 
     super(spinner,rentersService,clientService,carsService);
   }
 

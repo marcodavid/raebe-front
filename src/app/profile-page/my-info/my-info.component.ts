@@ -26,17 +26,17 @@ import { CarsService } from '../../services/cars-service/cars.service';
 export class MyInfoComponent implements OnInit {
 
 
-  constructor(private clientService: ClientsService,protected carsService: CarsService) { }
-  protected perfilImage
-  protected isPerfilImage : boolean = false;
+  constructor(public clientService: ClientsService,public carsService: CarsService) { }
+  public perfilImage
+  public isPerfilImage : boolean = false;
   carImage: any
   url:any
   fileToUpload: File = null;
-  private user: any
-  private userAddress: any
-  private userDriverLicense: any
-  private token: any
-  private showDatePicker = false;
+  public user: any
+  public userAddress: any
+  public userDriverLicense: any
+  public token: any
+  public showDatePicker = false;
   client = {
     firstname: "",
     lastname: "",

@@ -6,12 +6,12 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class CarsService extends ConfigService{
-  private httpOptions: any;
-  private formdata: any;
-  private server: string;
-  private authToken: any;
-  constructor(private http: HttpClient,
-    private router: Router) {
+  public httpOptions: any;
+  public formdata: any;
+  public server: string;
+  public authToken: any;
+  constructor(public http: HttpClient,
+    public router: Router) {
     super();
     this.httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })

@@ -41,8 +41,8 @@ export class SearchResultComponent implements OnInit {
   itemState = [
     'Marca','Modelo','Año','Precio'
   ];
-  constructor(protected router: Router,protected spinner: NgxSpinnerService, protected clientService: ClientsService, protected carsService: CarsService) { }
-  protected arrayCarsSaved: any = []
+  constructor(public router: Router,public spinner: NgxSpinnerService, public clientService: ClientsService, public carsService: CarsService) { }
+  public arrayCarsSaved: any = []
   ngOnInit() {
    
     this.spinner.show();

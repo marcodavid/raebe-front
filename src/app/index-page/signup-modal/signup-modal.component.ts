@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 })
 export class SignupModalComponent implements OnInit {
   user: any;
-  constructor(private clientsService: ClientsService,private router:Router) { }
+  constructor(public clientsService: ClientsService,public router:Router) { }
  //models
   client  = {
     firstname: "" ,
@@ -22,7 +22,9 @@ export class SignupModalComponent implements OnInit {
     telcountry:"",
     id_address:0,
     imgprofilephoto:"" ,
-    fulldata: 0  }
+    fulldata: 0,
+    password:""
+  }
     
     address = {
       id_address:0,

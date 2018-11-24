@@ -29,8 +29,8 @@ export class MyVehicleImagesComponent extends MyVehicleComponent implements OnIn
   url:any
   token:any
   fileToUpload: File = null;
-  protected carImage  = new Array();
-  protected carImageConteiner  = new Array();
+  public carImage  = new Array();
+  public carImageConteiner  = new Array();
   
   constructor( clientsService: ClientsService, carsService: CarsService) {
     

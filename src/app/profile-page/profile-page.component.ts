@@ -11,22 +11,22 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ProfilePageComponent implements OnInit {
 
-  protected isRenter: boolean;
-  protected rents: any = 0;
-  protected myRents: any = 0;
-  protected rentsInfo: any;
-  protected clientsRents: any;
-  protected status: any;
-  protected totalDays: any;
-  protected comments = new Array();
-  protected rates = new Array();
+  public isRenter: boolean;
+  public rents: any = 0;
+  public myRents: any = 0;
+  public rentsInfo: any;
+  public clientsRents: any;
+  public status: any;
+  public totalDays: any;
+  public comments = new Array();
+  public rates = new Array();
   perfilImage = new Array();
   img: string;
   message: any;
   clearTextArea: string;
-  constructor(protected spinner: NgxSpinnerService, protected rentersService: RentersService, protected clientService: ClientsService, protected carsService: CarsService) {this.spinner.show() }
-  protected user: any
-  protected rentAndImage = new Array();
+  constructor(public spinner: NgxSpinnerService, public rentersService: RentersService, public clientService: ClientsService, public carsService: CarsService) {this.spinner.show() }
+  public user: any
+  public rentAndImage = new Array();
 
   ngOnInit() {
 

@@ -9,7 +9,7 @@ import { trigger, style, transition, animate, state} from '@angular/animations';
 })
 export class RenterPageComponent implements OnInit {
 
-  constructor (private activatedRoute: ActivatedRoute) {
+  constructor (public activatedRoute: ActivatedRoute) {
     this.activatedRoute.url.subscribe(url => {
       console.log(url);
     });

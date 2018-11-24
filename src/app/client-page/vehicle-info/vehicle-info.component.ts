@@ -28,31 +28,31 @@ import { NgxSpinnerService } from 'ngx-spinner';
   ]
 })
 export class VehicleInfoComponent implements OnInit {
-  protected images = new Array();
-  protected comment: any;
-  protected rating: any;
-  protected vehicleName: string;
-  protected vehicleType: string;
-  protected features: string[];
-  protected description: string;
-  protected client: any;
-  protected rates: any;
-  protected clientSelected: any
-  protected clientSelectedCar: any
-  protected evaluations: Evaluation[] = [];
-  protected hoveredDate: NgbDate;
-  protected perfilPhoto: any;
-  protected showButton = false;
-  protected totalDays: any
-  protected totalPrice: any
-  protected fromDate: NgbDate;
-  protected toDate: NgbDate;
-  protected today = new Date();
-  protected dd = this.today.getDate();
-  protected mm = this.today.getMonth() + 1;
-  protected yyyy = this.today.getFullYear();
-  protected minday: NgbDate = new NgbDate(this.yyyy, this.mm, this.dd);
-  protected user: any;
+  public images = new Array();
+  public comment: any;
+  public rating: any;
+  public vehicleName: string;
+  public vehicleType: string;
+  public features: string[];
+  public description: string;
+  public client: any;
+  public rates: any;
+  public clientSelected: any
+  public clientSelectedCar: any
+  public evaluations: Evaluation[] = [];
+  public hoveredDate: NgbDate;
+  public perfilPhoto: any;
+  public showButton = false;
+  public totalDays: any
+  public totalPrice: any
+  public fromDate: NgbDate;
+  public toDate: NgbDate;
+  public today = new Date();
+  public dd = this.today.getDate();
+  public mm = this.today.getMonth() + 1;
+  public yyyy = this.today.getFullYear();
+  public minday: NgbDate = new NgbDate(this.yyyy, this.mm, this.dd);
+  public user: any;
   locatioResult: any;
   location = {
     id_clients: "",
@@ -64,7 +64,7 @@ export class VehicleInfoComponent implements OnInit {
   clientSearch: any;
 
 
-  constructor(protected spinner: NgxSpinnerService, protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar, protected renterService: RentersService) {
+  constructor(public spinner: NgxSpinnerService, public clientService: ClientsService, public carsService: CarsService, calendar: NgbCalendar, public renterService: RentersService) {
    
     this.vehicleName = "Dodge Attitude";
     this.vehicleType = "Automovil";

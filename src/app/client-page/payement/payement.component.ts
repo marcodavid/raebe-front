@@ -57,7 +57,7 @@ export class PayementComponent extends AgreementComponent implements OnInit {
     totalprice :0,
     gain:0
   }
-  constructor(protected spinner: NgxSpinnerService,protected router: Router,protected clientService: ClientsService, protected carsService: CarsService,calendar: NgbCalendar,  protected renterServie:RentersService) {
+  constructor(public spinner: NgxSpinnerService,public router: Router,public clientService: ClientsService, public carsService: CarsService,calendar: NgbCalendar,  public renterServie:RentersService) {
     super(spinner,clientService,carsService,calendar,renterServie);
    }
 
@@ -112,7 +112,7 @@ export class PayementComponent extends AgreementComponent implements OnInit {
      
 
   }
-  private initConfig(): void {
+  public initConfig(): void {
     this.payPalConfig = new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, {
       commit: true,
       client: {

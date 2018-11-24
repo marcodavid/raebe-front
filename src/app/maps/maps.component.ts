@@ -12,7 +12,7 @@ export class MapsComponent implements OnInit {
   lat: 20.676667;
   lng: -103.3475;
   locations:any = new Array();
-  constructor(protected clientsService:ClientsService,protected router: Router) { }
+  constructor(public clientsService:ClientsService,public router: Router) { }
 
   ngOnInit() {
     this.clientsService.getLocations().subscribe(

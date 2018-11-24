@@ -27,15 +27,15 @@ import { NgxSpinnerService } from 'ngx-spinner';
   ]
 })
 export class RenterComponent extends ProfilePageComponent implements OnInit {
-  protected user: any;
-  protected secure:false;
-  protected cont = 0;
-  protected today = new Date();
-  protected dd = this.today.getDate();
-  protected mm = this.today.getMonth() + 1;
-  protected yyyy = this.today.getFullYear();
+  public user: any;
+  public secure:false;
+  public cont = 0;
+  public today = new Date();
+  public dd = this.today.getDate();
+  public mm = this.today.getMonth() + 1;
+  public yyyy = this.today.getFullYear();
 
-  constructor(protected spinner: NgxSpinnerService,protected rentersService: RentersService, protected clientService: ClientsService,protected carsService:CarsService) {
+  constructor(public spinner: NgxSpinnerService,public rentersService: RentersService, public clientService: ClientsService,public carsService:CarsService) {
     super(spinner,rentersService, clientService,carsService);
   }
 

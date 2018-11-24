@@ -27,15 +27,15 @@ import { NgxSpinnerService } from 'ngx-spinner';
   ]
 })
 export class AgreementComponent extends VehicleInfoComponent implements OnInit {
-  protected user: any
-  protected totalPrice: any
-  protected totalDays: any
-  protected price: any;
-  protected iva: any;
-  protected daysXPrice: number;
+  public user: any
+  public totalPrice: any
+  public totalDays: any
+  public price: any;
+  public iva: any;
+  public daysXPrice: number;
   
    
-  constructor(protected spinner: NgxSpinnerService,protected clientService: ClientsService, protected carsService: CarsService,calendar: NgbCalendar,protected rentersService:RentersService) {
+  constructor(public spinner: NgxSpinnerService,public clientService: ClientsService, public carsService: CarsService,calendar: NgbCalendar,public rentersService:RentersService) {
     super(spinner,clientService,carsService,calendar,rentersService);
    }
 

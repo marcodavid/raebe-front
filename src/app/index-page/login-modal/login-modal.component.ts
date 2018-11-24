@@ -11,8 +11,8 @@ import * as $ from 'jquery';
   styleUrls: ['./login-modal.component.css']
 })
 export class LoginModalComponent implements OnInit {
-  private showAlert = false;
-  constructor(private clientsService: ClientsService, private router: Router) { }
+  public showAlert = false;
+  constructor(public clientsService: ClientsService, public router: Router) { }
   json = {
     email: "",
     password: "",

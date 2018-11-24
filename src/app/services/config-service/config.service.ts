@@ -3,7 +3,7 @@ import { LoaderService } from '../loader-service/loader.service';
 
 @Injectable()
 export class ConfigService extends LoaderService{
-  private Server = "localhost:8000";
+  public Server = "localhost:8000";
  
   constructor() { super() }
   

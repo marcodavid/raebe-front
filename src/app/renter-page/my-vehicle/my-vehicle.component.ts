@@ -24,24 +24,24 @@ import { MyVehicleCalendarComponent } from '../my-vehicle-calendar/my-vehicle-ca
   ]
 })
 export class MyVehicleComponent implements OnInit {
-  constructor(protected clientService: ClientsService, protected carsService: CarsService) { }
-  protected userHasCar: boolean;
-  protected userCarHasPolicy: boolean;
-  protected userCarHasCoverages: boolean;
-  protected userCarHasRentPreferences: boolean;
-  protected userCarHasPrice: boolean;
-  protected user: any;
-  protected token: any;
-  protected userCar: any;
-  protected userPolicy: any;
-  protected userCoverages: any;
-  protected coverage: any = {
+  constructor(public clientService: ClientsService, public carsService: CarsService) { }
+  public userHasCar: boolean;
+  public userCarHasPolicy: boolean;
+  public userCarHasCoverages: boolean;
+  public userCarHasRentPreferences: boolean;
+  public userCarHasPrice: boolean;
+  public user: any;
+  public token: any;
+  public userCar: any;
+  public userPolicy: any;
+  public userCoverages: any;
+  public coverage: any = {
     id_policy: '',
     description: '',
     assurancesum: '',
     deductibles: ''
   };
-  private myVehicleCalendarComponent: MyVehicleCalendarComponent;
+  public myVehicleCalendarComponent: MyVehicleCalendarComponent;
   ngOnInit() {
     this.token = this.clientService.getToken();
     this.user = JSON.parse(this.clientService.getUserInfo());

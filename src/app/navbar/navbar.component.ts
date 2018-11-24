@@ -13,13 +13,13 @@ import { SearchResultComponent } from '../search-result/search-result.component'
 export class NavbarComponent  extends SearchResultComponent implements OnInit {
   @Input()
     isLogged = false;
-  protected user: any;
+  public user: any;
   public userIsRenter : boolean;
   itemState = [
     'Marca','Modelo','Año'
   ];
   searchItem:any
-  constructor(protected spinner: NgxSpinnerService,protected router: Router,protected clientsService : ClientsService, protected carsService: CarsService) {
+  constructor(public spinner: NgxSpinnerService,public router: Router,public clientsService : ClientsService, public carsService: CarsService) {
     super(router, spinner,clientsService,carsService);
    }
 

@@ -25,8 +25,8 @@ export class NearbyCarsComponent implements OnInit {
   carsCont = new Array();
   isMoreCars: boolean = true;
 
-  constructor(protected spinner: NgxSpinnerService, private clientService: ClientsService, private carsService: CarsService) { this.spinner.show(); }
-  protected arrayCarsSaved: any = []
+  constructor(public spinner: NgxSpinnerService, public clientService: ClientsService, public carsService: CarsService) { this.spinner.show(); }
+  public arrayCarsSaved: any = []
   ngOnInit() {
 
     this.clientService.getClients().subscribe(

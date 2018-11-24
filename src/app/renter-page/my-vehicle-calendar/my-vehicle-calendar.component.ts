@@ -26,8 +26,8 @@ import { RentersService } from '../../services/renters-service/renters.service';
   ]
 })
 export class MyVehicleCalendarComponent  extends MyVehicleComponent implements OnInit  {
-  protected userRentPreferences: any;
-  constructor( clientsService: ClientsService, carsService: CarsService, protected renterService: RentersService) {
+  public userRentPreferences: any;
+  constructor( clientsService: ClientsService, carsService: CarsService, public renterService: RentersService) {
     super(clientsService, carsService);
   }
 

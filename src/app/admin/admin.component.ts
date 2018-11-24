@@ -15,6 +15,6 @@ export class AdminComponent {
       map(result => result.matches)
     );
     
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(public breakpointObserver: BreakpointObserver) {}
   
   }

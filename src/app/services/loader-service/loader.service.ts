@@ -7,7 +7,7 @@ export interface LoaderState {
 @Injectable()
 
 export class LoaderService {
-private loaderSubject = new Subject<LoaderState>();
+public loaderSubject = new Subject<LoaderState>();
 loaderState = this.loaderSubject.asObservable();
 constructor() { }
 showLoader() {
