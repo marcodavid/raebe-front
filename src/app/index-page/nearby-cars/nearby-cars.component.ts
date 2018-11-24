@@ -62,7 +62,6 @@ export class NearbyCarsComponent implements OnInit {
           this.description[car] = this.randomUserCar.description;
           this.price[car] = this.randomUserCar.price;
           this.file[car] = this.carsService.getCarImagesByID(this.CarsArray[car].id_clients).subscribe(
-            // tslint:disable-next-line:no-shadowed-variable
             data => {
               for (let img in data) {
                 if (data[img].type != 2)
@@ -79,9 +78,10 @@ export class NearbyCarsComponent implements OnInit {
   }
 
   public showMoreCars() {
-    this.moreCars += 1;
 
-    this.loadNearbyCars(this.moreCars)
+    this.moreCars += 1;
+    if(this.CarsArray.length>=this.moreCars)
+    this.loadNearbyCars(this.moreCars);
 
 
   }

@@ -12,9 +12,17 @@
     <app-maps>
 
     </app-maps>
+    <br><br>        
     <div class="row">
+        <div class="col-md-6">
             <h2>Vehículos destacados</h2>
-            <button class="btn btn-outline-info" *ngIf="isMoreCars" (click)="showMoreCars()">mostrar más</button>
+
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-outline-info" *ngIf="isMoreCars" (click)="showMoreCars()">Mostrar más vehículos</button>
+
+        </div>
+
 
     </div>
 
@@ -24,7 +32,7 @@
             <div *ngFor="let field of carsCont; let i = index">
                 <div class="col-sm-12 col-md-8 mt-1" #verticalCard>
                     <div class="card" style="width:20rem">
-                        <img class="card-img-top " src="{{img[i]}}" width="40%" height="40%" alt="Card image cap">
+                        <img class="card-img-top little-image" src="{{img[i]}}"  alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title">{{brandmark[i]}}</h2>
                             <h5 class="card-title">{{model[i]}}</h5>
