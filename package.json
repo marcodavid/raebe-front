@@ -2,7 +2,7 @@
   "name": "rae-be-web",
   "version": "0.0.0",
   "engines": {
-    "node": "8.11.3",
+    "node": "8.11.1",
     "npm": "5.6.0"
   },
   "scripts": {
