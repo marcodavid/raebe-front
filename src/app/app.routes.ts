@@ -33,7 +33,7 @@ import { MapsComponent } from './maps/maps.component';
 
 
 const app_routes: Routes = [
-    { path : '', component : IndexPageComponent },
+    { path : 'index', component : IndexPageComponent },
     { path : 'home', component : IndexPageComponent, canActivate: [AuthGuardService]},
     { path : 'search-result', component : SearchResultComponent},
     { path : 'maps', component : MapsComponent},
