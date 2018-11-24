@@ -10,6 +10,15 @@
   object-fit: cover;
   object-position: center right;
 }
+.image--cover-l {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 10px;
+
+  object-fit: cover;
+  object-position: center right;
+}
 .divisor{
     margin-top: 30px;
     margin-bottom: 30px;

@@ -7,6 +7,7 @@ import * as $ from 'jquery';
 import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { Session } from 'protractor';
 import { RentersService } from '../../services/renters-service/renters.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-vehicle-info',
   templateUrl: './vehicle-info.component.html',
@@ -52,16 +53,19 @@ export class VehicleInfoComponent implements OnInit {
   protected yyyy = this.today.getFullYear();
   protected minday: NgbDate = new NgbDate(this.yyyy, this.mm, this.dd);
   protected user: any;
-  locatioResult:any;
+  locatioResult: any;
   location = {
     id_clients: "",
     lat: 20.676667,
     lng: -103.3475
   }
   isOwner: boolean;
+  ratesArray = new Array();
+  clientSearch: any;
 
 
-  constructor(protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar, protected renterService: RentersService) {
+  constructor(protected spinner: NgxSpinnerService, protected clientService: ClientsService, protected carsService: CarsService, calendar: NgbCalendar, protected renterService: RentersService) {
+   
     this.vehicleName = "Dodge Attitude";
     this.vehicleType = "Automovil";
     this.features = [];
@@ -85,17 +89,17 @@ export class VehicleInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+    this.spinner.show();
     this.clientSelected = localStorage.getItem("clientSelected");
     this.totalDays = this.TotalDays(this.toDate, this.fromDate);
-    this.user = JSON.parse (this.clientService.getUserInfo());
-    if( this.clientSelected == this.user.id_clients)
+    this.user = JSON.parse(this.clientService.getUserInfo());
+    if (this.clientSelected == this.user.id_clients)
       this.isOwner = true;
-      else this.isOwner = false;
+    else this.isOwner = false;
     this.loadDescription(this.clientSelected);
 
     this.location.id_clients = this.clientSelected;
-   
+
     if (this.user)
       this.showButton = true;
 
@@ -104,16 +108,38 @@ export class VehicleInfoComponent implements OnInit {
     this.clientService.getClientsByID(this.clientSelected).subscribe(
       data => { this.client = data }
     )
-    
+
     this.renterService.getRatetByIdClients(this.clientSelected).subscribe(
       data => {
         this.rates = data;
+        for (let rate in this.rates) {
+          this.clientService.getClientsByID(this.rates[rate].id_clientscommenter).subscribe(
+            data => {
+               this.clientSearch = data;
+              this.carsService.getCarImagesByID(this.rates[rate].id_clientscommenter).subscribe(
+                data => {
+                  for (let img in data) {
+                    if (data[img].type == 2) {
+                      this.ratesArray[rate] = {
+                        name: this.clientSearch.firstname,
+                        file: '//' + this.clientService.getServer() + data[img].file,
+                        comment: this.rates[rate].comment,
+                        rate:this.rates[rate].rate
+                      }
+                      break;
+                    }
+                  }
+                }
+              )
+            }
+          )
+        }
       }
     )
 
     this.clientService.getLocationByID(this.clientSelected).subscribe(
       data => {
-         this.locatioResult = data;
+        this.locatioResult = data;
         this.location.lat = Number(this.locatioResult.lat);
         this.location.lng = Number(this.locatioResult.lng);
       },
@@ -204,11 +230,11 @@ export class VehicleInfoComponent implements OnInit {
 
               }
             }
-
+            this.spinner.hide();
           });
 
         this.features.push(
-          "Edad de restricción para el conductor:   " + this.clientSelectedCar["agerestriction"] + " años",
+          "Edad de preferente  para el conductor:   " + this.clientSelectedCar["agerestriction"] + " años",
           "Tranmisión   " + this.clientSelectedCar["automatic"],
           "Año:  " + this.clientSelectedCar["year"],
           "Pasajeros:  " + this.clientSelectedCar["passagers"],

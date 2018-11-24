@@ -25,7 +25,7 @@ export class NearbyCarsComponent implements OnInit {
   carsCont = new Array();
   isMoreCars: boolean = true;
 
-  constructor(private spinner: NgxSpinnerService, private clientService: ClientsService, private carsService: CarsService) { this.spinner.show(); }
+  constructor(protected spinner: NgxSpinnerService, private clientService: ClientsService, private carsService: CarsService) { this.spinner.show(); }
   protected arrayCarsSaved: any = []
   ngOnInit() {
 
@@ -69,7 +69,7 @@ export class NearbyCarsComponent implements OnInit {
                   this.img[car] = '//' + this.clientService.getServer() + data[img].file
               }
 
-
+              this.spinner.hide();
             }
           );
           this.spinner.hide();

@@ -5,6 +5,7 @@ import { VehicleInfoComponent } from '../vehicle-info/vehicle-info.component';
 import { CarsService } from '../../services/cars-service/cars.service';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { RentersService } from '../../services/renters-service/renters.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-agreement',
@@ -34,8 +35,8 @@ export class AgreementComponent extends VehicleInfoComponent implements OnInit {
   protected daysXPrice: number;
   
    
-  constructor(protected clientService: ClientsService, protected carsService: CarsService,calendar: NgbCalendar,protected rentersService:RentersService) {
-    super(clientService,carsService,calendar,rentersService);
+  constructor(protected spinner: NgxSpinnerService,protected clientService: ClientsService, protected carsService: CarsService,calendar: NgbCalendar,protected rentersService:RentersService) {
+    super(spinner,clientService,carsService,calendar,rentersService);
    }
 
   ngOnInit() {

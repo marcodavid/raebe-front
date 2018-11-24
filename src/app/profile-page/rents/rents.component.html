@@ -6,16 +6,16 @@
     </div>
     <h5>Verificar contrato de arrendamiento <a href="/assets/documents/Contrato RaeBe.pdf" download="Contrato RaeBe.pdf">aquí</a></h5>
   
-    <div>
-      <div>
-        <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <div *ngFor="let rent of clientsRents;index as i">
+      <div  *ngIf="rent.acceptence != 2">
+        <ngb-accordion   #acc="ngbAccordion" activeIds="ngb-panel-0">
           <ngb-panel>
             <ng-template ngbPanelTitle>
                 <span>Renta</span>
             </ng-template>
             <ng-template ngbPanelContent>
-                <ng-container *ngFor="let rent of clientsRents;index as i">
-                    <table *ngIf="rent.acceptence != 2" class="table">
+                <ng-container>
+                    <table class="table">
                           <thead>
                   </thead>
                   <tbody>

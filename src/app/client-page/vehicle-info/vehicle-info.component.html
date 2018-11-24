@@ -114,8 +114,12 @@
     <div class="col-sm-12">
       <h2>Evaluaciones</h2>
       <div class="container">
-        <div class="row mt-3" *ngFor='let rate of rates'>
-          <div class="col-sm-12">
+        <div class="row " *ngFor='let rate of ratesArray'>
+            <div class="col-sm-4">
+                <img class="image--cover-l" [src]="rate.file">
+                <b>{{rate.name}}</b>
+              </div>
+          <div class="col-sm-8">
             <ngb-rating [(rate)]="rate.rate" [readonly]="true"></ngb-rating>
             <h5>{{rate.comment}}</h5>
           </div>

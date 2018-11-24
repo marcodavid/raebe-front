@@ -24,7 +24,7 @@ export class ProfilePageComponent implements OnInit {
   img: string;
   message: any;
   clearTextArea: string;
-  constructor(protected spinner: NgxSpinnerService, protected rentersService: RentersService, protected clientService: ClientsService, protected carsService: CarsService) { }
+  constructor(protected spinner: NgxSpinnerService, protected rentersService: RentersService, protected clientService: ClientsService, protected carsService: CarsService) {this.spinner.show() }
   protected user: any
   protected rentAndImage = new Array();
 
@@ -83,7 +83,7 @@ export class ProfilePageComponent implements OnInit {
           }
 
         }
-
+        this.spinner.hide();
       },
       error => { }
     )

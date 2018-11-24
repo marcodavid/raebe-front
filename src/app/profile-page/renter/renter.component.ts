@@ -48,8 +48,9 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
 
 
   public onAcceptence(status, rentToUpdate) {
-    switch (status) {
+    this.spinner.show();
 
+    switch (status) {
       case 1:
         rentToUpdate.acceptence = 1;
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
@@ -57,19 +58,21 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
 
             this.rentersService.postMail(this.user.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acabas de aceptar una renta para el usuario "+rentToUpdate.clientname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
               data=>{
-                
+                this.spinner.hide();
               }
             );
           }
         );
         break;
       case 2:
+   
         rentToUpdate.acceptence = 2;
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
            
             this.rentersService.postMail(this.user.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acabas de declinar una renta para el usuario "+rentToUpdate.clientname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
               data=>{
+                this.spinner.hide();
                location.reload();
               }
             );
@@ -81,7 +84,7 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
             
-
+            this.spinner.hide();
           }
         );
         break;
@@ -91,6 +94,7 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
           data => {
             this.rentersService.postMail(this.user.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acabas de finalizar  una renta para el usuario "+rentToUpdate.clientname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
               data=>{
+                this.spinner.hide();
                 location.reload();
               }
             );
