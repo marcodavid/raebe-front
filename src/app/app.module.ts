@@ -25,6 +25,8 @@ import { NearbyCarsMapComponent } from './client-page/nearby-cars-map/nearby-car
 import { ClientsService } from './services/clients-service/clients.service';
 import { ConfigService } from './services/config-service/config.service';
 import {NgxMaskModule} from 'ngx-mask'
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfviewerComponent } from './pdfviewer/pdfviewer.component';
 
 // Rutas
 import { app_routing } from './app.routes';
@@ -105,7 +107,7 @@ const routes: Routes = [
     RenterComponent,
     SearchResultComponent,
     MapsComponent,
-
+    PdfviewerComponent,
     AdminComponent
 
     
@@ -114,6 +116,7 @@ const routes: Routes = [
   imports: [
     NgbModule,
     BrowserModule,
+    PdfViewerModule,
     AngularFontAwesomeModule,
     app_routing,
     BrowserAnimationsModule,
