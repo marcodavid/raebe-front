@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/38989188-0216-44a8-aa05-d2eb2a1b70b7/resourceGroups/raebe/providers/Microsoft.Web/sites/raebe",
+    "appService.deploySubpath": "dist\\rae-be-web"
+}

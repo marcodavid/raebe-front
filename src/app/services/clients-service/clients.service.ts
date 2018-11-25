@@ -21,67 +21,67 @@ export class ClientsService extends ConfigService {
   }
   public getClients() {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetClients/", this.httpOptions)
+    return this.http.get("https://" + this.server + "/api/GetClients/", this.httpOptions)
   }
   public getLocations() {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetLocations/", this.httpOptions)
+    return this.http.get("https://" + this.server + "/api/GetLocations/", this.httpOptions)
   }
   public getClientsByID(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetClientsByID/?id_clients=" + id, this.httpOptions)
+    return this.http.get("https://" + this.server + "/api/GetClientsByID/?id_clients=" + id, this.httpOptions)
   }
 
   public getLocationByID(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetLocationByID/?id_clients=" + id, this.httpOptions)
+    return this.http.get("https://" + this.server + "/api/GetLocationByID/?id_clients=" + id, this.httpOptions)
   }
   public getRandomClients() {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetRandomClients/", this.httpOptions)
+    return this.http.get("https://" + this.server + "/api/GetRandomClients/", this.httpOptions)
 
 
   }
 
   public getAddressByClient(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetAddressByClient/?id_clients=" + id, this.httpOptions)
+    return this.http.get("https://" + this.server + "/api/GetAddressByClient/?id_clients=" + id, this.httpOptions)
 
   }
 
   public getDriverLicenseByClient(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetDriverLicenseByClient/?id_clients=" + id, this.httpOptions)
+    return this.http.get("https://" + this.server + "/api/GetDriverLicenseByClient/?id_clients=" + id, this.httpOptions)
   }
   public postClientToSign(json) {
-    return this.http.post("http://" + this.server + "/api/PostClientToSign/", JSON.stringify(json), this.httpOptions);
+    return this.http.post("https://" + this.server + "/api/PostClientToSign/", JSON.stringify(json), this.httpOptions);
   }
 
   public postClientToLogin(json) {
-    return this.http.post("http://" + this.server + "/api/PostClientToLogin/", JSON.stringify(json), this.httpOptions);
+    return this.http.post("https://" + this.server + "/api/PostClientToLogin/", JSON.stringify(json), this.httpOptions);
 
   }
   public postAddress(json) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.post("http://" + this.server + "/api/PostAddress/", JSON.stringify(json), this.httpOptions);
+    return this.http.post("https://" + this.server + "/api/PostAddress/", JSON.stringify(json), this.httpOptions);
   }
   public postDriverLicense(json) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.post("http://" + this.server + "/api/PostDriverLicense/", JSON.stringify(json), this.httpOptions);
+    return this.http.post("https://" + this.server + "/api/PostDriverLicense/", JSON.stringify(json), this.httpOptions);
   }
 
   public postLocation(json) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.post("http://" + this.server + "/api/PostLocation/", JSON.stringify(json), this.httpOptions);
+    return this.http.post("https://" + this.server + "/api/PostLocation/", JSON.stringify(json), this.httpOptions);
   }
   public putLocationForUpdate(json) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.put("http://" + this.server + "/api/PutLocationForUpdate/", JSON.stringify(json), this.httpOptions)
+    return this.http.put("https://" + this.server + "/api/PutLocationForUpdate/", JSON.stringify(json), this.httpOptions)
 
   }
   public putClientForUpdate(userInfoUpdated) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    this.http.put("http://" + this.server + "/api/PutClientForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
+    this.http.put("https://" + this.server + "/api/PutClientForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
       .subscribe(
         data => {
 
@@ -92,7 +92,7 @@ export class ClientsService extends ConfigService {
   public putAddressForUpdate(userInfoUpdated) {
 
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    this.http.put("http://" + this.server + "/api/PutAddressForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
+    this.http.put("https://" + this.server + "/api/PutAddressForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
       .subscribe(
         data => {
           if (data) {
@@ -106,7 +106,7 @@ export class ClientsService extends ConfigService {
   public putDriverLicenseForUpdate(userInfoUpdated) {
 
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    this.http.put("http://" + this.server + "/api/PutDriverLicenseForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
+    this.http.put("https://" + this.server + "/api/PutDriverLicenseForUpdate/", JSON.stringify(userInfoUpdated), this.httpOptions)
       .subscribe(
         data => {
           if (data) {

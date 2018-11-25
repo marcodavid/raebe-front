@@ -23,16 +23,16 @@ export class RentersService extends ConfigService {
   }
   public getRentByID(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetRentByID/?id_clientsrenter=" + id, this.httpOptions)
+    return this.http.get("https://" + this.server + "/api/GetRentByID/?id_clientsrenter=" + id, this.httpOptions)
   }
   public GetRentByIdClients(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetRentByIdClients/?id_clients=" + id, this.httpOptions)
+    return this.http.get("https://" + this.server + "/api/GetRentByIdClients/?id_clients=" + id, this.httpOptions)
   }
 
   public PostRent(json) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.post("http://" + this.server + "/api/PostRent/", JSON.stringify(json), this.httpOptions);
+    return this.http.post("https://" + this.server + "/api/PostRent/", JSON.stringify(json), this.httpOptions);
 
   }
 
@@ -44,38 +44,38 @@ export class RentersService extends ConfigService {
     }
     
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.post("http://" + this.server + "/api/PostMail/", JSON.stringify(json), this.httpOptions);
+    return this.http.post("https://" + this.server + "/api/PostMail/", JSON.stringify(json), this.httpOptions);
 
   }
   public getRatetByIdClients(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetRateByIdClients/?id_clients=" + id, this.httpOptions)
+    return this.http.get("https://" + this.server + "/api/GetRateByIdClients/?id_clients=" + id, this.httpOptions)
   }
 
   public postRate(json) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.post("http://" + this.server + "/api/PostRate/", JSON.stringify(json), this.httpOptions);
+    return this.http.post("https://" + this.server + "/api/PostRate/", JSON.stringify(json), this.httpOptions);
 
   }
   public putRentForUpdate(json) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.put("http://" + this.server + "/api/PutRentForUpdate/", JSON.stringify(json), this.httpOptions);
+    return this.http.put("https://" + this.server + "/api/PutRentForUpdate/", JSON.stringify(json), this.httpOptions);
   }
 
   public getRentPreferencesByClient(id) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.get("http://" + this.server + "/api/GetRentPreferencesByClient/?id_clients=" + id, this.httpOptions)
+    return this.http.get("https://" + this.server + "/api/GetRentPreferencesByClient/?id_clients=" + id, this.httpOptions)
   }
 
   public PostRentPreferences(json) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.post("http://" + this.server + "/api/PostRentPreferences/", JSON.stringify(json), this.httpOptions);
+    return this.http.post("https://" + this.server + "/api/PostRentPreferences/", JSON.stringify(json), this.httpOptions);
 
   }
 
   public putRentPreferencesForUpdate(json) {
     this.httpOptions.headers.append('Authorization', 'bearer' + this.getToken())
-    return this.http.put("http://" + this.server + "/api/PutRentPreferencesForUpdate/", JSON.stringify(json), this.httpOptions);
+    return this.http.put("https://" + this.server + "/api/PutRentPreferencesForUpdate/", JSON.stringify(json), this.httpOptions);
   }
 
 }
