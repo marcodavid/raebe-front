@@ -1,7 +1,10 @@
 a {
     text-decoration : none;
 }
-
+.little-image{
+    width: 200px;
+    height: 200px;
+  }
 .card {
     border : 0;
     border-bottom: 1px;

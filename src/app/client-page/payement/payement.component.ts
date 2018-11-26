@@ -93,22 +93,25 @@ export class PayementComponent extends AgreementComponent implements OnInit {
     this.spinner.show();
        this.renterServie.PostRent(this.rent).subscribe(
          data=>{
-          this.rentersService.postMail(this.client.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acaban de proponerte una renta  para el usuario "+this.user.firstname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
-            data=>{
+          this.router.navigate(['/profile/rents']);
+
+          // this.rentersService.postMail(this.client.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acaban de proponerte una renta  para el usuario "+this.user.firstname+"<br>para mas información click <a href='https://raebe.azurewebsites.net/profile/renter'>aquí</a>","Notificación de renta RaeBe").subscribe(
+          //   data=>{
               
-            }
+          //   }
+         }
           );
       
-          this.renterService.postMail(this.user.email,"<h3>Gracias por tu renta "+this.user.firstname+"!</h3><br>Tu coche es <p>"+this.vehicleName+" "+this.vehicleType+"</p><br><b>"+this.rent.dateofpickup+" al "+this.rent.returnday+"</b><br><b>Total: $"+this.totalPrice+" MXN</b><br>"+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
-            data=>{
-              this.spinner.hide();
-                this.router.navigate(['/profile/rents']);
+      //     this.renterService.postMail(this.user.email,"<h3>Gracias por tu renta "+this.user.firstname+"!</h3><br>Tu coche es <p>"+this.vehicleName+" "+this.vehicleType+"</p><br><b>"+this.rent.dateofpickup+" al "+this.rent.returnday+"</b><br><b>Total: $"+this.totalPrice+" MXN</b><br>"+"<br>para mas información click <a href='https://raebe.azurewebsites.net/profile/rents'>aquí</a>","Notificación de renta RaeBe").subscribe(
+      //       data=>{
+      //         this.spinner.hide();
+      //           this.router.navigate(['/profile/rents']);
 
-            }
-          );
+      //       }
+      //     );
          
-         }
-       );
+      //    }
+      //  );
      
 
   }
@@ -116,14 +119,15 @@ export class PayementComponent extends AgreementComponent implements OnInit {
     this.payPalConfig = new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, {
       commit: true,
       client: {
-        sandbox: 'Aa3LNkrw6Nbqb7BwfjLMWTwBQ8LrF1NBYxApsnWOqErSUMDPUCwmvkDRm7LFaLMITxFvPbjcHHP83uqR',
+        sandbox: 'ARrazwcTWfPY7tdnBZciYMx6kvTxt3mMYH6Qr73Azua6TtfcLfPlwMR5gyUWfYm5twdg7-NOVp9zmcPO',
       },
       button: {
         label: 'paypal',
       },
       onPaymentComplete: (data, actions) => {
         console.log('OnPaymentComplete');
-        this.router.navigate(['/profile/rents']);
+        this.onRent();
+
 
       },
       onCancel: (data, actions) => {

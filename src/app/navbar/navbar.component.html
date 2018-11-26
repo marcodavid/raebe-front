@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-background">
-  <a class="navbar-brand navbar-logo mt-1 mb-1 " routerLink="/home"><img src="/assets/img/wolf_navbar.png" width="35px"> <b>RaeBe</b> &nbsp;</a>
+  <a class="navbar-brand navbar-logo mt-1 mb-1 " routerLink="/"><img src="/assets/img/wolf_navbar.png" width="35px"> <b>RaeBe</b> &nbsp;</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,13 +22,13 @@
     </div>
     <div #loggedButtons>
       <div *ngIf="userIsRenter; else  elseBlock">
-          <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['']" (click)="onRentPerfil()"> Perfil de renta</a>
-          <a  class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['renter']">Preferencias de renta</a>
-          <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['profile']"><fa name="car"></fa> {{user.firstname}}</a>
+          <a class="navbar-link mr-2 ml-2"  [routerLink]="['']" (click)="onRentPerfil()"> Perfil de renta</a>
+          <a  class="navbar-link mr-2 ml-2" [routerLink]="['renter']">Preferencias de renta</a>
+          <a class="navbar-link mr-2 ml-2"  [routerLink]="['profile']"><fa name="car"></fa> {{user.firstname}}</a>
       </div>
     <ng-template #elseBlock>
-      <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['renter']">Renta tu carro</a>
-      <a class="navbar-link mr-2 ml-2" data-toggle="modal" [routerLink]="['profile']"><fa name="user"></fa> {{user.firstname}}</a>
+      <a class="navbar-link mr-2 ml-2" [routerLink]="['renter']">Renta tu carro</a>
+      <a class="navbar-link mr-2 ml-2"  [routerLink]="['profile']"><fa name="user"></fa> {{user.firstname}}</a>
 
     </ng-template>
     </div>

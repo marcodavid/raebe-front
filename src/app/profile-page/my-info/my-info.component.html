@@ -3,7 +3,7 @@
 <div class="container mt-2 mb-5" [@animacionAparecer]>
 
     <div class="col-sm-6 ">              
-        <img  src="{{perfilImage}}" height ="50%" alt=""> 
+        <img  class="little-image" src="{{perfilImage}}" height ="50%" alt=""> 
       
            <button  *ngIf="isPerfilImage == true" class="btn btn-light "  (click)="deletePhoto()">Cambiar foto de perfil</button>
  

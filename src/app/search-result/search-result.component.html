@@ -14,10 +14,11 @@
       <div *ngFor="let car of carsCont | filterBy: userFilter">
           <div class="col-sm-12 col-md-8 mt-1" #verticalCard>
             <div class="card" style="width:20rem">
-              <img class="card-img-top " src="{{car.file}}" width="100%" alt="Card image cap">
+              <img class="card-img-top little-image" src="{{car.file}}" width="100%" alt="Card image cap">
               <div class="card-body">
                 <h2 class="card-title">{{car.data.brand}}</h2>
-                <h5 class="card-title">{{car.data.model}}</h5>
+                <h5 class="card-title">{{car.data.price | currency}}</h5>
+                <h5 class="card-title">{{car.data.model}} {{car.data.year}}</h5>
                 <p class="card-text">{{car.data.description}}</p>
               </div>
               <div class="card-footer justify-content-center text-center">

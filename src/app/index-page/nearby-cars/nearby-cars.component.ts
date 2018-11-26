@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { CarsService } from '../../services/cars-service/cars.service';
 import { ClientsService } from '../../services/clients-service/clients.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nearby-cars',
@@ -25,7 +26,7 @@ export class NearbyCarsComponent implements OnInit {
   carsCont = new Array();
   isMoreCars: boolean = true;
 
-  constructor(public spinner: NgxSpinnerService, public clientService: ClientsService, public carsService: CarsService) { this.spinner.show(); }
+  constructor(public router: Router,public spinner: NgxSpinnerService, public clientService: ClientsService, public carsService: CarsService) { this.spinner.show(); }
   public arrayCarsSaved: any = []
   ngOnInit() {
 
@@ -47,6 +48,7 @@ export class NearbyCarsComponent implements OnInit {
 
   saveCarInfo(selected) {
     localStorage.setItem('clientSelected', this.CarsArray[selected].id_clients);
+    this.router.navigate(['/client/vehicle-info']);
   }
   public loadNearbyCars(limit) {
     this.carsCont = [];
