@@ -70,5 +70,11 @@ export class NavbarComponent  extends SearchResultComponent implements OnInit {
         this.router.navigate(['/search-result']);
       })
   }
+  onRenter(){
+    this.router.navigate(['renter']);
+  }
+  onProfile(){
+    this.router.navigate(['profile']);
+  }
   
 }

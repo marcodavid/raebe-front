@@ -98,7 +98,7 @@ export class PayementComponent extends AgreementComponent implements OnInit {
           // this.rentersService.postMail(this.client.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acaban de proponerte una renta  para el usuario "+this.user.firstname+"<br>para mas información click <a href='https://raebe.azurewebsites.net/profile/renter'>aquí</a>","Notificación de renta RaeBe").subscribe(
           //   data=>{
               
-          //   }
+          //   });
          }
           );
       
@@ -119,7 +119,7 @@ export class PayementComponent extends AgreementComponent implements OnInit {
     this.payPalConfig = new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, {
       commit: true,
       client: {
-        sandbox: 'ARrazwcTWfPY7tdnBZciYMx6kvTxt3mMYH6Qr73Azua6TtfcLfPlwMR5gyUWfYm5twdg7-NOVp9zmcPO',
+        sandbox:'Aa0FvvYFkgwXv1YB7e2ZqZ3phmubW5ygs6DgY9mltRMde6uVUzksGm1TNyk1QXaZ5UU25VpyfCD6LiMx'
       },
       button: {
         label: 'paypal',

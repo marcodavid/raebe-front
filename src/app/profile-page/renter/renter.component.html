@@ -76,8 +76,9 @@
                         <button *ngIf="rent.data.acceptence == 3" (click)="onAcceptence(3,rent.data)" type="button" class="btn btn-success align-left">Iniciar
                           renta
                         </button>
-                        <button *ngIf="rent.data.acceptence < 4" (click)="onAcceptence(2,rent.data)" type="button" class="btn btn-danger">Declinar</button>
-                        <button *ngIf="rent.data.acceptence == 4" (click)="onAcceptence(5,rent.data)" type="button" class="btn btn-danger">Carro
+                        <input *ngIf="reabeSecure!='RaeBe'" [(ngModel)]="reabeSecure" placeholder="escribe RaeBe para declinar/terminar renta">
+                        <button *ngIf="rent.data.acceptence < 4 && reabeSecure=='RaeBe'" (click)="onAcceptence(2,rent.data)" type="button" class="btn btn-danger">Declinar</button>
+                        <button *ngIf="rent.data.acceptence == 4 && reabeSecure=='RaeBe'" (click)="onAcceptence(5,rent.data)" type="button" class="btn btn-danger">Carro
                           entregado</button></td>
                       <td *ngIf="rent.data.acceptence == 1">Aceptado</td>
                       <td *ngIf="rent.data.acceptence == 3">Lista para iniciar</td>

@@ -23,12 +23,12 @@
     <div #loggedButtons>
       <div *ngIf="userIsRenter; else  elseBlock">
           <a class="navbar-link mr-2 ml-2"  [routerLink]="['']" (click)="onRentPerfil()"> Perfil de renta</a>
-          <a  class="navbar-link mr-2 ml-2" [routerLink]="['renter']">Preferencias de renta</a>
-          <a class="navbar-link mr-2 ml-2"  [routerLink]="['profile']"><fa name="car"></fa> {{user.firstname}}</a>
+          <a  class="navbar-link mr-2 ml-2" [routerLink]="['']" (click)="onRenter()">Preferencias de renta</a>
+          <a class="navbar-link mr-2 ml-2"  [routerLink]="['']" (click)="onProfile()"><fa name="car"></fa> {{user.firstname}}</a>
       </div>
     <ng-template #elseBlock>
-      <a class="navbar-link mr-2 ml-2" [routerLink]="['renter']">Renta tu carro</a>
-      <a class="navbar-link mr-2 ml-2"  [routerLink]="['profile']"><fa name="user"></fa> {{user.firstname}}</a>
+      <a class="navbar-link mr-2 ml-2" [routerLink]="['']" (click)="onRenter()">Renta tu carro</a>
+      <a class="navbar-link mr-2 ml-2"  [routerLink]="['']" (click)="onProfile()"><fa name="user"></fa> {{user.firstname}}</a>
 
     </ng-template>
     </div>

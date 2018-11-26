@@ -34,7 +34,7 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
   public dd = this.today.getDate();
   public mm = this.today.getMonth() + 1;
   public yyyy = this.today.getFullYear();
-
+  public reabeSecure =  "";
   constructor(public spinner: NgxSpinnerService,public rentersService: RentersService, public clientService: ClientsService,public carsService:CarsService) {
     super(spinner,rentersService, clientService,carsService);
   }
@@ -65,7 +65,7 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
         );
         break;
       case 2:
-   
+        this.spinner.hide();
         rentToUpdate.acceptence = 2;
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
@@ -89,10 +89,11 @@ export class RenterComponent extends ProfilePageComponent implements OnInit {
         );
         break;
         case 5:
+        
+        this.spinner.hide();
         rentToUpdate.acceptence = 5;//3 lista,4 iniciada
         this.rentersService.putRentForUpdate(rentToUpdate).subscribe(
           data => {
-            this.spinner.hide();
             location.reload();
             // this.rentersService.postMail(this.user.email,"<h3>Hola "+this.user.firstname+"!</h3><br>Acabas de finalizar  una renta para el usuario "+rentToUpdate.clientname+"<br>para mas información click <a>aquí</a>","Notificación de renta RaeBe").subscribe(
             //   data=>{

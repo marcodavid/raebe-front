@@ -27,6 +27,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   ]
 })
 export class RentsComponent extends ProfilePageComponent implements OnInit {
+  public reabeSecure =  "";
   myRate = {
     id_clientsreceiver:"",
     id_clientscommenter:"",
